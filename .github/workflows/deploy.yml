@@ -12,6 +12,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          # Only check out the actual plugin config folders so that .git, .github,
+          # README.md, and NOTES.md are never present in the workspace and therefore
+          # never uploaded to the server.
+          sparse-checkout: |
+            MMOCore
+            MMOItems
+            MMOInventory
+            MMOProfiles
+            MythicLib
+            MythicMobs
+            config
 
       - name: Sync files via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -21,11 +33,11 @@ jobs:
           password: ${{ secrets.SFTP_PASS }}
           port: 2022
 
-          # This assumes your repo has the MMOCore, MythicLib, etc folders at the root level.
-          # It pushes everything in your repo to the server's /plugins folder.
+          # Upload only the checked-out plugin config folders to the server's /plugins folder.
           local_path: './*'
           remote_path: '/plugins/'
 
-          # This prevents the action from deleting files on your server that aren't in your GitHub repo
-          # (like player data, jar files, or other plugins).
-          args: '-o ConnectTimeout=5 --exclude .git/ --exclude .github/ --exclude README.md'
+          # Pass a connect timeout so the job fails fast when the server is unreachable.
+          # Note: use 'sftpArgs' (not 'args') — that is the correct input name for this action.
+          # '--exclude' is an rsync/lftp flag and is not supported by sftp batch mode.
+          sftpArgs: '-o ConnectTimeout=5'
