@@ -8,14 +8,14 @@ slots: 54
 items:
   # Place this inside the 'items:' section of your skills.yml GUI
   skill_shop_button:
-    material: EMERALD
+    item: EMERALD
     name: '&a&lUnlock New Skills'
     lore:
       - '&7Click here to open the Skill Tree'
       - '&7and unlock brand new abilities!'
-    slot: 26
+    slots: [ 46 ]
     # Instantly opens your custom tree!
-    function: 'command{format="skilltree"}'
+    function: skill-tree
   skill:
     slots: [ 10,11,12,19,20,21,28,29,30,37,38,39 ]
     function: skill
