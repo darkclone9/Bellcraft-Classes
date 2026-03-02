@@ -254,16 +254,17 @@ items:
       - '❊ Max Stellium: &9{max_stellium} &7(&9{max_stellium_base} &7+ &9{max_stellium_extra}&7)'
       - '❊ Stellium Regen: &9{stellium_regeneration} &7(&9{stellium_regeneration_base} &7+ &9{stellium_regeneration_extra}&7)'
   open_skills:
-    slots: [ 40 ]
-    function: skills
+    slots: [ 40, 41 ] # Makes it a nice wide double-button
+    function: skill-list
     item: NETHER_STAR
-    name: '&a&lOpen Skills'
+    name: '&a&lAbilities & Skill Tree'
     item-flags: [ 'HIDE_ATTRIBUTES' ]
     lore:
       - ''
-      - '&7View and upgrade your learned skills.'
+      - '&7View your active abilities, bind them'
+      - '&7to your hotbar, or unlock new ones.'
       - ''
-      - '&eLeft-Click &7to open your skill list.'
+      - '&e► Left-Click &7to open the Abilities menu.'
   open_skill_tree:
     slots: [ 41 ]
     function: skill-tree
