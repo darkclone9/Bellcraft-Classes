@@ -1,0 +1,8 @@
+DEPLOY_DRONE:
+  name: "&bDeploy Drone"
+  icon: DISPENSER
+  source: mythicmobs:DeployDrone_Cast
+  parameters:
+    damage:
+      base: 5
+      per-level: 1.5

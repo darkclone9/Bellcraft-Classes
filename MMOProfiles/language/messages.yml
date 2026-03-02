@@ -1,0 +1,4 @@
+too-much-profiles: '&cYou reached the profile number limit.'
+profile-with-same-name: '&cYou already have a profile with the same name.'
+set-profile-name-ask: '&ePlease type your desired profile name. Type ''cancel'' to abort.'
+profile-name-too-long: '&cProfile name is too long. Max length is {max} characters.'

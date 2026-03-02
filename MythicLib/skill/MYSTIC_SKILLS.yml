@@ -1,0 +1,219 @@
+# Mystic Class Skills (Forge-01)
+
+MYSTIC_COSMIC_HEAL:
+  name: "&d✦ Cosmic Heal"
+  icon: GOLDEN_APPLE
+  source: default:GRAND_HEAL
+  parameters:
+    cooldown:
+      player:
+        base: 4
+        per-level: -0.03
+        min: 2
+        max: 4
+      name: Cooldown
+    mana:
+      player:
+        base: 6
+        per-level: 0.12
+      name: Mana
+    heal:
+      player:
+        base: 10.0
+        per-level: 0.6
+      name: Heal
+  triggers:
+    cast:
+      - 'heal{amount={heal}}'
+      - 'particle{p=SPELL_INSTANT;amount=50;speed=0.4;hS=1.5;vS=1.5}'
+      - 'particle{p=TOTEM;amount=25;speed=0.3;hS=1;vS=1}'
+      - 'sound{s=BLOCK_BEACON_POWER_SELECT;v=1;p=1.8}'
+
+MYSTIC_ASTRAL_BARRIER:
+  name: "&d✦ Astral Barrier"
+  icon: SHIELD
+  source: default:MAGICAL_SHIELD
+  parameters:
+    cooldown:
+      player:
+        base: 16
+        per-level: -0.12
+        min: 8
+        max: 16
+      name: Cooldown
+    mana:
+      player:
+        base: 8
+        per-level: 0.15
+      name: Mana
+    duration:
+      player:
+        base: 5
+        per-level: 0.1
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=ABSORPTION;duration={duration};amplifier=2}'
+      - 'stat{stat=MAGIC_DAMAGE;amount=20;operation=RELATIVE;duration={duration}}'
+      - 'stat{stat=ARMOR;amount=20;operation=RELATIVE;duration={duration}}'
+      - 'particle{p=SPELL_INSTANT;amount=80;speed=0.5;hS=2;vS=2}'
+      - 'sound{s=BLOCK_BEACON_ACTIVATE;v=1;p=1.5}'
+
+MYSTIC_MIND_SPIKE:
+  name: "&d✦ Mind Spike"
+  icon: AMETHYST_SHARD
+  source: default:SLOW
+  parameters:
+    cooldown:
+      player:
+        base: 8
+        per-level: -0.06
+        min: 3
+        max: 8
+      name: Cooldown
+    mana:
+      player:
+        base: 7
+        per-level: 0.12
+      name: Mana
+    damage:
+      player:
+        base: 7.0
+        per-level: 0.45
+      name: Damage
+    duration:
+      player:
+        base: 2.5
+        per-level: 0.05
+      name: Duration
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'potion{type=SLOWNESS;duration={duration};amplifier=0}'
+      - 'potion{type=NAUSEA;duration={duration};amplifier=0}'
+      - 'particle{p=SPELL_WITCH;amount=60;speed=0.5;hS=1;vS=2}'
+      - 'sound{s=ENTITY_ENDERMAN_SCREAM;v=1;p=1.8}'
+
+MYSTIC_STELLAR_CONVERGENCE:
+  name: "&d&l✦ Stellar Convergence"
+  icon: NETHER_STAR
+  source: default:GRAND_HEAL
+  parameters:
+    cooldown:
+      player:
+        base: 50
+        per-level: -0.3
+        min: 30
+        max: 50
+      name: Cooldown
+    mana:
+      player:
+        base: 18
+        per-level: 0.25
+      name: Mana
+    heal:
+      player:
+        base: 20.0
+        per-level: 1.0
+      name: Heal
+    damage:
+      player:
+        base: 15.0
+        per-level: 0.8
+      name: Damage
+    duration:
+      player:
+        base: 6
+        per-level: 0.1
+      name: Duration
+  triggers:
+    cast:
+      - 'heal{amount={heal}}'
+      - 'damage{amount={damage}}'
+      - 'potion{type=REGENERATION;duration={duration};amplifier=2}'
+      - 'potion{type=ABSORPTION;duration={duration};amplifier=2}'
+      - 'particle{p=TOTEM;amount=250;speed=1.0;hS=5;vS=5}'
+      - 'sound{s=BLOCK_BEACON_ACTIVATE;v=2;p=0.7}'
+
+MYSTIC_VOID_STEP:
+  name: "&d✦ Void Step"
+  icon: ENDER_EYE
+  source: default:LEAP
+  parameters:
+    cooldown:
+      player:
+        base: 10
+        per-level: -0.08
+        min: 5
+        max: 10
+      name: Cooldown
+    mana:
+      player:
+        base: 8
+        per-level: 0.15
+      name: Mana
+  triggers:
+    cast:
+      - 'velocity{forward=4;up=0.25}'
+      - 'potion{type=SPEED;duration=2;amplifier=1}'
+      - 'particle{p=PORTAL;amount=80;speed=0.6;hS=1.2;vS=1.5}'
+      - 'sound{s=ENTITY_ENDERMAN_TELEPORT;v=1.2;p=1.6}'
+
+MYSTIC_STARFALL:
+  name: "&d✦ Starfall"
+  icon: NETHER_STAR
+  source: default:ARCANE_RIFT
+  parameters:
+    cooldown:
+      player:
+        base: 18
+        per-level: -0.12
+        min: 10
+        max: 18
+      name: Cooldown
+    mana:
+      player:
+        base: 14
+        per-level: 0.22
+      name: Mana
+    damage:
+      player:
+        base: 10.0
+        per-level: 0.6
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'particle{p=FIREWORKS_SPARK;amount=140;speed=0.9;hS=3;vS=3}'
+      - 'particle{p=END_ROD;amount=50;speed=0.3;hS=2;vS=3}'
+      - 'sound{s=ENTITY_FIREWORK_ROCKET_LAUNCH;v=1.4;p=1.2}'
+
+MYSTIC_CELESTIAL_BOND:
+  name: "&d✦ Celestial Bond"
+  icon: HEART_OF_THE_SEA
+  source: default:HUMAN_SHIELD
+  parameters:
+    cooldown:
+      player:
+        base: 22
+        per-level: -0.14
+        min: 12
+        max: 22
+      name: Cooldown
+    mana:
+      player:
+        base: 12
+        per-level: 0.2
+      name: Mana
+    duration:
+      player:
+        base: 8
+        per-level: 0.1
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=ABSORPTION;duration={duration};amplifier=1}'
+      - 'potion{type=REGENERATION;duration={duration};amplifier=1}'
+      - 'particle{p=SPELL_INSTANT;amount=80;speed=0.4;hS=1.8;vS=2}'
+      - 'particle{p=HEART;amount=30;speed=0.2;hS=1;vS=1.5}'
+      - 'sound{s=BLOCK_BEACON_ACTIVATE;v=1.2;p=1.4}'

@@ -1,0 +1,16 @@
+SUPPRESSING_FIRE:
+  name: "&6⚔ Suppressing Fire"
+  icon: CROSSBOW
+  # The crucial bridge!
+  source: mythicmobs:SuppressingFire_Cast
+  parameters:
+    damage:
+      base: 4
+      per-level: 1
+    cooldown:
+      base: 10
+      per-level: -0.1
+      min: 6
+    mana:
+      base: 30
+      per-level: 0.5

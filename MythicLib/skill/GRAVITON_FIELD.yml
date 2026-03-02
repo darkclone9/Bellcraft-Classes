@@ -1,0 +1,5 @@
+GRAVITON_FIELD:
+  name: "&3🌀 Graviton Field"
+  icon: MAGMA_CREAM
+  source: mythicmobs:GravitonField_Cast
+  # No damage parameter needed here, just pure crowd control!

@@ -1,0 +1,8 @@
+REPAIR_NANITES:
+  name: "&a🔧 Repair Nanites"
+  icon: PHANTOM_MEMBRANE
+  source: mythicmobs:RepairNanites_Cast
+  parameters:
+    heal:
+      base: 4
+      per-level: 1

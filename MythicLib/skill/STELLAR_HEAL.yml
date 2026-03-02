@@ -1,0 +1,8 @@
+STELLAR_HEAL:
+  name: "&b✨ Stellar Heal"
+  icon: NETHER_STAR
+  source: mythicmobs:StellarHeal_Cast
+  parameters:
+    heal:
+      base: 6
+      per-level: 1.5

@@ -1,0 +1,9 @@
+EVASION_PROTOCOL:
+  name: "&8💨 Evasion Protocol"
+  icon: FEATHER
+  source: mythicmobs:EvasionProtocol_Cast
+  parameters:
+    cooldown:
+      base: 8
+      per-level: -0.2
+      min: 4

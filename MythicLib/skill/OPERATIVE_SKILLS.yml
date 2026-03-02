@@ -1,0 +1,211 @@
+# Operative Class Skills (Forge-01)
+
+OPERATIVE_STAB:
+  name: "&b◈ Stab"
+  icon: IRON_SWORD
+  source: default:FURTIVE_STRIKE
+  parameters:
+    cooldown:
+      player:
+        base: 2.5
+        per-level: -0.02
+        min: 1
+        max: 2.5
+      name: Cooldown
+    mana:
+      player:
+        base: 3
+        per-level: 0.1
+      name: Mana
+    damage:
+      player:
+        base: 7.0
+        per-level: 0.45
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage};type=PHYSICAL}'
+      - 'particle{p=CRIT;amount=20;speed=0.4;hS=0.5;vS=0.5}'
+      - 'particle{p=SWEEP_ATTACK;amount=8;speed=0.2}'
+      - 'sound{s=ENTITY_PLAYER_ATTACK_CRIT;v=1.2;p=1.4}'
+
+OPERATIVE_SMOKE_SCREEN:
+  name: "&8Smoke Screen"
+  icon: GUNPOWDER
+  source: default:SHADOW_VEIL
+  parameters:
+    cooldown:
+      player:
+        base: 16
+        per-level: -0.12
+        min: 8
+        max: 16
+      name: Cooldown
+    mana:
+      player:
+        base: 6
+        per-level: 0.12
+      name: Mana
+    duration:
+      player:
+        base: 2.5
+        per-level: 0.05
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=BLINDNESS;duration={duration};amplifier=0}'
+      - 'potion{type=INVISIBILITY;duration={duration};amplifier=0}'
+      - 'velocity{forward=3;up=0.1}'
+      - 'particle{p=SMOKE_LARGE;amount=150;speed=0.2;hS=3;vS=2}'
+      - 'sound{s=BLOCK_FIRE_EXTINGUISH;v=1.5;p=0.8}'
+
+OPERATIVE_EVASION:
+  name: "&b◈ Evasion"
+  icon: FEATHER
+  source: default:EVADE
+  parameters:
+    cooldown:
+      player:
+        base: 20
+        per-level: -0.15
+        min: 10
+        max: 20
+      name: Cooldown
+    mana:
+      player:
+        base: 7
+        per-level: 0.12
+      name: Mana
+    duration:
+      player:
+        base: 2.5
+        per-level: 0.05
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=SPEED;duration={duration};amplifier=1}'
+      - 'stat{stat=DODGE_RATING;amount=100;operation=RELATIVE;duration={duration}}'
+      - 'particle{p=ENCHANTMENT_TABLE;amount=80;speed=0.6;hS=1.5;vS=1.5}'
+      - 'sound{s=ENTITY_ENDER_DRAGON_FLAP;v=1;p=2.0}'
+
+OPERATIVE_EXPLOIT:
+  name: "&b&l◈ Exploit"
+  icon: DIAMOND_SWORD
+  source: default:BACKSTAB
+  parameters:
+    cooldown:
+      player:
+        base: 40
+        per-level: -0.25
+        min: 25
+        max: 40
+      name: Cooldown
+    mana:
+      player:
+        base: 15
+        per-level: 0.2
+      name: Mana
+    damage:
+      player:
+        base: 18.0
+        per-level: 0.9
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage};type=PHYSICAL}'
+      - 'potion{type=WEAKNESS;duration=5;amplifier=1}'
+      - 'particle{p=CRIT_MAGIC;amount=80;speed=0.7;hS=1.5;vS=2}'
+      - 'particle{p=SWEEP_ATTACK;amount=30;speed=0.5;hS=1;vS=1}'
+      - 'sound{s=ENTITY_PLAYER_ATTACK_CRIT;v=2;p=0.7}'
+
+OPERATIVE_SHADOW_STRIKE:
+  name: "&b◈ Shadow Strike"
+  icon: ENDER_PEARL
+  source: default:FURTIVE_STRIKE
+  parameters:
+    cooldown:
+      player:
+        base: 8
+        per-level: -0.06
+        min: 4
+        max: 8
+      name: Cooldown
+    mana:
+      player:
+        base: 7
+        per-level: 0.15
+      name: Mana
+    damage:
+      player:
+        base: 9.0
+        per-level: 0.55
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage};type=PHYSICAL}'
+      - 'velocity{forward=3;up=0.2}'
+      - 'particle{p=SMOKE_LARGE;amount=60;speed=0.4;hS=1.2;vS=1.5}'
+      - 'sound{s=ENTITY_ENDERMAN_TELEPORT;v=1.2;p=1.6}'
+
+OPERATIVE_POISON_BLADE:
+  name: "&2Poison Blade"
+  icon: SPIDER_EYE
+  source: default:WEAKEN
+  parameters:
+    cooldown:
+      player:
+        base: 14
+        per-level: -0.1
+        min: 7
+        max: 14
+      name: Cooldown
+    mana:
+      player:
+        base: 8
+        per-level: 0.15
+      name: Mana
+    damage:
+      player:
+        base: 6.0
+        per-level: 0.4
+      name: Damage
+    duration:
+      player:
+        base: 4.0
+        per-level: 0.08
+      name: Duration
+  triggers:
+    cast:
+      - 'damage{amount={damage};type=PHYSICAL}'
+      - 'potion{type=POISON;duration={duration};amplifier=1}'
+      - 'particle{p=SPELL_INSTANT;amount=40;speed=0.3;hS=1;vS=1}'
+      - 'sound{s=ENTITY_SPIDER_AMBIENT;v=1;p=1.1}'
+
+OPERATIVE_VANISH:
+  name: "&8Vanish"
+  icon: PHANTOM_MEMBRANE
+  source: default:SHADOW_VEIL
+  parameters:
+    cooldown:
+      player:
+        base: 20
+        per-level: -0.14
+        min: 10
+        max: 20
+      name: Cooldown
+    mana:
+      player:
+        base: 10
+        per-level: 0.18
+      name: Mana
+    duration:
+      player:
+        base: 6
+        per-level: 0.1
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=INVISIBILITY;duration={duration};amplifier=0}'
+      - 'potion{type=SPEED;duration={duration};amplifier=2}'
+      - 'particle{p=SMOKE_LARGE;amount=120;speed=0.5;hS=1.5;vS=2}'
+      - 'sound{s=ENTITY_ENDERMAN_TELEPORT;v=1.5;p=1.6}'

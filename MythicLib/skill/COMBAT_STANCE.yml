@@ -1,0 +1,9 @@
+COMBAT_STANCE:
+  name: "&6⚔ Combat Stance"
+  icon: IRON_CHESTPLATE
+  source: mythicmobs:CombatStance_Toggle
+  parameters:
+    cooldown:
+      base: 3
+      per-level: -0.05
+      min: 1

@@ -1,0 +1,8 @@
+OVERLOAD_BEAM:
+  name: "&b🌀 Overload Beam"
+  icon: BEACON
+  source: mythicmobs:OverloadBeam_Cast
+  parameters:
+    damage:
+      base: 2
+      per-level: 0.5

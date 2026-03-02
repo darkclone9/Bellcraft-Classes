@@ -1,0 +1,9 @@
+OVERCHARGE:
+  name: "&e⚡ Overcharge"
+  icon: REDSTONE_BLOCK
+  source: mythicmobs:Overcharge_Cast
+  parameters:
+    cooldown:
+      base: 20
+      per-level: -0.5
+      min: 10

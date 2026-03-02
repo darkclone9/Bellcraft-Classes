@@ -1,0 +1,12 @@
+NANITE_SWARM:
+  name: "&aNanite Swarm"
+  icon: SLIME_BALL
+  source: mythicmobs:NaniteSwarm_Cast
+  parameters:
+    radius:
+      base: 5
+      per-level: 0.2
+      max: 10
+    damage:
+      base: 4
+      per-level: 1

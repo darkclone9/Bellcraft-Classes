@@ -1,0 +1,11 @@
+DEBILITATING_SHOT:
+  name: "&8🎯 Debilitating Shot"
+  icon: SPECTRAL_ARROW
+  lore:
+    - "&7Fires a high-velocity tactical round"
+    - "&7that damages and heavily weakens the target."
+  source: mythicmobs:DebilitatingShot_Cast
+  parameters:
+    damage:
+      base: 8
+      per-level: 1.5

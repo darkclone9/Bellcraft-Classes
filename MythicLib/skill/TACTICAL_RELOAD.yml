@@ -1,0 +1,9 @@
+TACTICAL_RELOAD:
+  name: "&7Tactical Reload"
+  icon: IRON_HOE
+  source: mythicmobs:TacticalReload_Cast
+  parameters:
+    cooldown:
+      base: 12
+      per-level: -0.2
+      min: 6

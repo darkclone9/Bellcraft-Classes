@@ -1,0 +1,8 @@
+COSMIC_RIFT:
+  name: "&5🌌 Cosmic Rift"
+  icon: ENDER_PEARL
+  source: mythicmobs:CosmicRift_Cast
+  parameters:
+    damage:
+      base: 10
+      per-level: 2

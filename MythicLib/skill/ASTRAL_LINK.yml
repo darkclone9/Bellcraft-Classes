@@ -1,0 +1,12 @@
+ASTRAL_LINK:
+  name: "&b✦ Astral Link"
+  icon: END_ROD
+  # THIS is the magic line that fixes your console error!
+  source: mythicmobs:AstralLink_Aura
+  
+  # Since it costs no mana, we just define the radius math here
+  parameters:
+    radius:
+      base: 8
+      per-level: 0.2
+      max: 12

@@ -1,0 +1,20 @@
+# GUI display name
+name: 'Character Deletion'
+
+# Number of slots in your inventory. Must be
+# between 9 and 54 and must be a multiple of 9.
+slots: 27
+
+items:
+  yes:
+    function: 'yes'
+    slots: [11]
+
+    name: '&cYes, delete my character!'
+    item: REDSTONE
+  back:
+    function: 'back'
+    slots: [15]
+
+    name: '&aNo!! :('
+    item: EMERALD

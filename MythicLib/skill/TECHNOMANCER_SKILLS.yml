@@ -1,0 +1,214 @@
+# Technomancer Class Skills (Forge-01)
+
+TECHNOMANCER_ARCANE_BOLT:
+  name: "&eArcane Bolt"
+  icon: AMETHYST_SHARD
+  source: default:TARGETED_FIREBALL
+  parameters:
+    cooldown:
+      player:
+        base: 2.5
+        per-level: -0.02
+        min: 1
+        max: 2.5
+      name: Cooldown
+    mana:
+      player:
+        base: 4
+        per-level: 0.1
+      name: Mana
+    damage:
+      player:
+        base: 8.0
+        per-level: 0.5
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'particle{p=CRIT_MAGIC;amount=30;speed=0.4;hS=0.5;vS=0.5}'
+      - 'sound{s=ENTITY_BLAZE_HURT;v=1;p=1.8}'
+
+TECHNOMANCER_CRYO_GRENADE:
+  name: "&bCryo Grenade"
+  icon: SNOWBALL
+  source: default:TACTICAL_GRENADE
+  parameters:
+    cooldown:
+      player:
+        base: 14
+        per-level: -0.1
+        min: 7
+        max: 14
+      name: Cooldown
+    mana:
+      player:
+        base: 8
+        per-level: 0.15
+      name: Mana
+    damage:
+      player:
+        base: 6.0
+        per-level: 0.4
+      name: Damage
+    duration:
+      player:
+        base: 2.5
+        per-level: 0.05
+      name: Duration
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'potion{type=SLOWNESS;duration={duration};amplifier=2}'
+      - 'particle{p=SNOWBALL;amount=100;speed=0.5;hS=3;vS=2}'
+      - 'sound{s=ENTITY_PLAYER_HURT_FREEZE;v=1.5;p=1.0}'
+
+TECHNOMANCER_OVERLOAD:
+  name: "&eOverload"
+  icon: REDSTONE_BLOCK
+  source: default:MINOR_EXPLOSION
+  parameters:
+    cooldown:
+      player:
+        base: 18
+        per-level: -0.12
+        min: 9
+        max: 18
+      name: Cooldown
+    mana:
+      player:
+        base: 10
+        per-level: 0.18
+      name: Mana
+    damage:
+      player:
+        base: 7.0
+        per-level: 0.45
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'potion{type=SLOWNESS;duration=3;amplifier=1}'
+      - 'particle{p=REDSTONE;amount=80;speed=0.6;hS=3;vS=2}'
+      - 'particle{p=CRIT_MAGIC;amount=60;speed=0.8;hS=3;vS=3}'
+      - 'sound{s=ENTITY_LIGHTNING_BOLT_IMPACT;v=1.5;p=1.2}'
+
+TECHNOMANCER_SYSTEM_OVERRIDE:
+  name: "&e&lSystem Override"
+  icon: COMMAND_BLOCK
+  source: default:EMPOWERED_ATTACK
+  parameters:
+    cooldown:
+      player:
+        base: 45
+        per-level: -0.25
+        min: 30
+        max: 45
+      name: Cooldown
+    mana:
+      player:
+        base: 20
+        per-level: 0.25
+      name: Mana
+    damage:
+      player:
+        base: 22.0
+        per-level: 1.2
+      name: Damage
+    duration:
+      player:
+        base: 6
+        per-level: 0.1
+      name: Duration
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'stat{stat=MAGIC_DAMAGE;amount=40;operation=RELATIVE;duration={duration}}'
+      - 'stat{stat=COOLDOWN_REDUCTION;amount=50;operation=RELATIVE;duration={duration}}'
+      - 'particle{p=REDSTONE;amount=200;speed=0.8;hS=3;vS=4}'
+      - 'sound{s=ENTITY_LIGHTNING_BOLT_THUNDER;v=2;p=0.6}'
+
+TECHNOMANCER_DEPLOY_TURRET:
+  name: "&eDeploy Turret"
+  icon: DISPENSER
+  source: default:SNOWMAN_TURRET
+  parameters:
+    cooldown:
+      player:
+        base: 26
+        per-level: -0.16
+        min: 14
+        max: 26
+      name: Cooldown
+    mana:
+      player:
+        base: 14
+        per-level: 0.25
+      name: Mana
+    damage:
+      player:
+        base: 10.0
+        per-level: 0.55
+      name: Damage
+  triggers:
+    cast:
+      - 'damage{amount={damage}}'
+      - 'particle{p=BLOCK_CRACK;material=IRON_BLOCK;amount=80;speed=0.4;hS=2;vS=2}'
+      - 'sound{s=BLOCK_PISTON_EXTEND;v=1.4;p=0.9}'
+
+TECHNOMANCER_EMP_BLAST:
+  name: "&eEMP Blast"
+  icon: REDSTONE_BLOCK
+  source: default:MINOR_EXPLOSION
+  parameters:
+    cooldown:
+      player:
+        base: 22
+        per-level: -0.14
+        min: 12
+        max: 22
+      name: Cooldown
+    mana:
+      player:
+        base: 16
+        per-level: 0.28
+      name: Mana
+    duration:
+      player:
+        base: 4.0
+        per-level: 0.08
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=WEAKNESS;duration={duration};amplifier=1}'
+      - 'potion{type=SLOW_DIGGING;duration={duration};amplifier=1}'
+      - 'particle{p=FLASH;amount=15;speed=0.2;hS=2;vS=2}'
+      - 'sound{s=ENTITY_LIGHTNING_BOLT_THUNDER;v=1.3;p=1.8}'
+
+TECHNOMANCER_HOLOGRAPHIC_DECOY:
+  name: "&eHolographic Decoy"
+  icon: ARMOR_STAND
+  source: default:SHADOW_VEIL
+  parameters:
+    cooldown:
+      player:
+        base: 18
+        per-level: -0.12
+        min: 10
+        max: 18
+      name: Cooldown
+    mana:
+      player:
+        base: 10
+        per-level: 0.2
+      name: Mana
+    duration:
+      player:
+        base: 6
+        per-level: 0.1
+      name: Duration
+  triggers:
+    cast:
+      - 'potion{type=INVISIBILITY;duration={duration};amplifier=0}'
+      - 'potion{type=SPEED;duration={duration};amplifier=1}'
+      - 'particle{p=REDSTONE;amount=80;speed=0.5;hS=1.5;vS=2}'
+      - 'sound{s=ENTITY_ILLUSIONER_CAST_SPELL;v=1.2;p=1.4}'

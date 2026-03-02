@@ -1,0 +1,8 @@
+TRICK_ATTACK:
+  name: "&8🗡 Trick Attack"
+  icon: IRON_NUGGET
+  source: mythicmobs:TrickAttack_Cast
+  parameters:
+    damage:
+      base: 7
+      per-level: 2
