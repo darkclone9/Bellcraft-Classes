@@ -34,10 +34,10 @@ jobs:
           port: 2022
 
           # Upload only the checked-out plugin config folders to the server's /plugins folder.
-          local_path: './*'
-          remote_path: '/plugins/'
-
+          local_path: './'
+          remote_path: 'plugins/'
+          sftp_only: true
           # Pass a connect timeout so the job fails fast when the server is unreachable.
           # Note: use 'sftpArgs' (not 'args') — that is the correct input name for this action.
           # '--exclude' is an rsync/lftp flag and is not supported by sftp batch mode.
-          sftpArgs: '-o ConnectTimeout=5'
+          sftpArgs: '-o ConnectTimeout=15'
