@@ -1,0 +1,87 @@
+class-points: 11
+skill-points: 33
+skill-reallocation-points: 1
+attribute-points: 0
+attribute-realloc-points: 0
+level: 47
+experience: 175.65774439667217
+class: CLERIC
+waypoints: []
+friends: []
+last-login: 1772393635343
+skill-tree-reallocation-points: 0
+health: 37.400001525878906
+mana: 20.0
+stellium: 20.0
+stamina: 20.0
+unlocked-items: []
+skill-tree-points:
+  global: 7
+  cleric-divinity: 5
+skill-tree-level: {}
+skill:
+  HUMAN_SHIELD: 30
+times-claimed:
+  node:cleric_divinity_e3:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_d3:
+    experience-table:
+      first_table_item: 1
+  class_CLERIC:
+    class_exp_table:
+      class_point: 11
+      attribute_point: 23
+      skill_tree_point: 15
+      skill_point: 46
+  node:cleric_divinity_a2:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_f3:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_g2:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_d2:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_a3:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_e2:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_f2:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_f1:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_b1:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_g1:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_d1:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_e1:
+    experience-table:
+      first_table_item: 1
+  node:cleric_divinity_a1:
+    experience-table:
+      first_table_item: 1
+bound-skills:
+  '1': HUMAN_SHIELD
+attribute:
+  dexterity: 10
+  strength: 29
+  wisdom: 0
+  intelligence: 0
+profession:
+  enchanting:
+    exp: 150.0
+    level: 0
+quest: {}

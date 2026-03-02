@@ -1,0 +1,815 @@
+class-points: 14
+skill-points: 1
+skill-reallocation-points: 0
+attribute-points: 0
+attribute-realloc-points: 0
+level: 19
+experience: 182.65349427965066
+class: ENVOY
+waypoints: []
+friends: []
+last-login: 1772412256298
+guild: bug
+skill-tree-reallocation-points: 0
+health: 22.399999618530273
+mana: 30.0
+stellium: 20.0
+stamina: 20.0
+unlocked-items:
+- skill:envoy_battle_stance
+- skill:debilitating_shot
+- skill:astral_link
+skill-tree-level:
+  envoy_skill_debilitating_shot: 1
+  envoy_f1: 1
+  envoy_skill_astral_link: 1
+  envoy_skill_battle_stance: 1
+  envoy_d1: 1
+  envoy_d2: 1
+  envoy_c1: 1
+  envoy_c2: 1
+  envoy_c3: 1
+  envoy_b1: 1
+skill:
+  EMPOWERED_ATTACK: 11
+  DEBILITATING_SHOT: 6
+  ENVOY_BATTLE_STANCE: 5
+  REGEN_ALLY: 8
+  ASTRAL_LINK: 2
+times-claimed:
+  node:envoy_skill_debilitating_shot:
+    experience-table:
+      first_table_item: 1
+  class_RANGER:
+    class_exp_table:
+      skill_point: 21
+      skill_tree_point: 7
+      attribute_point: 11
+      class_point: 5
+  class_ENVOY:
+    class_exp_table:
+      attribute_point: 9
+      skill_tree_point: 6
+      class_point: 4
+      skill_point: 18
+  node:envoy_c3:
+    experience-table:
+      first_table_item: 1
+  class_OPERATIVE:
+    class_exp_table:
+      attribute_point: 15
+      skill_tree_point: 10
+      skill_point: 30
+      class_point: 7
+  node:envoy_skill_astral_link:
+    experience-table:
+      first_table_item: 1
+  node:envoy_c2:
+    experience-table:
+      first_table_item: 1
+  node:envoy_d2:
+    experience-table:
+      first_table_item: 1
+  node:envoy_skill_battle_stance:
+    experience-table:
+      first_table_item: 1
+  node:envoy_f1:
+    experience-table:
+      first_table_item: 1
+  node:envoy_b1:
+    experience-table:
+      first_table_item: 1
+  node:envoy_c1:
+    experience-table:
+      first_table_item: 1
+  node:envoy_d1:
+    experience-table:
+      first_table_item: 1
+bound-skills:
+  '1': ENVOY_BATTLE_STANCE
+  '2': EMPOWERED_ATTACK
+attribute:
+  dexterity: 5
+  strength: 4
+  wisdom: 0
+  intelligence: 2
+profession:
+  enchanting:
+    exp: 50.0
+    level: 0
+  woodcutting:
+    exp: 138.35050799784412
+    level: 0
+  farming:
+    exp: 320.9637452044593
+    level: 0
+  mining:
+    exp: 202.0
+    level: 0
+  smelting:
+    exp: 13.44452322682196
+    level: 0
+quest: {}
+class-info:
+  RANGER:
+    level: 22
+    experience: 121.92384510341489
+    skill-points: 11
+    attribute-points: 19
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 20.0
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      EVADE: 10
+      POWER_MARK: 10
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 0
+    node-levels:
+      ranger-hunter_a3: 1
+      ranger-hunter_a2: 1
+      ranger-hunter_b3: 1
+      ranger-hunter_c1: 1
+      ranger-hunter_e3: 0
+      ranger-hunter_d2: 1
+      ranger-hunter_e2: 1
+      ranger-hunter_d1: 1
+      ranger-hunter_f3: 0
+      ranger-hunter_a1: 1
+      ranger-hunter_c3: 1
+      ranger-hunter_b2: 1
+      ranger-hunter_c2: 1
+      ranger-hunter_b1: 1
+      ranger-hunter_d3: 1
+      ranger-hunter_g1: 0
+      ranger-hunter_e1: 1
+      ranger-hunter_g3: 0
+      ranger-hunter_f2: 0
+      ranger-hunter_g2: 0
+      ranger-hunter_f1: 0
+    bound-skills:
+      '1': POWER_MARK
+      '2': EVADE
+    unlocked-items: []
+  SOLDIER:
+    level: 31
+    experience: 271.1068099103013
+    skill-points: 10
+    attribute-points: 0
+    attribute-realloc-points: 0
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 27.257999999999985
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      MAGICAL_SHIELD: 3
+      OPERATIVE_STAB: 26
+      CIRCULAR_SLASH: 4
+    attribute:
+      dexterity: 13
+      strength: 7
+      wisdom: 0
+      intelligence: 5
+    node-levels:
+      soldier_g3: 0
+      soldier_e1: 0
+      soldier_g2: 0
+      soldier_e3: 0
+      soldier_c1: 0
+      soldier_e2: 0
+      soldier_c3: 0
+      soldier_a1: 0
+      soldier_c2: 0
+      soldier_a3: 0
+      soldier_a2: 0
+      soldier_i1: 0
+      soldier_i3: 0
+      soldier_g1: 0
+      soldier_i2: 0
+      soldier_f2: 0
+      soldier_h3: 0
+      soldier_f1: 0
+      soldier_d2: 0
+      soldier_f3: 0
+      soldier_d1: 0
+      soldier_b2: 0
+      soldier_d3: 0
+      soldier_b1: 0
+      soldier_b3: 0
+      soldier_h2: 0
+      soldier_h1: 0
+    bound-skills:
+      '1': CIRCULAR_SLASH
+      '2': MAGICAL_SHIELD
+    unlocked-items: []
+  CLERIC:
+    level: 1
+    experience: 31.924655794689425
+    skill-points: 0
+    attribute-points: 1
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 20.0
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      GRAND_HEAL: 2
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 0
+    node-levels:
+      cleric-divinity_g1: 0
+      cleric-divinity_g2: 0
+      cleric-divinity_f1: 0
+      cleric-divinity_g3: 0
+      cleric-divinity_f2: 0
+      cleric-divinity_e1: 0
+      cleric-divinity_d1: 0
+      cleric-divinity_f3: 0
+      cleric-divinity_e2: 0
+      cleric-divinity_a3: 0
+      cleric-divinity_d2: 0
+      cleric-divinity_c1: 0
+      cleric-divinity_e3: 0
+      cleric-divinity_b1: 0
+      cleric-divinity_d3: 0
+      cleric-divinity_c2: 0
+      cleric-divinity_b2: 0
+      cleric-divinity_a1: 0
+      cleric-divinity_c3: 0
+      cleric-divinity_b3: 0
+      cleric-divinity_a2: 0
+    bound-skills:
+      '1': GRAND_HEAL
+      '2': HUMAN_SHIELD
+    unlocked-items: []
+  MYSTIC:
+    level: 1
+    experience: 3.2
+    skill-points: 0
+    attribute-points: 1
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 14.922000000000024
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      ARCANE_RIFT: 2
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 0
+    node-levels:
+      mystic_d2: 0
+      mystic_b1: 0
+      mystic_d3: 0
+      mystic_f2: 0
+      mystic_d1: 0
+      mystic_f3: 0
+      mystic_h2: 0
+      mystic_f1: 0
+      mystic_h3: 0
+      mystic_h1: 0
+      mystic_b2: 0
+      mystic_b3: 0
+      mystic_c1: 0
+      mystic_e3: 0
+      mystic_c2: 0
+      mystic_e1: 0
+      mystic_g3: 0
+      mystic_e2: 0
+      mystic_g1: 0
+      mystic_i3: 0
+      mystic_g2: 0
+      mystic_i1: 0
+      mystic_i2: 0
+      mystic_a3: 0
+      mystic_a1: 0
+      mystic_c3: 0
+      mystic_a2: 0
+    bound-skills:
+      '1': ARCANE_RIFT
+      '2': MAGICAL_SHIELD
+    unlocked-items: []
+  OPERATIVE:
+    level: 1
+    experience: 0.0
+    skill-points: 0
+    attribute-points: 1
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 19.856000000000023
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      SHADOW_VEIL: 2
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 0
+    node-levels:
+      operative_d3: 0
+      operative_b1: 0
+      operative_d2: 0
+      operative_d1: 0
+      operative_f3: 0
+      operative_f2: 0
+      operative_h3: 0
+      operative_f1: 0
+      operative_h2: 0
+      operative_h1: 0
+      operative_b3: 0
+      operative_b2: 0
+      operative_c2: 0
+      operative_c1: 0
+      operative_e3: 0
+      operative_e2: 0
+      operative_g3: 0
+      operative_e1: 0
+      operative_g2: 0
+      operative_g1: 0
+      operative_i3: 0
+      operative_i2: 0
+      operative_i1: 0
+      operative_a3: 0
+      operative_a2: 0
+      operative_c3: 0
+      operative_a1: 0
+    bound-skills:
+      '1': BACKSTAB
+      '2': SHADOW_VEIL
+    unlocked-items: []
+  TECHNOMANCER:
+    level: 1
+    experience: 64.82846275838318
+    skill-points: 0
+    attribute-points: 1
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 20.0
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      VOID_ZAPPER: 2
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 0
+    node-levels:
+      soldier_g3: 0
+      soldier_g2: 0
+      envoy_h1: 0
+      envoy_h2: 0
+      envoy_h3: 0
+      technomancer_h3: 0
+      technomancer_h2: 0
+      technomancer_h1: 0
+      warrior-paladin_d1: 0
+      warrior-paladin_d2: 0
+      soldier_g1: 0
+      warrior-paladin_d3: 0
+      paladin-guardian_c2: 0
+      paladin-guardian_c1: 0
+      paladin-guardian_c3: 0
+      mage-arcane-mage_e1: 0
+      combat_h1: 0
+      cleric-divinity_b1: 0
+      combat_h2: 0
+      cleric-divinity_b2: 0
+      mage-arcane-mage_e3: 0
+      combat_h3: 0
+      cleric-divinity_b3: 0
+      mage-arcane-mage_e2: 0
+      envoy_g3: 0
+      soldier_h3: 0
+      sorcerer-elementalist_g2: 0
+      sorcerer-elementalist_g1: 0
+      envoy_g1: 0
+      sorcerer-elementalist_g3: 0
+      envoy_g2: 0
+      technomancer_g3: 0
+      technomancer_g2: 0
+      warrior-paladin_e1: 0
+      technomancer_g1: 0
+      warrior-paladin_e2: 0
+      warrior-paladin_e3: 0
+      soldier_h2: 0
+      soldier_h1: 0
+      paladin-guardian_b1: 0
+      rogue-marksman_g3: 0
+      rogue-marksman_g1: 0
+      rogue-marksman_g2: 0
+      paladin-guardian_b3: 0
+      paladin-guardian_b2: 0
+      mage-arcane-mage_f2: 0
+      cleric-divinity_c1: 0
+      combat_g1: 0
+      mage-arcane-mage_f1: 0
+      cleric-divinity_c2: 0
+      combat_g2: 0
+      cleric-divinity_c3: 0
+      combat_g3: 0
+      mage-arcane-mage_f3: 0
+      warrior-paladin_b3: 0
+      envoy_f2: 0
+      envoy_f3: 0
+      sorcerer-elementalist_f1: 0
+      sorcerer-elementalist_f3: 0
+      envoy_f1: 0
+      sorcerer-elementalist_f2: 0
+      technomancer_f3: 0
+      technomancer_f2: 0
+      technomancer_f1: 0
+      soldier_i1: 0
+      soldier_i3: 0
+      warrior-paladin_b1: 0
+      soldier_i2: 0
+      warrior-paladin_b2: 0
+      combat_f3: 0
+      paladin-guardian_a3: 0
+      paladin-guardian_a2: 0
+      paladin-guardian_a1: 0
+      technomancer_e3: 0
+      mage-arcane-mage_g1: 0
+      mage-arcane-mage_g3: 0
+      mage-arcane-mage_g2: 0
+      combat_f1: 0
+      combat_f2: 0
+      envoy_e1: 0
+      sorcerer-elementalist_e3: 0
+      envoy_e2: 0
+      envoy_e3: 0
+      sorcerer-elementalist_e2: 0
+      sorcerer-elementalist_e1: 0
+      technomancer_e2: 0
+      technomancer_e1: 0
+      warrior-paladin_c1: 0
+      warrior-paladin_c2: 0
+      warrior-paladin_c3: 0
+      combat_e2: 0
+      combat_e3: 0
+      technomancer_d3: 0
+      technomancer_d2: 0
+      cleric-divinity_a3: 0
+      cleric-divinity_a1: 0
+      cleric-divinity_a2: 0
+      combat_e1: 0
+      mage-arcane-mage_a1: 0
+      sorcerer-elementalist_d3: 0
+      sorcerer-elementalist_d2: 0
+      mage-arcane-mage_a3: 0
+      soldier_c1: 0
+      mage-arcane-mage_a2: 0
+      soldier_c3: 0
+      soldier_c2: 0
+      sorcerer-elementalist_d1: 0
+      technomancer_d1: 0
+      paladin-guardian_g2: 0
+      paladin-guardian_g1: 0
+      combat_d1: 0
+      cleric-divinity_f1: 0
+      combat_d2: 0
+      cleric-divinity_f2: 0
+      combat_d3: 0
+      paladin-guardian_g3: 0
+      general_a1: 0
+      cleric-divinity_f3: 0
+      technomancer_c3: 0
+      technomancer_c2: 0
+      technomancer_c1: 0
+      general_a2: 0
+      general_a3: 0
+      sorcerer-elementalist_c2: 0
+      mage-arcane-mage_b2: 0
+      warrior-paladin_a2: 0
+      sorcerer-elementalist_c1: 0
+      mage-arcane-mage_b1: 0
+      warrior-paladin_a3: 0
+      soldier_d2: 0
+      sorcerer-elementalist_c3: 0
+      mage-arcane-mage_b3: 0
+      soldier_d1: 0
+      mystic_i3: 0
+      soldier_d3: 0
+      mystic_i1: 0
+      mystic_i2: 0
+      paladin-guardian_f1: 0
+      warrior-paladin_a1: 0
+      cleric-divinity_g1: 0
+      cleric-divinity_g2: 0
+      combat_c1: 0
+      cleric-divinity_g3: 0
+      combat_c2: 0
+      paladin-guardian_f3: 0
+      combat_c3: 0
+      paladin-guardian_f2: 0
+      technomancer_b3: 0
+      technomancer_b2: 0
+      technomancer_b1: 0
+      sorcerer-elementalist_b1: 0
+      mage-arcane-mage_c3: 0
+      soldier_e1: 0
+      mage-arcane-mage_c2: 0
+      sorcerer-elementalist_b3: 0
+      soldier_e3: 0
+      sorcerer-elementalist_b2: 0
+      soldier_e2: 0
+      mystic_h2: 0
+      mystic_h3: 0
+      mystic_h1: 0
+      general_c1: 0
+      paladin-guardian_e3: 0
+      general_c2: 0
+      example_loop_a2: 0
+      paladin-guardian_e2: 0
+      combat_b1: 0
+      general_c3: 0
+      technomancer_a3: 0
+      example_loop_a1: 0
+      paladin-guardian_e1: 0
+      cleric-divinity_d1: 0
+      combat_b2: 0
+      technomancer_a2: 0
+      combat_b3: 0
+      technomancer_a1: 0
+      example_loop_a8: 0
+      example_loop_a7: 0
+      example_loop_a4: 0
+      cleric-divinity_d2: 0
+      example_loop_a3: 0
+      cleric-divinity_d3: 0
+      mage-arcane-mage_c1: 0
+      example_loop_a6: 0
+      example_loop_a5: 0
+      soldier_f2: 0
+      mage-arcane-mage_d3: 0
+      soldier_f1: 0
+      sorcerer-elementalist_a2: 0
+      mystic_g3: 0
+      sorcerer-elementalist_a1: 0
+      soldier_f3: 0
+      mystic_g1: 0
+      envoy_i1: 0
+      mystic_g2: 0
+      envoy_i2: 0
+      envoy_i3: 0
+      sorcerer-elementalist_a3: 0
+      paladin-guardian_d3: 0
+      paladin-guardian_d2: 0
+      general_b1: 0
+      paladin-guardian_d1: 0
+      cleric-divinity_e1: 0
+      general_b2: 0
+      combat_a1: 0
+      cleric-divinity_e2: 0
+      combat_a2: 0
+      combat_a3: 0
+      general_b3: 0
+      cleric-divinity_e3: 0
+      operative_a3: 0
+      operative_a2: 0
+      mage-arcane-mage_d2: 0
+      operative_a1: 0
+      mage-arcane-mage_d1: 0
+      mystic_f2: 0
+      mystic_f3: 0
+      mystic_f1: 0
+      operative_b1: 0
+      general_e2: 0
+      general_e3: 0
+      general_e1: 0
+      ranger-hunter_c1: 0
+      ranger-hunter_c3: 0
+      ranger-hunter_c2: 0
+      operative_b3: 0
+      operative_b2: 0
+      mystic_e3: 0
+      mystic_e1: 0
+      mystic_e2: 0
+      general_d1: 0
+      operative_c2: 0
+      general_d2: 0
+      operative_c1: 0
+      general_d3: 0
+      ranger-hunter_d2: 0
+      ranger-hunter_d1: 0
+      ranger-hunter_d3: 0
+      operative_c3: 0
+      mystic_d2: 0
+      mystic_d3: 0
+      mystic_d1: 0
+      soldier_a1: 0
+      soldier_a3: 0
+      soldier_a2: 0
+      operative_d3: 0
+      example_loop_e4: 0
+      operative_d2: 0
+      example_loop_e3: 0
+      rogue-marksman_b1: 0
+      operative_d1: 0
+      ranger-hunter_a3: 0
+      ranger-hunter_a2: 0
+      general_g1: 0
+      example_loop_e2: 0
+      example_loop_e1: 0
+      ranger-hunter_a1: 0
+      rogue-marksman_b2: 0
+      rogue-marksman_b3: 0
+      mystic_c1: 0
+      mystic_c2: 0
+      soldier_b2: 0
+      soldier_b1: 0
+      soldier_b3: 0
+      mystic_c3: 0
+      general_f3: 0
+      operative_e3: 0
+      operative_e2: 0
+      operative_e1: 0
+      ranger-hunter_b3: 0
+      general_f1: 0
+      general_f2: 0
+      ranger-hunter_b2: 0
+      ranger-hunter_b1: 0
+      rogue-marksman_a3: 0
+      rogue-marksman_a1: 0
+      rogue-marksman_a2: 0
+      mystic_b1: 0
+      envoy_d1: 0
+      envoy_d2: 0
+      envoy_d3: 0
+      general_j1: 0
+      mystic_b2: 0
+      mystic_b3: 0
+      rogue-marksman_d2: 0
+      rogue-marksman_d3: 0
+      operative_f3: 0
+      operative_f2: 0
+      rogue-marksman_d1: 0
+      operative_f1: 0
+      ranger-hunter_g1: 0
+      ranger-hunter_g3: 0
+      ranger-hunter_g2: 0
+      envoy_c1: 0
+      envoy_c2: 0
+      mystic_a3: 0
+      envoy_c3: 0
+      mystic_a1: 0
+      mystic_a2: 0
+      rogue-marksman_c1: 0
+      rogue-marksman_c2: 0
+      operative_g3: 0
+      operative_g2: 0
+      general_h1: 0
+      operative_g1: 0
+      rogue-marksman_c3: 0
+      envoy_b1: 0
+      warrior-paladin_f1: 0
+      warrior-paladin_f2: 0
+      envoy_b2: 0
+      warrior-paladin_f3: 0
+      envoy_b3: 0
+      rogue-marksman_f2: 0
+      rogue-marksman_f3: 0
+      operative_h3: 0
+      rogue-marksman_f1: 0
+      operative_h2: 0
+      operative_h1: 0
+      ranger-hunter_e3: 0
+      ranger-hunter_e2: 0
+      combat_j1: 0
+      combat_j2: 0
+      combat_j3: 0
+      ranger-hunter_e1: 0
+      warrior-paladin_g1: 0
+      warrior-paladin_g2: 0
+      warrior-paladin_g3: 0
+      technomancer_i3: 0
+      envoy_a1: 0
+      technomancer_i2: 0
+      envoy_a2: 0
+      technomancer_i1: 0
+      envoy_a3: 0
+      rogue-marksman_e3: 0
+      rogue-marksman_e1: 0
+      rogue-marksman_e2: 0
+      operative_i3: 0
+      operative_i2: 0
+      operative_i1: 0
+      ranger-hunter_f3: 0
+      ranger-hunter_f2: 0
+      ranger-hunter_f1: 0
+    bound-skills:
+      '1': LIGHTNING_BEAM
+      '2': VOID_ZAPPER
+    unlocked-items: []
+  PALADIN:
+    level: 1
+    experience: 6.855537053977697
+    skill-points: 0
+    attribute-points: 1
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 20.0
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      SMITE: 2
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 0
+    node-levels:
+      paladin-guardian_g2: 0
+      paladin-guardian_f1: 0
+      paladin-guardian_g1: 0
+      paladin-guardian_b1: 0
+      paladin-guardian_c2: 0
+      paladin-guardian_d3: 0
+      paladin-guardian_e3: 0
+      paladin-guardian_c1: 0
+      paladin-guardian_d2: 0
+      paladin-guardian_e2: 0
+      paladin-guardian_f3: 0
+      paladin-guardian_d1: 0
+      paladin-guardian_g3: 0
+      paladin-guardian_e1: 0
+      paladin-guardian_f2: 0
+      paladin-guardian_a3: 0
+      paladin-guardian_a2: 0
+      paladin-guardian_b3: 0
+      paladin-guardian_a1: 0
+      paladin-guardian_b2: 0
+      paladin-guardian_c3: 0
+    bound-skills:
+      '1': SMITE
+      '2': HUMAN_SHIELD
+    unlocked-items: []
+  SORCERER:
+    level: 1
+    experience: 0.0
+    skill-points: 0
+    attribute-points: 0
+    attribute-realloc-points: 1
+    skill-tree-reallocation-points: 0
+    skill-reallocation-points: 1
+    health: 20.0
+    mana: 25.0
+    stamina: 20.0
+    stellium: 20.0
+    skill:
+      FIREBALL: 2
+    attribute:
+      dexterity: 0
+      strength: 0
+      wisdom: 0
+      intelligence: 1
+    node-levels:
+      sorcerer-elementalist_c2: 0
+      sorcerer-elementalist_b1: 0
+      sorcerer-elementalist_d3: 0
+      sorcerer-elementalist_c1: 0
+      sorcerer-elementalist_e3: 0
+      sorcerer-elementalist_d2: 0
+      sorcerer-elementalist_a2: 0
+      sorcerer-elementalist_b3: 0
+      sorcerer-elementalist_a1: 0
+      sorcerer-elementalist_c3: 0
+      sorcerer-elementalist_b2: 0
+      sorcerer-elementalist_g2: 0
+      sorcerer-elementalist_f1: 0
+      sorcerer-elementalist_g1: 0
+      sorcerer-elementalist_e2: 0
+      sorcerer-elementalist_d1: 0
+      sorcerer-elementalist_f3: 0
+      sorcerer-elementalist_e1: 0
+      sorcerer-elementalist_g3: 0
+      sorcerer-elementalist_f2: 0
+      sorcerer-elementalist_a3: 0
+    bound-skills:
+      '1': BLIZZARD
+      '2': FIREBALL
+    unlocked-items: []

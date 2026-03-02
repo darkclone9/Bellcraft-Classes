@@ -1,0 +1,25 @@
+class-points: 0
+skill-points: 1
+skill-reallocation-points: 1
+attribute-points: 1
+attribute-realloc-points: 1
+level: 1
+experience: 0.0
+class: TECHNOMANCER
+waypoints: []
+friends: []
+last-login: 1772399353171
+skill-tree-reallocation-points: 0
+health: 20.0
+mana: 20.0
+stellium: 20.0
+stamina: 20.0
+unlocked-items: []
+skill-tree-level: {}
+attribute:
+  dexterity: 0
+  strength: 0
+  wisdom: 0
+  intelligence: 0
+profession: {}
+quest: {}

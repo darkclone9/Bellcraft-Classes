@@ -1,0 +1,62 @@
+class-points: 2
+skill-points: 14
+skill-reallocation-points: 1
+attribute-points: 9
+attribute-realloc-points: 1
+level: 10
+experience: 159.04221520770287
+class: PALADIN
+waypoints: []
+friends: []
+last-login: 1772400367220
+skill-tree-reallocation-points: 0
+health: 24.399999618530273
+mana: 20.0
+stellium: 20.0
+stamina: 20.0
+unlocked-items: []
+skill-tree-points:
+  global: 2
+skill-tree-level:
+  paladin-guardian_g2: 1
+  paladin-guardian_g1: 1
+  paladin-guardian_g3: 1
+  paladin-guardian_d1: 1
+times-claimed:
+  class_PALADIN:
+    class_exp_table:
+      attribute_point: 5
+      skill_point: 9
+      skill_tree_point: 3
+      class_point: 2
+  node:paladin_guardian_g2:
+    experience-table:
+      first_table_item: 1
+  node:paladin_guardian_g1:
+    experience-table:
+      first_table_item: 1
+  node:paladin_guardian_d1:
+    experience-table:
+      first_table_item: 1
+  node:paladin_guardian_g3:
+    experience-table:
+      first_table_item: 1
+attribute:
+  dexterity: 0
+  strength: 0
+  wisdom: 0
+  intelligence: 0
+profession:
+  woodcutting:
+    exp: 322.13129185294656
+    level: 0
+  farming:
+    exp: 234.87674233256135
+    level: 0
+  mining:
+    exp: 520.0
+    level: 0
+  smelting:
+    exp: 76.17121484461413
+    level: 0
+quest: {}

@@ -1,0 +1,69 @@
+class-points: 3
+skill-points: 4
+skill-reallocation-points: 1
+attribute-points: 11
+attribute-realloc-points: 1
+level: 12
+experience: 303.47921723862197
+class: RANGER
+waypoints: []
+friends: []
+last-login: 1772403313339
+skill-tree-reallocation-points: 0
+health: 18.0
+mana: 20.0
+stellium: 20.0
+stamina: 20.0
+unlocked-items: []
+skill-tree-points:
+  global: 1
+skill-tree-level:
+  ranger-hunter_a3: 1
+  ranger-hunter_a2: 1
+  ranger-hunter_a1: 1
+  ranger-hunter_b3: 1
+  ranger-hunter_b2: 1
+  ranger-hunter_b1: 1
+skill:
+  POWER_MARK: 14
+times-claimed:
+  class_RANGER:
+    class_exp_table:
+      skill_point: 11
+      attribute_point: 6
+      class_point: 3
+      skill_tree_point: 4
+  node:ranger_hunter_b1:
+    experience-table:
+      first_table_item: 1
+  node:ranger_hunter_b2:
+    experience-table:
+      first_table_item: 1
+  node:ranger_hunter_a2:
+    experience-table:
+      first_table_item: 1
+  node:ranger_hunter_a1:
+    experience-table:
+      first_table_item: 1
+  node:ranger_hunter_a3:
+    experience-table:
+      first_table_item: 1
+  node:ranger_hunter_b3:
+    experience-table:
+      first_table_item: 1
+bound-skills:
+  '1': POWER_MARK
+  '2': POWER_MARK
+attribute:
+  dexterity: 0
+  strength: 0
+  wisdom: 0
+  intelligence: 0
+profession:
+  woodcutting:
+    exp: 90.92158032561598
+    level: 0
+  farming:
+    exp: 4.430382327072593
+    level: 0
+quest: {}

@@ -1,0 +1,65 @@
+id: cleric-divinity
+name: "&bDivinity's Path"
+type: CUSTOM
+lore:
+  - '&bWalk the path of divine devotion'
+max-point-spent: 30 # Increased to allow for skill unlocks
+icon:
+  material: GOLDEN_APPLE
+  item_flags: [HIDE_ATTRIBUTES]
+nodes:
+# ... [Keep your existing a1 through g3 nodes here] ...
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_resurgence:
+    name: '&6Skill: Holy Resurgence'
+    coordinates:
+      x: -4 # Placing this at the end of the Healing Power branch
+      y: 0
+    parents:
+      # Requires Healing Power III (a3) to unlock
+      strong: {a3: 1} 
+    experience-table:
+      first_table_item:
+        triggers:
+          # This grants level 1 of the skill
+          - 'skill{skill="CLERIC_HOLY_RESURGENCE";level=1}' 
+    lores:
+      0:
+        - '&eUnlocks the &fHoly Resurgence &eskill.'
+        - '&7Revive an ally with divine power.'
+
+  skill_blessed_ground:
+    name: '&6Skill: Blessed Ground'
+    coordinates:
+      x: 1 # Placing this between Mana Flow and Life Renewal
+      y: 0
+    parents:
+      # Requires both Mana Flow II (c2) and Life Renewal I (d1)
+      strong: {c2: 1, d1: 1} 
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'skill{skill="CLERIC_BLESSED_GROUND";level=1}'
+    lores:
+      0:
+        - '&eUnlocks the &fBlessed Ground &eskill.'
+        - '&7Consecrate the earth to heal and burn.'
+
+  skill_martyrs_resolve:
+    name: '&6Skill: Martyr''s Resolve'
+    coordinates:
+      x: 5 # Placing this after Divine Shield and Sacred Vitality
+      y: 1
+    parents:
+      # Requires Divine Shield III (e3) and Sacred Vitality I (f1)
+      strong: {e3: 1, f1: 1}
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'skill{skill="CLERIC_MARTYRS_RESOLVE";level=1}'
+    lores:
+      0:
+        - '&eUnlocks the &fMartyr''s Resolve &eskill.'
+        - '&7Sacrifice health to shield your team.'

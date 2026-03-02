@@ -1,0 +1,41 @@
+class-points: 2
+skill-points: 15
+skill-reallocation-points: 1
+attribute-points: 8
+attribute-realloc-points: 1
+level: 11
+experience: 212.52951280558463
+class: RANGER
+waypoints: []
+friends: []
+last-login: 1772415146308
+skill-tree-reallocation-points: 0
+health: 20.0
+mana: 20.0
+stellium: 20.0
+stamina: 20.0
+unlocked-items: []
+skill-tree-points:
+  ranger-hunter: 2
+  global: 3
+skill-tree-level: {}
+times-claimed:
+  class_RANGER:
+    class_exp_table:
+      skill_point: 10
+      attribute_point: 5
+      skill_tree_point: 3
+      class_point: 2
+attribute:
+  dexterity: 0
+  strength: 0
+  wisdom: 0
+  intelligence: 0
+profession:
+  woodcutting:
+    exp: 16.314930036186862
+    level: 0
+  mining:
+    exp: 105.0
+    level: 0
+quest: {}
