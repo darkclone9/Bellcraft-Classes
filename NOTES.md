@@ -125,6 +125,69 @@ If after restarting the server the "Open Skills" and "Open Skill Tree" buttons i
 
 ---
 
+## Profile Terminal (Quick Access Terminal for Bedrock Players)
+
+### What it does
+
+A Skript-based "Profile Terminal" that Bedrock and Java players can use to quickly
+access their MMOCore profile, skills, and personal command shortcuts from a single
+block interaction.
+
+| Feature | Detail |
+|---------|--------|
+| Trigger block | **Crying Obsidian** (right-click) |
+| GUI type | Chest inventory (3 rows); Geyser automatically converts this to a **Bedrock Simple Form** |
+| Profile button | Runs `/p` (MMOCore profile) |
+| Skills button | Runs `/mmocore skills` |
+| Shortcuts | Up to **9** player-specific saved commands, persisted across restarts |
+| Add shortcut | Player is prompted in chat; next chat message is captured (cancelled from public chat) and saved |
+| Remove shortcut | **Shift-click** any shortcut button to delete it |
+| Execute shortcut | Normal click runs the saved command as the player |
+
+### File location
+
+`Skript/scripts/profile-terminal.sk` → copy to `plugins/Skript/scripts/profile-terminal.sk`
+
+### Dependencies
+
+| Plugin | Purpose |
+|--------|---------|
+| **Skript** (2.7+) | Script engine |
+| **Geyser** | Translates Java inventory GUI → Bedrock Simple Form automatically |
+| **Floodgate** | (Already installed for Bedrock UUID bridging; no extra config needed) |
+| **MMOCore** | Target of `/p` and `/mmocore skills` commands |
+
+### Deployment
+
+1. Copy `Skript/scripts/profile-terminal.sk` to `plugins/Skript/scripts/` on your server.
+2. Run `/skript reload profile-terminal` (or restart the server).
+3. Place a **Crying Obsidian** block in-world.
+4. Right-click the block on either Java or Bedrock — the terminal menu should open.
+
+### Customisation (top of the script)
+
+```
+options:
+    terminal-block: crying obsidian   # change to e.g. "player head"
+    max-shortcuts: 9                  # max saved shortcuts per player
+    gui-title: "&8&lProfile Terminal" # inventory title shown in Java
+    prefix: "&8[&b&lTerminal&8] &7"   # chat message prefix
+```
+
+### How shortcuts are stored
+
+Shortcuts are saved in persistent Skript variables:
+
+```
+{terminal::shortcuts::<uuid>::<index>}  – command string (without /)
+{terminal::awaiting::<uuid>}            – true while player is typing a new shortcut
+```
+
+These variables are written to `plugins/Skript/variables.csv` (or your configured
+storage backend) and survive server restarts with no additional setup.
+
+---
+
 ## Assumptions Made
 
 1. **Skill unlock trigger syntax**: Used `unlock_skill{skill=SKILL_ID}` consistent with the existing Technomancer and Envoy skill trees. The alternative `skill{skill="ID";level=1}` seen in the broken Cleric tree was replaced with `unlock_skill` for consistency.
