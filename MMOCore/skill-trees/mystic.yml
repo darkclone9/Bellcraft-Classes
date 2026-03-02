@@ -413,3 +413,95 @@ nodes:
         - '&eSkill damage +%12'
       1:
         - '&eSkill damage +%13'
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_void_step:
+    root: true
+    name: '&dUnlock: Void Step'
+    coordinates:
+      x: -4
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=MYSTIC_VOID_STEP}'
+    lores:
+      0:
+        - '&fPhase through space in a blink,'
+        - '&fre-emerging behind your foe.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &dVoid Step&7 ability!'
+
+  skill_starfall:
+    root: true
+    name: '&dUnlock: Starfall'
+    coordinates:
+      x: 0
+      y: 3
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=MYSTIC_STARFALL}'
+    lores:
+      0:
+        - '&fCall down a rain of cosmic'
+        - '&fstars to devastate enemies.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &dStarfall&7 ability!'
+
+  skill_celestial_bond:
+    root: true
+    name: '&dUnlock: Celestial Bond'
+    coordinates:
+      x: 4
+      y: 4
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=MYSTIC_CELESTIAL_BOND}'
+    lores:
+      0:
+        - '&fForge a cosmic bond with an ally,'
+        - '&fsharing healing and power.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &dCelestial Bond&7 ability!'
+
+  skill_cosmic_rift:
+    root: true
+    name: '&5Unlock: Cosmic Rift'
+    coordinates:
+      x: -4
+      y: -1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=COSMIC_RIFT}'
+    lores:
+      0:
+        - '&fTear open a rift in the cosmos,'
+        - '&fdamaging all enemies near you.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &5Cosmic Rift&7 ability!'
+
+  skill_graviton_field:
+    root: true
+    name: '&3Unlock: Graviton Field'
+    coordinates:
+      x: 7
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=GRAVITON_FIELD}'
+    lores:
+      0:
+        - '&fGenerate a graviton field that'
+        - '&fpulls in and slows nearby foes.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &3Graviton Field&7 ability!'

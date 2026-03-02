@@ -103,6 +103,17 @@ skills:
     max-level: 30
     unlocked-by-default: false
 
+  # Standalone MythicLib skill unlocks (via skill tree)
+  OVERCHARGE:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  NANITE_SWARM:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
 skill-trees:
   - 'technomancer'
 

@@ -323,3 +323,59 @@ nodes:
         - '&eMax health +%4'
       1:
         - '&eMax health +%5'
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_arcane_missiles:
+    root: true
+    name: '&cUnlock: Arcane Missiles'
+    coordinates:
+      x: -4
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SORCERER_ARCANE_MISSILES}'
+    lores:
+      0:
+        - '&fFire a rapid volley of'
+        - '&farcane bolts at your target.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &cArcane Missiles&7 ability!'
+
+  skill_elemental_shield:
+    root: true
+    name: '&bUnlock: Elemental Shield'
+    coordinates:
+      x: 0
+      y: 3
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SORCERER_ELEMENTAL_SHIELD}'
+    lores:
+      0:
+        - '&fSurround yourself with a'
+        - '&fswirling elemental barrier.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &bElemental Shield&7 ability!'
+
+  skill_time_warp:
+    root: true
+    name: '&5Unlock: Time Warp'
+    coordinates:
+      x: 4
+      y: 4
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SORCERER_TIME_WARP}'
+    lores:
+      0:
+        - '&fBend the flow of time,'
+        - '&fresetting your cooldowns.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &5Time Warp&7 ability!'

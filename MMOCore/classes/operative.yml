@@ -107,6 +107,17 @@ skills:
     max-level: 30
     unlocked-by-default: false
 
+  # Standalone MythicLib skill unlocks (via skill tree)
+  TRICK_ATTACK:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  EVASION_PROTOCOL:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
 skill-trees:
   - 'operative'
 

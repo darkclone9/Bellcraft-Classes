@@ -435,3 +435,113 @@ nodes:
         - "&eSkill damage +%12"
       1:
         - "&eSkill damage +%13"
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_shield_bash:
+    root: true
+    name: '&cUnlock: Shield Bash'
+    coordinates:
+      x: -4
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SOLDIER_SHIELD_BASH}'
+    lores:
+      0:
+        - '&fSlam your shield into enemies,'
+        - '&fdamaging and slowing them.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &cShield Bash&7 ability!'
+
+  skill_warriors_leap:
+    root: true
+    name: '&cUnlock: Warrior''s Leap'
+    coordinates:
+      x: 0
+      y: 3
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SOLDIER_WARRIORS_LEAP}'
+    lores:
+      0:
+        - '&fLeap toward your foe and'
+        - '&fcrash down with crushing force.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &cWarrior''s Leap&7 ability!'
+
+  skill_battle_cry:
+    root: true
+    name: '&cUnlock: Battle Cry'
+    coordinates:
+      x: 4
+      y: 4
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SOLDIER_BATTLE_CRY}'
+    lores:
+      0:
+        - '&fLet out a fierce war cry,'
+        - '&fboosting your attack and damage.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &cBattle Cry&7 ability!'
+
+  skill_combat_stance:
+    root: true
+    name: '&6Unlock: Combat Stance'
+    coordinates:
+      x: -4
+      y: -1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=COMBAT_STANCE}'
+    lores:
+      0:
+        - '&fAdopt a hardened combat posture,'
+        - '&fboosting defenses while active.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &6Combat Stance&7 ability!'
+
+  skill_suppressing_fire:
+    root: true
+    name: '&6Unlock: Suppressing Fire'
+    coordinates:
+      x: 7
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=SUPPRESSING_FIRE}'
+    lores:
+      0:
+        - '&fUnleash a barrage of fire to'
+        - '&fslow and weaken your enemies.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &6Suppressing Fire&7 ability!'
+
+  skill_tactical_reload:
+    root: true
+    name: '&7Unlock: Tactical Reload'
+    coordinates:
+      x: 7
+      y: -1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=TACTICAL_RELOAD}'
+    lores:
+      0:
+        - '&fSwiftly reload and recover,'
+        - '&freducing your cooldowns.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &7Tactical Reload&7 ability!'

@@ -323,3 +323,59 @@ nodes:
         - '&eMax health +%10'
       1:
         - '&eMax health +%12'
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_avenging_wrath:
+    root: true
+    name: '&6Unlock: Avenging Wrath'
+    coordinates:
+      x: -4
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=PALADIN_AVENGING_WRATH}'
+    lores:
+      0:
+        - '&fCall upon divine fury to'
+        - '&fsmite enemies with holy vengeance.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &6Avenging Wrath&7 ability!'
+
+  skill_holy_ground:
+    root: true
+    name: '&6Unlock: Holy Ground'
+    coordinates:
+      x: 0
+      y: 3
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=PALADIN_HOLY_GROUND}'
+    lores:
+      0:
+        - '&fConsecrate the ground around you,'
+        - '&fburning evil and healing allies.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &6Holy Ground&7 ability!'
+
+  skill_sacrificial_shield:
+    root: true
+    name: '&6Unlock: Sacrificial Shield'
+    coordinates:
+      x: 4
+      y: 4
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=PALADIN_SACRIFICIAL_SHIELD}'
+    lores:
+      0:
+        - '&fInterpose yourself to absorb'
+        - '&fdamage meant for your allies.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &6Sacrificial Shield&7 ability!'

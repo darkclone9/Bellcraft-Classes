@@ -413,3 +413,95 @@ nodes:
         - '&eSkill damage +%12'
       1:
         - '&eSkill damage +%13'
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_shadow_strike:
+    root: true
+    name: '&bUnlock: Shadow Strike'
+    coordinates:
+      x: -4
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=OPERATIVE_SHADOW_STRIKE}'
+    lores:
+      0:
+        - '&fDash at your target and strike'
+        - '&ffrom the shadow with lethal precision.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &bShadow Strike&7 ability!'
+
+  skill_poison_blade:
+    root: true
+    name: '&2Unlock: Poison Blade'
+    coordinates:
+      x: 0
+      y: 3
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=OPERATIVE_POISON_BLADE}'
+    lores:
+      0:
+        - '&fCoat your blade in toxins,'
+        - '&fpoisoning and weakening the target.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &2Poison Blade&7 ability!'
+
+  skill_vanish:
+    root: true
+    name: '&8Unlock: Vanish'
+    coordinates:
+      x: 4
+      y: 4
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=OPERATIVE_VANISH}'
+    lores:
+      0:
+        - '&fDisappear into the shadows,'
+        - '&fgaining invisibility and speed.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &8Vanish&7 ability!'
+
+  skill_trick_attack:
+    root: true
+    name: '&8Unlock: Trick Attack'
+    coordinates:
+      x: -4
+      y: -1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=TRICK_ATTACK}'
+    lores:
+      0:
+        - '&fFeint and strike with a'
+        - '&fdevious off-hand technique.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &8Trick Attack&7 ability!'
+
+  skill_evasion_protocol:
+    root: true
+    name: '&8Unlock: Evasion Protocol'
+    coordinates:
+      x: 7
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=EVASION_PROTOCOL}'
+    lores:
+      0:
+        - '&fActivate a tactical evasion'
+        - '&froutine, boosting your dodge.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &8Evasion Protocol&7 ability!'

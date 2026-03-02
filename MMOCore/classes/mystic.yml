@@ -98,6 +98,17 @@ skills:
     max-level: 30
     unlocked-by-default: false
 
+  # Standalone MythicLib skill unlocks (via skill tree)
+  COSMIC_RIFT:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  GRAVITON_FIELD:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
 skill-trees:
   - 'mystic'
 

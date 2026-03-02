@@ -323,3 +323,59 @@ nodes:
         - '&eMax health +%5'
       1:
         - '&eMax health +%7'
+
+  # --- SKILL UNLOCK NODES ---
+
+  skill_explosive_arrow:
+    root: true
+    name: '&aUnlock: Explosive Arrow'
+    coordinates:
+      x: -4
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=RANGER_EXPLOSIVE_ARROW}'
+    lores:
+      0:
+        - '&fFire a charged arrow that'
+        - '&fdetonates on impact.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &aExplosive Arrow&7 ability!'
+
+  skill_camouflage:
+    root: true
+    name: '&aUnlock: Camouflage'
+    coordinates:
+      x: 0
+      y: 3
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=RANGER_CAMOUFLAGE}'
+    lores:
+      0:
+        - '&fBlend into your surroundings,'
+        - '&fgaining invisibility and dodge.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &aCamouflage&7 ability!'
+
+  skill_binding_shot:
+    root: true
+    name: '&aUnlock: Binding Shot'
+    coordinates:
+      x: 4
+      y: 4
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=RANGER_BINDING_SHOT}'
+    lores:
+      0:
+        - '&fPin your target in place with'
+        - '&fa precision binding shot.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &aBinding Shot&7 ability!'
