@@ -1,0 +1,16 @@
+DebilitatingShot_Cast:
+  Skills:
+  - sound{s=entity.firework_rocket.blast;p=1.5;v=1} @self
+  
+  # 1. Save the scaling MythicLib damage as a temporary variable on the player
+  - setvariable{var=skill.deb_damage;value="<skill.var.damage>";type=FLOAT} @self
+  
+  # 2. Fire the raytrace
+  - raytrace{entitySkill=DebilitatingShot_Hit;maxDistance=40} @Forward{f=40}
+
+DebilitatingShot_Hit:
+  Skills:
+  # 3. Deal the damage by reading that saved variable from the caster
+  - damage{amount="<caster.var.deb_damage>"}
+  - potion{type=WEAKNESS;duration=80;level=1}
+  - effect:particles{p=smoke;amount=10} @origin

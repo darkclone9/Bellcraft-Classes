@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "source": "entity",
+      "prefix": "entity/",
+      "type": "directory"
+    },
+    {
+      "pattern": {
+        "namespace": "minecraft",
+        "path": "entity/fishing_hook"
+      },
+      "type": "filter"
+    },
+    {
+      "source": "entity",
+      "prefix": "entity/",
+      "type": "directory"
+    },
+    {
+      "source": "armor",
+      "prefix": "armor/",
+      "type": "directory"
+    },
+    {
+      "source": "item",
+      "prefix": "item/",
+      "type": "directory"
+    }
+  ]
+}

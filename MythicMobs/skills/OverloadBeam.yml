@@ -1,0 +1,17 @@
+OverloadBeam_Cast:
+  Skills:
+  - sound{s=block.beacon.activate;p=2;v=1} @self
+  # Fires 4 beams in rapid succession (every 5 ticks) to simulate a "channeled" beam
+  - skill{s=OverloadBeam_Effect} @TargetLocation
+  - delay 5
+  - skill{s=OverloadBeam_Effect} @TargetLocation
+  - delay 5
+  - skill{s=OverloadBeam_Effect} @TargetLocation
+  - delay 5
+  - skill{s=OverloadBeam_Effect} @TargetLocation
+
+OverloadBeam_Effect:
+  Skills:
+  - particleline{p=electric_spark;amount=20} @TargetLocation
+  - damage{amount=<skill.var.damage>} @TargetLocation
+  - sound{s=entity.guardian.attack;p=2;v=0.5} @self

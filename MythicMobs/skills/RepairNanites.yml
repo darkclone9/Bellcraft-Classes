@@ -1,0 +1,10 @@
+RepairNanites_Cast:
+  Skills:
+  - sound{s=block.beacon.power_select;v=1;p=2} @self
+  # A 3-second channel (60 ticks) that heals every second (20 ticks)
+  - effect:particles{p=happy_villager;amount=20;hS=0.5;vS=1} @self
+  - heal{amount=<skill.var.heal>} @self
+  - delay 20
+  - heal{amount=<skill.var.heal>} @self
+  - delay 20
+  - heal{amount=<skill.var.heal>} @self

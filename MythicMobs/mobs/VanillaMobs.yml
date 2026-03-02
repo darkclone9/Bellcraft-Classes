@@ -1,0 +1,22 @@
+CAVE_SPIDER:
+  Health: 30
+  Damage: 7
+WITHER_SKELETON:
+  Health: 50
+  Damage: 10
+GIANT:
+  Health: 1000
+  Damage: 20
+  Skills:
+  - potion{type=POISON;duration=100;lvl=1} @target ~onAttack
+ScalingOrc:
+  Type: ZOMBIE
+  Display: '&cOrcish Raider &7[Lv. <mob.level>]'
+  Health: 50
+  Damage: 5
+  # This is where the magic happens:
+  LevelModifiers:
+    Health: 10     # Adds 10 Health per level
+    Damage: 0.5    # Adds 0.5 Damage per level
+    Armor: 0.2     # Adds 0.2 Armor per level
+    Exp: 5         # Drops 5 extra vanilla/MMOCore XP per level

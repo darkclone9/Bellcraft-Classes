@@ -1,0 +1,15 @@
+GravitonField_Cast:
+  Skills:
+  - sound{s=block.conduit.activate;v=1;p=0.5} @self
+  # Creates an invisible anchor at the target location for 5 seconds (100 ticks)
+  - projectile{onTick=GravitonField_Tick;v=0;mr=100;maxDuration=100} @TargetLocation
+
+GravitonField_Tick:
+  Skills:
+  # Dark, swirling visual ring indicating the gravity well
+  - effect:particles{p=nautilus;amount=10;hS=3;vS=0.1;speed=0} @origin
+  - effect:particles{p=squid_ink;amount=5;hS=3;vS=0.1;speed=0} @origin
+  
+  # Applies massive Slowness and Levitation to anyone caught in the 4-block radius
+  - potion{type=SLOWNESS;duration=40;level=3} @EIR{r=4}
+  - potion{type=LEVITATION;duration=20;level=0} @EIR{r=4}

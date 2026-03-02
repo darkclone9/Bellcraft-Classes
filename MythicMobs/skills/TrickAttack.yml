@@ -1,0 +1,7 @@
+TrickAttack_Cast:
+  Skills:
+  - sound{s=entity.player.attack.sweep;v=1;p=0.5} @self
+  - damage{amount=<skill.var.damage>} @TargetLocation
+  # Blind the target for 2 seconds to simulate a "dirty trick"
+  - potion{type=BLINDNESS;duration=40;level=0} @TargetLocation
+  - effect:particles{p=smoke;amount=15;hS=0.2;vS=0.2} @TargetLocation

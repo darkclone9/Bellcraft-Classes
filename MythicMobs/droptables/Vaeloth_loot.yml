@@ -1,0 +1,17 @@
+VaelothLootTable:
+  TotalItems: 1
+  # The numbers at the end are: Amount Chance
+  Drops:
+    # High-Tier Weapon Drops (15% chance each)
+    - mmoitems{type=STAFF;id=VAELOTH_SPINDLE} 1 15
+    - mmoitems{type=TOME;id=SHATTERED_SCHOLAR_TOME} 1 15
+    
+    # Mid-Tier Upgrade Items (50% chance)
+    - mmoitems{type=GEM_STONE;id=AETHER_CORE_GEM} 1 50
+    
+    # Guaranteed Crafting Materials (100% chance for 2 to 5 dust)
+    - mmoitems{type=MATERIAL;id=ARCANE_DUST} 2-5 100
+    
+    # Economy and MMOXP
+    - money 500 100
+    - exp 1500 100

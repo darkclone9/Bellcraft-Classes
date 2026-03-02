@@ -1,0 +1,12 @@
+Overcharge_Cast:
+  Skills:
+  # Power-up sound effect
+  - sound{s=block.beacon.power_select;v=1;p=1.5} @self
+  
+  # Yellow electricity sparks radiating from the player
+  - effect:particles{p=redstone;color=#FFFF00;amount=30;hS=0.5;vS=1} @self
+  
+  # Grants Haste (Attack Speed), Speed, and Glowing for 5 seconds (100 ticks)
+  - potion{type=FAST_DIGGING;duration=100;level=1} @self
+  - potion{type=SPEED;duration=100;level=1} @self
+  - potion{type=GLOWING;duration=100;level=0} @self

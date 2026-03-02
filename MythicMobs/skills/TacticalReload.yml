@@ -1,0 +1,14 @@
+TacticalReload_Cast:
+  Skills:
+  # 1. The sound of ejecting a thermal clip / magazine
+  - sound{s=block.iron_door.open;p=2;v=1} @self
+  - delay 5
+  
+  # 2. The sound of slamming the new clip in
+  - sound{s=block.iron_door.close;p=2;v=1} @self
+  
+  # 3. A little puff of exhaust smoke from the weapon
+  - effect:particles{p=smoke_normal;amount=10;hS=0.2;vS=0.2} @self
+  
+  # 4. Grants Haste (Faster Attack Speed) for 5 seconds (100 ticks)
+  - potion{type=FAST_DIGGING;duration=100;level=2} @self

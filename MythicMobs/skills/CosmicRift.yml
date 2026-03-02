@@ -1,0 +1,21 @@
+CosmicRift_Cast:
+  Skills:
+  # Spawns the rift 4 blocks in front of the player. 
+  # Lasts for 5 seconds (100 ticks) before triggering the "onEnd" explosion.
+  - projectile{onTick=CosmicRift_Tick;onEnd=CosmicRift_End;v=0;mr=100;maxDuration=100} @Forward{f=4;y=1}
+  - sound{s=block.end_portal.spawn;v=1;p=2} @self
+
+CosmicRift_Tick:
+  Skills:
+  # Purple portal particles swirling around the center
+  - effect:particles{p=portal;amount=20;hS=0.5;vS=0.5;speed=0.5} @origin
+  # Pulls enemies within 6 blocks toward the center of the rift
+  - pull{velocity=0.2} @EIR{r=6}
+  - sound{s=block.beacon.ambient;v=2;p=0.5} @origin
+
+CosmicRift_End:
+  Skills:
+  # The rift collapses and explodes, dealing your MythicLib damage
+  - effect:particles{p=dragon_breath;amount=50;hS=2;vS=2;speed=0.2} @origin
+  - sound{s=entity.generic.explode;v=1;p=0.5} @origin
+  - damage{amount=<skill.var.damage>} @EIR{r=6}

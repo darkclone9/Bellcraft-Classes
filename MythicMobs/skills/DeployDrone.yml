@@ -1,0 +1,22 @@
+DeployDrone_Cast:
+  Skills:
+  # Plays a techy startup sound
+  - sound{s=block.beacon.activate;p=2;v=1} @self
+  # Spawns the "Drone" 3 blocks in front of you. 
+  # v=0 means it doesn't move. maxDuration=200 means it lasts 10 seconds.
+  # i=20 means it ticks (shoots) once every second.
+  - projectile{onTick=DeployDrone_Tick;v=0;i=20;mr=200;maxDuration=200} @Forward{f=3;y=1.5}
+
+DeployDrone_Tick:
+  Skills:
+  # The visual of the drone itself (a cyan tech orb)
+  - effect:particles{p=redstone;color=#00FFFF;amount=15;hS=0.2;vS=0.2} @origin
+  
+  # The drone plays a small zap sound every second it is active
+  - sound{s=entity.elder_guardian.curse;p=2;v=0.1} @origin
+  
+  # The drone deals damage to 1 random enemy within 8 blocks of it
+  - damage{amount=<skill.var.damage>} @EIR{r=8;limit=1}
+  
+# Creates a laser beam visual from the drone to the enemy it just hit
+  - particleline{p=electric_spark;amount=10} @EIR{r=8;limit=1}

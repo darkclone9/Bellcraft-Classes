@@ -1,0 +1,13 @@
+EvasionProtocol_Cast:
+  Skills:
+  # A quick whoosh/swoop sound
+  - sound{s=entity.phantom.swoop;v=1;p=1.5} @self
+  
+  # Smokescreen left behind at their starting position
+  - effect:particles{p=cloud;amount=30;hSpread=0.5;vSpread=0.1;speed=0.1} @origin
+  
+  # Propels the player forward (a dodge/dash)
+  - leap{velocity=1.5} @self
+  
+  # Grants Resistance 4 (almost total damage immunity) for 1 second (20 ticks) to act as an i-frame
+  - potion{type=DAMAGE_RESISTANCE;duration=20;level=4} @self

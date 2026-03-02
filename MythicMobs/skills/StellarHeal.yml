@@ -1,0 +1,8 @@
+StellarHeal_Cast:
+  Skills:
+  - sound{s=block.enchantment_table.use;v=1;p=1.2} @self
+  # Flash of white/cyan stars
+  - effect:particles{p=firework;amount=30;hS=1;vS=1} @TargetLocation
+  - effect:particles{p=end_rod;amount=10;hS=1;vS=1} @TargetLocation
+  # Heals everyone in a 5-block radius of the target
+  - heal{amount=<skill.var.heal>} @PIR{r=5}

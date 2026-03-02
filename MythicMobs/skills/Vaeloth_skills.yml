@@ -1,0 +1,77 @@
+# --- Phase 1 Skills ---
+ArcaneArtillery:
+  Skills:
+    - projectile{onTick=ArcaneArtillery_Tick;onHit=ArcaneArtillery_Hit;v=15;i=1;hR=1;vR=1}
+ArcaneArtillery_Tick:
+  Skills:
+    - effect:particles{p=spell_witch;a=10;s=0.1} @origin
+ArcaneArtillery_Hit:
+  Skills:
+    - damage{a=30;element=MAGIC}
+    - effect:particles{p=explosion_large} @origin
+
+LeyLineEruption:
+  Skills:
+    - message{m="&5Vaeloth: &fThe leylines bend to my will!"} @PlayersInRadius{r=30}
+    - effect:particles{p=flame;a=50;hS=1;vS=0.1} @target
+    - delay 40
+    - damage{a=60;element=FIRE} @target
+    - effect:particles{p=lava;a=100;hS=2;vS=2} @target
+
+SilenceCurse:
+  Skills:
+    - potion{type=BLINDNESS;duration=100;level=1} @target
+    # If you have a specific MMOCore silence mechanic, you can cast it via command here
+    - message{m="&5Vaeloth: &fYour mind is mine!"} @target
+
+# --- Phase 2 Skills ---
+Phase2_SummonGolems:
+  Skills:
+    - 'message{m="&5Vaeloth: &fArise, my constructs! Crush them!"} @PlayersInRadius{r=30}'
+    - setvariable{var=caster.golems_alive;val=2;type=INTEGER} @Self
+    - summon{type=AetherGolem_Physical;amount=1;radius=3;summoner=true} @Self
+    - summon{type=AetherGolem_Magical;amount=1;radius=3;summoner=true} @Self
+    - aura{auraName=VaelothShield;duration=9999;cancelDamage=true} @Self
+    - effect:particles{p=enchantment_table;a=500;hS=2;vS=3} @Self
+Phase2_AoePulse:
+  Skills:
+    - damage{a=15;element=MAGIC} @PlayersInRadius{r=25}
+    - effect:particles{p=spell_mob;color=#800080;a=100;hS=10;vS=0.5} @Self
+
+# --- Phase 3 Skills ---
+Phase3_Transition:
+  Skills:
+    - message{m="&5Vaeloth: &cENOUGH! Reality shatters before me!"} @PlayersInRadius{r=30}
+    - effect:particles{p=dragon_breath;a=500;hS=5;vS=5} @Self
+
+MeteorSwarm:
+  Skills:
+    - message{m="&c&lVaeloth begins pulling a meteor from the sky... STACK UP!"} @PlayersInRadius{r=30}
+    - delay 60
+    # Deals massive damage, but split among players in a 5 block radius.
+    - damage{amount=500;split=true} @PlayersInRadius{r=5} 
+    - effect:particles{p=explosion_huge;a=10} @Self
+
+ShatteredGround:
+  Skills:
+    - aura{auraName=VoidZone;onTick=VoidZone_Tick;duration=200} @targetlocation
+VoidZone_Tick:
+  Skills:
+    - effect:particles{p=portal;a=20;hS=2;vS=0.1} @origin
+    - damage{a=20;element=DARK} @PlayersInRadius{r=2}
+Golem_Death_Trigger:
+  Skills:
+    # Subtracts 1 from Vaeloth's variable
+    - setvariable{var=target.golems_alive;val="<target.var.golems_alive>-1";type=INTEGER} @Parent
+    # Forces Vaeloth to check if his shield should break
+    - skill{s=Vaeloth_Shield_Break} @Parent
+
+Vaeloth_Shield_Break:
+  Conditions:
+    # Only executes if the variable has reached 0
+    - variableEquals{var=caster.golems_alive;value=0}
+  Skills:
+    - removeaura{aura=VaelothShield} @Self
+    - 'message{m="&5Vaeloth: &cImpossible! My barrier... shattered!"} @PlayersInRadius{r=30}'
+    - effect:particles{p=block_crack;material=PURPLE_STAINED_GLASS;a=300;hS=2;vS=3} @Self
+    - sound{s=block.glass.break;v=2;p=0.5} @PlayersInRadius{r=30}

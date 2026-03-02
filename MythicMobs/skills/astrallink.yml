@@ -1,0 +1,18 @@
+AstralLink_Aura:
+  Skills:
+  # Starts the aura on the caster. It lasts almost forever and ticks every 20 ticks (1 second).
+  - aura{auraName=AstralLink;onTick=AstralLink_Tick;interval=20;duration=999999;cancelOnDeath=true} @self
+
+AstralLink_Tick:
+  Skills:
+  # 1. Visual indicator for the caster (Fires every second)
+  - effect:particles{p=spell_instant;amount=5;hSpread=0.5;vSpread=0.5} @self
+  
+  # 2. Visual indicator of the aura's radius 
+  # We use the <skill.var.radius> math passed over from MythicLib!
+  - effect:particles{p=fireworks;amount=3;hSpread=<skill.var.radius>;vSpread=0.1} @self
+  - effect:particles{p=end_rod;amount=2;hSpread=<skill.var.radius>;vSpread=0.1} @self
+  
+  # 3. Heal allies in the radius. 
+  # This applies a brief Regeneration potion effect to simulate the +10% health regen tick.
+  - potion{type=REGENERATION;duration=40;level=0} @PIR{r=<skill.var.radius>}

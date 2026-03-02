@@ -1,0 +1,57 @@
+Vaeloth:
+  Type: ILLUSIONER
+  Display: '&5High-Arcanist Vaeloth'
+  Health: 10000
+  Damage: 50
+  Armor: 10
+  Faction: Arcanist
+  Drops:
+    - VaelothLootTable
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.2
+    PreventOtherDrops: true
+    KnockbackResistance: 1.0
+  Skills:
+    # Phase 1: Passive Attacks (Fires every few seconds)
+    - skill{s=ArcaneArtillery} @Target ~onTimer:60 <65% false
+    - skill{s=LeyLineEruption} @PlayersInRadius{r=20} ~onTimer:120 <65% false
+    - skill{s=SilenceCurse} @PIR{r=20;limit=1;sort=RANDOM} ~onTimer:200 <65% false
+    
+    # Phase 2: The Construct Guardians (Triggers at 65% Health)
+    - skill{s=Phase2_SummonGolems} @Self ~onHealth:65
+    - skill{s=Phase2_AoePulse} @PlayersInRadius{r=25} ~onTimer:60 =65%-30%
+    
+    # Phase 3: Reality Fracture (Triggers at 30% Health)
+    - skill{s=Phase3_Transition} @Self ~onHealth:30
+    - skill{s=MeteorSwarm} @Target ~onTimer:200 <30%
+    - skill{s=ShatteredGround} @PIR{r=20;limit=1;sort=RANDOM}
+
+# Phase 2 Add: Physical Resistant Golem
+AetherGolem_Physical:
+  Type: IRON_GOLEM
+  Display: '&bAether-Forged Guardian &7(Physical Resist)'
+  Health: 2000
+  Damage: 30
+  DamageModifiers:
+    - ENTITY_ATTACK 0.1
+    - PROJECTILE 0.1
+    - MAGIC 1.5
+  Options:
+    MovementSpeed: 0.25
+  Skills:
+    - skill{s=Golem_Death_Trigger} ~onDeath
+# Phase 2 Add: Magical Resistant Golem
+AetherGolem_Magical:
+  Type: IRON_GOLEM
+  Display: '&dNether-Forged Guardian &7(Magic Resist)'
+  Health: 2000
+  Damage: 30
+  DamageModifiers:
+    - ENTITY_ATTACK 1.5
+    - PROJECTILE 1.5
+    - MAGIC 0.1
+  Options:
+    MovementSpeed: 0.25
+  Skills:
+    - skill{s=Golem_Death_Trigger} ~onDeath

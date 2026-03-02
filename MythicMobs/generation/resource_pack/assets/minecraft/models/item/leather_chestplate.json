@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "item/leather_chestplate",
+    "layer1": "item/leather_chestplate_overlay"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 0
+      },
+      "model": "mythic:item/ui/dye_swatch"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 0
+      },
+      "model": "mythic:item/ui/dye_swatch"
+    }
+  ]
+}

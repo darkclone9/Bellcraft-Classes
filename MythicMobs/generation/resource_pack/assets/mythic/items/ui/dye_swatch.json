@@ -1,0 +1,13 @@
+{
+  "model": {
+    "model": "mythic:item/ui/dye_swatch",
+    "tints": [
+      {
+        "type": "minecraft:dye",
+        "index": 0,
+        "default": 16777215
+      }
+    ],
+    "type": "minecraft:model"
+  }
+}

@@ -1,0 +1,10 @@
+SoldierStrike_Cast:
+  Skills:
+  # Deals your calculated MythicLib damage to the target you are looking at
+  - damage{amount=<skill.var.damage>;type=PHYSICAL} @TargetLocation
+  
+  # Spawns the crit particles on the target
+  - effect:particles{p=crit;amount=25;speed=0.4;hS=0.5;vS=0.5} @TargetLocation
+  
+  # Plays the heavy swing sound for the caster
+  - sound{s=entity.player.attack.strong;v=1.5;p=0.9} @self

@@ -1,0 +1,12 @@
+SOLDIER_SHIELD_BASH:
+  Cooldown: 8
+  TargetConditions:
+  - distance{d=<5} true
+  Skills:
+  - damage{amount=10;ignoreArmor=false}
+  - potion{type=SLOWNESS;duration=40;level=10}
+  - potion{type=JUMP;duration=40;level=128}
+  - effect:particles{particle=BLOCK_CRACK;material=IRON_BLOCK;amount=30;speed=0.3;hSpread=0.5;vSpread=0.5}
+  - effect:sound{sound=ENTITY_IRON_GOLEM_ATTACK;volume=1.5;pitch=0.9}
+  - effect:sound{sound=BLOCK_ANVIL_LAND;volume=0.8;pitch=1.2}
+  - message{msg="&c⚔ &eShield Bash! Target stunned!"}

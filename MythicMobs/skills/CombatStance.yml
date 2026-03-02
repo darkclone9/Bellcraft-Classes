@@ -1,0 +1,43 @@
+CombatStance_Toggle:
+  Skills:
+  - sound{s=item.armor.equip_iron;v=1;p=0.5} @self
+  - message{m="&6⚔ &cBattle Stance Active: &7Holding the line!"} @self
+  
+  # A visual cue of red "angry" particles
+  - effect:particles{p=villager_angry;amount=15;hS=0.5;vS=1;speed=0.1} @self
+  
+  # Grants heavy resistance for 10 seconds (200 ticks)
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=2} @self
+  
+  # Grants slowness for 10 seconds to simulate holding ground
+  - potion{type=SLOW;duration=200;level=0} @self
+# --- OFFENSIVE STANCE ---
+CombatStance_SetOffensive:
+  Skills:
+  # Cancels the defensive aura
+  - removeaura{a=DefensiveStance} @self
+  - message{m="&6⚔ &eOffensive Stance: &aDamage Boosted, &cDefense Lowered"} @self
+  # Starts the offensive aura (Ticks every 1 second)
+  - aura{auraName=OffensiveStance;onTick=CombatStance_OffensiveTick;interval=20;duration=999999;cancelOnDeath=true} @self
+
+CombatStance_OffensiveTick:
+  Skills:
+  - effect:particles{p=flame;amount=5;hSpread=0.5;vSpread=0.5} @self
+  # Applies a 2-second Strength buff every 1 second, keeping it active infinitely until toggled
+  - potion{type=STRENGTH;duration=40;level=0} @self
+
+# --- DEFENSIVE STANCE ---
+CombatStance_SetDefensive:
+  Skills:
+  # Cancels the offensive aura
+  - removeaura{a=OffensiveStance} @self
+  - message{m="&6⚔ &eDefensive Stance: &aDamage Reduced, &cSpeed Lowered"} @self
+  # Starts the defensive aura (Ticks every 1 second)
+  - aura{auraName=DefensiveStance;onTick=CombatStance_DefensiveTick;interval=20;duration=999999;cancelOnDeath=true} @self
+
+CombatStance_DefensiveTick:
+  Skills:
+  - effect:particles{p=block_crack;m=iron_block;amount=5;hSpread=0.5;vSpread=0.5} @self
+  # Applies 2-second Resistance and Slowness buffs every 1 second
+  - potion{type=DAMAGE_RESISTANCE;duration=40;level=0} @self
+  - potion{type=SLOWNESS;duration=40;level=0} @self

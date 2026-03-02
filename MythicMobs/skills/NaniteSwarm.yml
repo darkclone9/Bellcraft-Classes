@@ -1,0 +1,13 @@
+NaniteSwarm_Cast:
+  Skills:
+  # 1. Play a mechanical/buzzing swarm sound
+  - sound{s=entity.bee.loop;p=1.5;v=1} @self
+  
+  # 2. Create a cloud of green "nanite" particles using your radius variable
+  - effect:particles{p=villager_happy;amount=50;hSpread=<skill.var.radius>;vSpread=1} @self
+  
+  # 3. Deal the exact damage calculated by MythicLib to all enemies in the radius
+  - damage{amount=<skill.var.damage>} @EIR{r=<skill.var.radius>}
+  
+  # 4. Apply a poison effect (corrosion/tech infection) to enemies in the radius for 3 seconds
+  - potion{type=POISON;duration=60;level=0} @EIR{r=<skill.var.radius>}

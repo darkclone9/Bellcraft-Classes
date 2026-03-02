@@ -1,0 +1,31 @@
+SuppressingFire_Cast:
+  Skills:
+  # Shot 1
+  - projectile{onTick=SuppressingFire_Tick;onHit=SuppressingFire_Hit;v=20;i=1;hR=1;vR=1;mr=30} @TargetLocation
+  - sound{s=entity.arrow.shoot;p=0.8;v=1.5} @self
+  - delay 4
+  
+  # Shot 2
+  - projectile{onTick=SuppressingFire_Tick;onHit=SuppressingFire_Hit;v=20;i=1;hR=1;vR=1;mr=30} @TargetLocation
+  - sound{s=entity.arrow.shoot;p=0.8;v=1.5} @self
+  - delay 4
+  
+  # Shot 3
+  - projectile{onTick=SuppressingFire_Tick;onHit=SuppressingFire_Hit;v=20;i=1;hR=1;vR=1;mr=30} @TargetLocation
+  - sound{s=entity.arrow.shoot;p=0.8;v=1.5} @self
+
+# The trail the bullets leave behind in the air
+SuppressingFire_Tick:
+  Skills:
+  - effect:particles{p=firework;amount=2;speed=0} @origin
+
+# What happens when a bullet hits an enemy
+SuppressingFire_Hit:
+  Skills:
+  # Deals the math damage from MythicLib
+  - damage{amount=<skill.var.damage>}
+  # Applies the slow effect
+  - potion{type=SLOWNESS;duration=40;level=1}
+  # Impact visuals and sound
+  - effect:particles{p=smoke_normal;amount=10;speed=0.1}
+  - sound{s=entity.generic.explode;v=0.8;p=1.5}
