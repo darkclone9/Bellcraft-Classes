@@ -110,6 +110,22 @@ skills:
     max-level: 30
     unlocked-by-default: false
 
+  # Standalone MythicLib skill unlocks (via skill tree)
+  COMBAT_STANCE:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  SUPPRESSING_FIRE:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  TACTICAL_RELOAD:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
 skill-trees:
   - 'soldier'
 

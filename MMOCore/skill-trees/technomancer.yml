@@ -465,3 +465,39 @@ nodes:
       0:
         - '&7Spend 1 Point to unlock'
         - '&7the &aRepair Nanites&7 ability!'
+
+  skill_overcharge:
+    root: true
+    name: '&eUnlock: Overcharge'
+    coordinates:
+      x: -4
+      y: -1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=OVERCHARGE}'
+    lores:
+      0:
+        - '&fOverload your systems to unleash'
+        - '&fa burst of electrical energy.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &eOvercharge&7 ability!'
+
+  skill_nanite_swarm:
+    root: true
+    name: '&aUnlock: Nanite Swarm'
+    coordinates:
+      x: 7
+      y: 1
+    experience-table:
+      first_table_item:
+        triggers:
+          - 'unlock_skill{skill=NANITE_SWARM}'
+    lores:
+      0:
+        - '&fRelease a swarm of nanites that'
+        - '&fdamage enemies in an area.'
+        - ''
+        - '&7Spend 1 Point to unlock'
+        - '&7the &aNanite Swarm&7 ability!'

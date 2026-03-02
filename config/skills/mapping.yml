@@ -1,0 +1,467 @@
+# Bellcraft Classes – Skill Mapping Reference
+# This file documents the relationship between MythicLib skill IDs,
+# the MMOCore classes that use them, and their skill tree node positions.
+# It is a reference/documentation file and is not loaded by any plugin.
+
+# -----------------------------------------------------------------------
+# FORMAT:
+#   skill_id:
+#     display_name: "Human-readable name"
+#     icon: MATERIAL_NAME
+#     description: "What the skill does"
+#     classes: [ClassName, ...]
+#     tree:
+#       class: TreeID
+#       node_id: node_key_in_yml
+#       position: "x: N, y: N"
+#       prerequisite: none | node_id
+# -----------------------------------------------------------------------
+
+skills:
+
+  # === SOLDIER SKILLS ===
+
+  SOLDIER_SHIELD_BASH:
+    display_name: "Shield Bash"
+    icon: SHIELD
+    description: "Slam your shield into enemies, dealing damage and slowing them."
+    classes: [Soldier]
+    tree:
+      class: soldier
+      node_id: skill_shield_bash
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  SOLDIER_WARRIORS_LEAP:
+    display_name: "Warriors Leap"
+    icon: IRON_BOOTS
+    description: "Leap toward your foe and crash down with crushing force."
+    classes: [Soldier]
+    tree:
+      class: soldier
+      node_id: skill_warriors_leap
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  SOLDIER_BATTLE_CRY:
+    display_name: "Battle Cry"
+    icon: BELL
+    description: "Let out a fierce war cry, boosting attack and physical damage."
+    classes: [Soldier]
+    tree:
+      class: soldier
+      node_id: skill_battle_cry
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  COMBAT_STANCE:
+    display_name: "Combat Stance"
+    icon: IRON_CHESTPLATE
+    description: "Adopt a hardened combat posture, boosting defenses while active."
+    classes: [Soldier]
+    tree:
+      class: soldier
+      node_id: skill_combat_stance
+      position: "x: -4, y: -1"
+      prerequisite: none
+
+  SUPPRESSING_FIRE:
+    display_name: "Suppressing Fire"
+    icon: CROSSBOW
+    description: "Unleash a barrage of fire to slow and weaken your enemies."
+    classes: [Soldier]
+    tree:
+      class: soldier
+      node_id: skill_suppressing_fire
+      position: "x: 7, y: 1"
+      prerequisite: none
+
+  TACTICAL_RELOAD:
+    display_name: "Tactical Reload"
+    icon: IRON_HOE
+    description: "Swiftly reload and recover, reducing your cooldowns."
+    classes: [Soldier]
+    tree:
+      class: soldier
+      node_id: skill_tactical_reload
+      position: "x: 7, y: -1"
+      prerequisite: none
+
+  # === OPERATIVE SKILLS ===
+
+  OPERATIVE_SHADOW_STRIKE:
+    display_name: "Shadow Strike"
+    icon: ENDER_PEARL
+    description: "Dash at your target and strike from the shadow with lethal precision."
+    classes: [Operative]
+    tree:
+      class: operative
+      node_id: skill_shadow_strike
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  OPERATIVE_POISON_BLADE:
+    display_name: "Poison Blade"
+    icon: SPIDER_EYE
+    description: "Coat your blade in toxins, poisoning and weakening the target."
+    classes: [Operative]
+    tree:
+      class: operative
+      node_id: skill_poison_blade
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  OPERATIVE_VANISH:
+    display_name: "Vanish"
+    icon: PHANTOM_MEMBRANE
+    description: "Disappear into the shadows, gaining invisibility and speed."
+    classes: [Operative]
+    tree:
+      class: operative
+      node_id: skill_vanish
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  TRICK_ATTACK:
+    display_name: "Trick Attack"
+    icon: IRON_NUGGET
+    description: "Feint and strike with a devious off-hand technique."
+    classes: [Operative]
+    tree:
+      class: operative
+      node_id: skill_trick_attack
+      position: "x: -4, y: -1"
+      prerequisite: none
+
+  EVASION_PROTOCOL:
+    display_name: "Evasion Protocol"
+    icon: FEATHER
+    description: "Activate a tactical evasion routine, boosting your dodge."
+    classes: [Operative]
+    tree:
+      class: operative
+      node_id: skill_evasion_protocol
+      position: "x: 7, y: 1"
+      prerequisite: none
+
+  # === RANGER SKILLS ===
+
+  RANGER_EXPLOSIVE_ARROW:
+    display_name: "Explosive Arrow"
+    icon: TNT
+    description: "Fire a charged arrow that detonates on impact."
+    classes: [Ranger]
+    tree:
+      class: ranger-hunter
+      node_id: skill_explosive_arrow
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  RANGER_CAMOUFLAGE:
+    display_name: "Camouflage"
+    icon: JUNGLE_LEAVES
+    description: "Blend into your surroundings, gaining invisibility and dodge."
+    classes: [Ranger]
+    tree:
+      class: ranger-hunter
+      node_id: skill_camouflage
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  RANGER_BINDING_SHOT:
+    display_name: "Binding Shot"
+    icon: COBWEB
+    description: "Pin your target in place with a precision binding shot."
+    classes: [Ranger]
+    tree:
+      class: ranger-hunter
+      node_id: skill_binding_shot
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  # === MYSTIC SKILLS ===
+
+  MYSTIC_VOID_STEP:
+    display_name: "Void Step"
+    icon: ENDER_PEARL
+    description: "Phase through space in a blink, re-emerging behind your foe."
+    classes: [Mystic]
+    tree:
+      class: mystic
+      node_id: skill_void_step
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  MYSTIC_STARFALL:
+    display_name: "Starfall"
+    icon: AMETHYST_SHARD
+    description: "Call down a rain of cosmic stars to devastate enemies."
+    classes: [Mystic]
+    tree:
+      class: mystic
+      node_id: skill_starfall
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  MYSTIC_CELESTIAL_BOND:
+    display_name: "Celestial Bond"
+    icon: NETHER_STAR
+    description: "Forge a cosmic bond with an ally, sharing healing and power."
+    classes: [Mystic]
+    tree:
+      class: mystic
+      node_id: skill_celestial_bond
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  COSMIC_RIFT:
+    display_name: "Cosmic Rift"
+    icon: ENDER_PEARL
+    description: "Tear open a rift in the cosmos, damaging all enemies near you."
+    classes: [Mystic]
+    tree:
+      class: mystic
+      node_id: skill_cosmic_rift
+      position: "x: -4, y: -1"
+      prerequisite: none
+
+  GRAVITON_FIELD:
+    display_name: "Graviton Field"
+    icon: MAGMA_CREAM
+    description: "Generate a graviton field that pulls in and slows nearby foes."
+    classes: [Mystic]
+    tree:
+      class: mystic
+      node_id: skill_graviton_field
+      position: "x: 7, y: 1"
+      prerequisite: none
+
+  # === PALADIN SKILLS ===
+
+  PALADIN_AVENGING_WRATH:
+    display_name: "Avenging Wrath"
+    icon: GOLDEN_SWORD
+    description: "Call upon divine fury to smite enemies with holy vengeance."
+    classes: [Paladin]
+    tree:
+      class: paladin-guardian
+      node_id: skill_avenging_wrath
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  PALADIN_HOLY_GROUND:
+    display_name: "Holy Ground"
+    icon: GLOWSTONE
+    description: "Consecrate the ground around you, burning evil and healing allies."
+    classes: [Paladin]
+    tree:
+      class: paladin-guardian
+      node_id: skill_holy_ground
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  PALADIN_SACRIFICIAL_SHIELD:
+    display_name: "Sacrificial Shield"
+    icon: SHIELD
+    description: "Interpose yourself to absorb damage meant for your allies."
+    classes: [Paladin]
+    tree:
+      class: paladin-guardian
+      node_id: skill_sacrificial_shield
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  # === SORCERER SKILLS ===
+
+  SORCERER_ARCANE_MISSILES:
+    display_name: "Arcane Missiles"
+    icon: AMETHYST_SHARD
+    description: "Fire a rapid volley of arcane bolts at your target."
+    classes: [Sorcerer]
+    tree:
+      class: sorcerer-elementalist
+      node_id: skill_arcane_missiles
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  SORCERER_ELEMENTAL_SHIELD:
+    display_name: "Elemental Shield"
+    icon: PACKED_ICE
+    description: "Surround yourself with a swirling elemental barrier."
+    classes: [Sorcerer]
+    tree:
+      class: sorcerer-elementalist
+      node_id: skill_elemental_shield
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  SORCERER_TIME_WARP:
+    display_name: "Time Warp"
+    icon: CLOCK
+    description: "Bend the flow of time, resetting your cooldowns."
+    classes: [Sorcerer]
+    tree:
+      class: sorcerer-elementalist
+      node_id: skill_time_warp
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  # === CLERIC SKILLS ===
+
+  CLERIC_HOLY_RESURGENCE:
+    display_name: "Holy Resurgence"
+    icon: GLISTERING_MELON_SLICE
+    description: "Heal yourself or a nearby ally with a surge of divine light."
+    classes: [Cleric]
+    tree:
+      class: cleric-divinity
+      node_id: skill_resurgence
+      position: "x: -4, y: 0"
+      prerequisite: none
+
+  CLERIC_BLESSED_GROUND:
+    display_name: "Blessed Ground"
+    icon: GLOWSTONE
+    description: "Consecrate the earth beneath you, healing allies who stand upon it."
+    classes: [Cleric]
+    tree:
+      class: cleric-divinity
+      node_id: skill_blessed_ground
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  CLERIC_MARTYRS_RESOLVE:
+    display_name: "Martyr's Resolve"
+    icon: ENCHANTED_GOLDEN_APPLE
+    description: "Channel divine resolve, reducing damage taken for a short duration."
+    classes: [Cleric]
+    tree:
+      class: cleric-divinity
+      node_id: skill_martyrs_resolve
+      position: "x: 5, y: -3"
+      prerequisite: none
+
+  # === TECHNOMANCER SKILLS ===
+
+  DEPLOY_DRONE:
+    display_name: "Deploy Drone"
+    icon: DISPENSER
+    description: "Deploy a combat drone that attacks nearby enemies."
+    classes: [Technomancer]
+    tree:
+      class: technomancer
+      node_id: skill_drone
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  OVERLOAD_BEAM:
+    display_name: "Overload Beam"
+    icon: BEACON
+    description: "Fire a sustained beam of overloaded energy at a target."
+    classes: [Technomancer]
+    tree:
+      class: technomancer
+      node_id: skill_beam
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  REPAIR_NANITES:
+    display_name: "Repair Nanites"
+    icon: PHANTOM_MEMBRANE
+    description: "Release repair nanites that heal you over time."
+    classes: [Technomancer]
+    tree:
+      class: technomancer
+      node_id: skill_nanites
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  OVERCHARGE:
+    display_name: "Overcharge"
+    icon: REDSTONE_BLOCK
+    description: "Overload your systems to unleash a burst of electrical energy."
+    classes: [Technomancer]
+    tree:
+      class: technomancer
+      node_id: skill_overcharge
+      position: "x: -4, y: -1"
+      prerequisite: none
+
+  NANITE_SWARM:
+    display_name: "Nanite Swarm"
+    icon: SLIME_BALL
+    description: "Release a swarm of nanites that damage enemies in an area."
+    classes: [Technomancer]
+    tree:
+      class: technomancer
+      node_id: skill_nanite_swarm
+      position: "x: 7, y: 1"
+      prerequisite: none
+
+  # === ENVOY SKILLS ===
+
+  ASTRAL_LINK:
+    display_name: "Astral Link"
+    icon: NETHER_STAR
+    description: "Form an astral link with an ally, sharing buffs between you."
+    classes: [Envoy]
+    tree:
+      class: envoy
+      node_id: skill_astral_link
+      position: "x: -4, y: 1"
+      prerequisite: none
+
+  STELLAR_HEAL:
+    display_name: "Stellar Heal"
+    icon: NETHER_STAR
+    description: "Releases a burst of cosmic energy, healing allies within a 5-block radius."
+    classes: [Envoy]
+    tree:
+      class: envoy
+      node_id: skill_stellar_heal
+      position: "x: 0, y: 3"
+      prerequisite: none
+
+  DEBILITATING_SHOT:
+    display_name: "Debilitating Shot"
+    icon: SPECTRAL_ARROW
+    description: "Fires a high-velocity tactical round that damages and heavily weakens the target."
+    classes: [Envoy]
+    tree:
+      class: envoy
+      node_id: skill_debilitating_shot
+      position: "x: 4, y: 4"
+      prerequisite: none
+
+  ENVOY_TACTICAL_RETREAT:
+    display_name: "Tactical Retreat"
+    icon: LEATHER_BOOTS
+    description: "Fall back to a strategic position and regroup your team."
+    classes: [Envoy]
+    tree:
+      class: envoy
+      node_id: skill_tactical_retreat
+      position: "x: -4, y: -1"
+      prerequisite: none
+
+  ENVOY_BATTLE_STANCE:
+    display_name: "Battle Stance"
+    icon: IRON_CHESTPLATE
+    description: "Adopt a hardened combat posture ready for frontline engagement."
+    classes: [Envoy]
+    tree:
+      class: envoy
+      node_id: skill_battle_stance
+      position: "x: -4, y: 3"
+      prerequisite: none
+
+  ENVOY_COMMANDING_SHOUT:
+    display_name: "Commanding Shout"
+    icon: BELL
+    description: "Let out a booming order that buffs allies in the vicinity."
+    classes: [Envoy]
+    tree:
+      class: envoy
+      node_id: skill_commanding_shout
+      position: "x: 0, y: -4"
+      prerequisite: none

@@ -253,3 +253,26 @@ items:
       - ''
       - '❊ Max Stellium: &9{max_stellium} &7(&9{max_stellium_base} &7+ &9{max_stellium_extra}&7)'
       - '❊ Stellium Regen: &9{stellium_regeneration} &7(&9{stellium_regeneration_base} &7+ &9{stellium_regeneration_extra}&7)'
+  open_skills:
+    slots: [ 40 ]
+    function: 'command{format="skills"}'
+    item: NETHER_STAR
+    name: '&a&lOpen Skills'
+    item-flags: [ 'HIDE_ATTRIBUTES' ]
+    lore:
+      - ''
+      - '&7View and upgrade your learned skills.'
+      - ''
+      - '&eLeft-Click &7to open your skill list.'
+  open_skill_tree:
+    slots: [ 41 ]
+    function: 'command{format="skilltrees"}'
+    item: EXPERIENCE_BOTTLE
+    name: '&b&lOpen Skill Tree'
+    item-flags: [ 'HIDE_ATTRIBUTES' ]
+    lore:
+      - ''
+      - '&7Browse and unlock new abilities'
+      - '&7in your class skill tree.'
+      - ''
+      - '&eLeft-Click &7to open your skill tree.'
