@@ -1,0 +1,31 @@
+name: Deploy Configs to Bloom.host
+
+# This tells GitHub to run this script ONLY when a change is pushed to the 'main' branch.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Sync files via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASS }}
+          port: 2022
+
+          # This assumes your repo has the MMOCore, MythicLib, etc folders at the root level.
+          # It pushes everything in your repo to the server's /plugins folder.
+          local_path: './*'
+          remote_path: '/plugins/'
+
+          # This prevents the action from deleting files on your server that aren't in your GitHub repo
+          # (like player data, jar files, or other plugins).
+          args: '-o ConnectTimeout=5 --exclude .git/ --exclude .github/ --exclude README.md'
