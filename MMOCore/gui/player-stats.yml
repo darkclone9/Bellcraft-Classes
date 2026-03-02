@@ -255,7 +255,7 @@ items:
       - '❊ Stellium Regen: &9{stellium_regeneration} &7(&9{stellium_regeneration_base} &7+ &9{stellium_regeneration_extra}&7)'
   open_skills:
     slots: [ 40 ]
-    function: skills
+    function: 'command{format="skills"}'
     item: NETHER_STAR
     name: '&a&lOpen Skills'
     item-flags: [ 'HIDE_ATTRIBUTES' ]
@@ -266,7 +266,7 @@ items:
       - '&eLeft-Click &7to open your skill list.'
   open_skill_tree:
     slots: [ 41 ]
-    function: skill-tree
+    function: 'command{format="skilltrees"}'
     item: EXPERIENCE_BOTTLE
     name: '&b&lOpen Skill Tree'
     item-flags: [ 'HIDE_ATTRIBUTES' ]
