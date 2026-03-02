@@ -47,7 +47,9 @@ Two new buttons added to the player profile menu at slots **40** and **41** (Row
 - **Slot 40 – Open Skills** (`function: skills`): Opens the skill list GUI where players can view and upgrade learned skills.
 - **Slot 41 – Open Skill Tree** (`function: skill-tree`): Opens the class skill tree GUI where players can spend skill-tree points to unlock new abilities.
 
-> **Bug fix (this PR):** The buttons were originally set to `function: 'command{format="skills"}'` and `function: 'command{format="skilltrees"}'`. The `command{format="..."}` syntax is not a registered function ID in MMOCore's profile GUI handler — clicking these buttons silently did nothing. The fix changes both buttons to use the correct built-in MMOCore function names: `skills` and `skill-tree`.
+> **Bug fix (PR #2):** The buttons were originally set to `function: 'command{format="skills"}'` and `function: 'command{format="skilltrees"}'`. The `command{format="..."}` syntax is not a registered function ID in MMOCore's profile GUI handler — clicking these buttons silently did nothing. The fix changes both buttons to use the correct built-in MMOCore function names: `skills` and `skill-tree`.
+>
+> **If buttons still do nothing after deploying PR #2 changes** (PR #3 investigation): All configuration files have been verified correct — YAML syntax is valid, all skills are defined in MythicLib, all skill trees exist for all classes. The most likely cause is the server has not been restarted/reloaded after deploying the updated config files. See the Deployment Instructions section below.
 
 ### 4. Skill Mapping Reference (`config/skills/mapping.yml`)
 
@@ -75,6 +77,23 @@ Created a reference/documentation file mapping every custom skill to:
 
 ---
 
+## Deployment Instructions
+
+After pulling these config changes from the repository, apply them to the live server:
+
+1. **Copy updated files** to your server's plugin data folders:
+   - `MMOCore/gui/player-stats.yml` → `plugins/MMOCore/gui/player-stats.yml`
+   - `MMOCore/gui/skill-list.yml` → `plugins/MMOCore/gui/skill-list.yml`
+   - Any new class files in `MMOCore/classes/` → `plugins/MMOCore/classes/`
+   - Any new skill tree files in `MMOCore/skill-trees/` → `plugins/MMOCore/skill-trees/`
+   - Any new MythicLib skill files in `MythicLib/skill/` → `plugins/MythicLib/skill/`
+
+2. **Restart the server** (or run `/mmocore reload` if your MMOCore version supports it).
+
+3. **Verify** using the checklist below.
+
+---
+
 ## How to Verify (Server Admin Checklist)
 
 1. **Reload/restart** the server after deploying these config changes.
@@ -87,6 +106,22 @@ Created a reference/documentation file mapping every custom skill to:
 8. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
 9. Confirm all previously existing skills still function normally.
 10. Check the console for any YAML load errors or skill registration warnings.
+
+---
+
+## Troubleshooting: Buttons Still Not Working
+
+If after restarting the server the "Open Skills" and "Open Skill Tree" buttons in `/p` still do nothing:
+
+1. **Confirm updated files are in place**: Check that `plugins/MMOCore/gui/player-stats.yml` contains `function: skills` and `function: skill-tree` (not the old `command{format="..."}` values).
+
+2. **Check your MMOCore version**: The `function: skills` and `function: skill-tree` handlers are registered in the ProfileGUI in MMOCore 3.x (config-version 10). Run `/mmocore version` or check the startup log to confirm the version.
+
+3. **Check permissions**: Ensure players have the `mmocore.skills` and `mmocore.skilltrees` permissions granted. Without these permissions the underlying command dispatch will be silently blocked.
+
+4. **Check the console for errors**: Look for `[MMOCore]` error or warning lines after the server starts, particularly around loading `player-stats.yml` or registering GUI handlers.
+
+5. **Confirm class selection**: The "Open Skill Tree" button requires the player to have a class with at least one skill tree assigned. With `force-class-selection: true` this should always be the case for in-game players, but verify via `/mmocore info <player>` if in doubt.
 
 ---
 
