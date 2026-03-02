@@ -1,0 +1,3 @@
+# Player data - never commit live player data to the repository.
+# This prevents the GitHub Actions deploy from overwriting player data on the server.
+userdata/
