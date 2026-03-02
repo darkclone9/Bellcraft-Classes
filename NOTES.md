@@ -47,6 +47,8 @@ Two new buttons added to the player profile menu at slots **40** and **41** (Row
 - **Slot 40 – Open Skills** (`function: skills`): Opens the skill list GUI where players can view and upgrade learned skills.
 - **Slot 41 – Open Skill Tree** (`function: skill-tree`): Opens the class skill tree GUI where players can spend skill-tree points to unlock new abilities.
 
+> **Bug fix (this PR):** The buttons were originally set to `function: 'command{format="skills"}'` and `function: 'command{format="skilltrees"}'`. The `command{format="..."}` syntax is not a registered function ID in MMOCore's profile GUI handler — clicking these buttons silently did nothing. The fix changes both buttons to use the correct built-in MMOCore function names: `skills` and `skill-tree`.
+
 ### 4. Skill Mapping Reference (`config/skills/mapping.yml`)
 
 Created a reference/documentation file mapping every custom skill to:
@@ -94,4 +96,4 @@ Created a reference/documentation file mapping every custom skill to:
 2. **Skill node positions**: Placed all skill unlock nodes as `root: true` at coordinates outside the main stat tree grid (e.g., x: -4, x: 7, y: 3, y: 4). This avoids any overlap with existing stat nodes and keeps them accessible without requiring stat node prerequisites.
 3. **Cleric-divinity tree**: The missing stat nodes were fully recreated based on the Cleric class theme (healing, mana, health, armor). The max-point-spent value (30) was kept as-is.
 4. **GUI slots**: Slots 40 and 41 were confirmed empty (not used by any existing GUI items).
-5. **`skill-tree` function name**: Based on the existing `skill_shop_button` in `skill-list.yml` which uses `command{format="skilltree"}`, the function name `skill-tree` was used in the profile menu. If this function name differs in your MMOCore version, it may need to be adjusted to `command{format="skilltree"}` instead.
+5. **`skill-tree` function name**: The correct MMOCore built-in function names are `skills` (opens skill list menu) and `skill-tree` (opens skill tree menu). These are the function IDs registered in MMOCore's ProfileGUI handler. The `command{format="..."}` syntax used previously is not valid for this GUI type and was the root cause of the buttons doing nothing when clicked. The `skill_shop_button` in `skill-list.yml` was also corrected to use `item`/`slots` field names and `function: skill-tree`.
