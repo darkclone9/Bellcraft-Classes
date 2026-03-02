@@ -1,0 +1,15 @@
+OPERATIVE-LIGHT-LEGS:
+  display-name: '<gradient:#5EC8E8:#3A8AAA>Operative Light Leggings</gradient>'
+  material: CHAINMAIL_LEGGINGS
+  lore:
+    - '&7Lightweight tactical leggings worn by'
+    - '&7Operative scouts in the field.'
+    - ''
+    - '&8&m                              '
+  tier: COMMON
+  level: 1
+  ARMOR: 2
+  DODGE_RATING: 4
+  MOVEMENT_SPEED: 0.01
+  PHYSICAL_DAMAGE: 2
+  ATTACK_SPEED: 0.3

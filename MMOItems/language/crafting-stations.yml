@@ -1,0 +1,53 @@
+condition:
+  profession:
+    positive: '&a✔ Requires #level# in #profession#'
+    negative: '&c✖ Requires #level# in #profession#'
+  mana:
+    positive: '&a✔ Requires #mana# Mana'
+    negative: '&c✖ Requires #mana# Mana'
+  money:
+    positive: '&a✔ Requires $#money#'
+    negative: '&c✖ Requires $#money#'
+  level:
+    positive: '&a✔ Requires Level #level#'
+    negative: '&c✖ Requires Level #level#'
+  stellium:
+    positive: '&a✔ Requires #stellium# Stellium'
+    negative: '&c✖ Requires #stellium# Stellium'
+  stamina:
+    positive: '&a✔ Requires #stamina# Stamina'
+    negative: '&c✖ Requires #stamina# Stamina'
+  permission:
+    positive: '&a✔ #display#'
+    negative: '&c✖ #display#'
+  placeholder:
+    positive: '&a✔ #display#'
+    negative: '&c✖ #display#'
+  attribute:
+    positive: '&a✔ Requires #points# #attribute#'
+    negative: '&c✖ Requires #points# #attribute#'
+  class:
+    positive: '&a✔ Required Class: #class#'
+    negative: '&c✖ Required Class: #class#'
+  food:
+    positive: '&a✔ Requires #food# Food'
+    negative: '&c✖ Requires #food# Food'
+ingredient:
+  mmoitem:
+    positive: '&a✔ &7#amount# #level##item#'
+    negative: '&c✖ &7#amount# #level##item#'
+  vanilla:
+    positive: '&a✔ &7#amount# #item#'
+    negative: '&c✖ &7#amount# #item#'
+  mythic:
+    positive: '&a✔ &7#amount# #item#'
+    negative: '&c✖ &7#amount# #item#'
+  nexo:
+    positive: '&8✔ &7#amount# #item#'
+    negative: '&c✖ &7#amount# #item#'
+  oraxen:
+    positive: '&a✔ &7#amount# #item#'
+    negative: '&c✖ &7#amount# #item#'
+  itemsadder:
+    positive: '&a✔ &7#amount# #item#'
+    negative: '&c✖ &7#amount# #item#'

@@ -1,0 +1,160 @@
+# Name which will be displayed
+# when opening the station
+name: '&8Blacksmith Forge'
+
+# The maximum amount of items in the crafting queue
+max-queue-size: 10
+
+# Command to open the crafting station UI
+command:
+  name: 'blacksmith'
+  description: 'Open the blacksmith forge'
+  usage: '/blacksmith'
+  permission: 'mmoitems.blacksmith'
+  aliases: [ bs, forge ]
+  message:
+    no-perm: '&cYou don''t have enough permissions.'
+    not-a-player: '&cThis command is for players only.'
+
+# Station recipes
+recipes:
+  craft_refined_carbon:
+    output: 'mmoitem{type=MATERIAL,id=REFINED_CARBON}'
+    crafting-time: 3
+    lore:
+      - '&7Smelt coal into a hotter-burning carbon.'
+    ingredients:
+      - 'vanilla{type=COAL,amount=2,display="Coal"}'
+      
+  craft_steel_ingot:
+    output: 'mmoitem{type=MATERIAL,id=STEEL_INGOT}'
+    crafting-time: 5
+    lore:
+      - '&7Forge iron and carbon into strong steel.'
+    ingredients:
+      - 'vanilla{type=IRON_INGOT,amount=1,display="Iron Ingot"}'
+      - 'mmoitem{type=MATERIAL,id=REFINED_CARBON,amount=1,display="Refined Carbon"}'
+
+gui-layout:
+  # GUI display name
+  name: '&8Blacksmith Forge ({page}/{max_page})'
+  slots: 54
+  enable_right_click_preview: true
+  force_preview_on_click: false
+
+  sound:
+    craft: ENTITY_EXPERIENCE_ORB_PICKUP
+    upgrade: ENTITY_EXPERIENCE_ORB_PICKUP
+    queue_cancel: ENTITY_EXPERIENCE_ORB_PICKUP
+    queue_claim: ENTITY_EXPERIENCE_ORB_PICKUP
+    queue_add: ENTITY_EXPERIENCE_ORB_PICKUP
+
+  items:
+    previous_page:
+      item: PLAYER_HEAD
+      name: '&6Previous Page'
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ==
+      slots: [ 9 ]
+      click_sound: BLOCK_LEVER_CLICK
+      hide_if_no_page: true 
+      no_page: 
+        item: AIR
+
+    next_page:
+      item: PLAYER_HEAD
+      name: '&6Next Page'
+      texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19
+      slots: [ 17 ]
+      click_sound: BLOCK_LEVER_CLICK
+      hide_if_no_page: true 
+      no_page: 
+        item: AIR
+
+    previous_queue_item:
+      item: PLAYER_HEAD
+      function: previous_queue_item
+      name: '&6Previous Item'
+      texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ=='
+      
+    next_queue_item:
+      item: PLAYER_HEAD
+      name: '&6Next Item'
+      texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTliZjMyOTJlMTI2YTEwNWI1NGViYTcxM2FhMWIxNTJkNTQxYTFkODkzODgyOWM1NjM2NGQxNzhlZDIyYmYifX19'
+
+    queued_item:
+      slots: [ 38, 39, 40, 41, 42 ]
+      existing:
+        name: '&6&lQueue&f {name}'
+        delay_format: 'smhdMy'
+        lore:
+          - '{ready}&7&oThis item was successfully crafted.'
+          - '{queue}&7&oThis item is in the crafting queue.'
+          - '{queue}'
+          - '{queue}&7Time Left: &c{time_left}'
+          - ''
+          - '{ready}&e► Click to claim!'
+          - '{queue}&e► Click to cancel'
+      none:
+        item: GRAY_STAINED_GLASS_PANE
+        name: '&6No Item In Queue'
+
+    recipe:
+      function: recipe
+      slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+      delay_format: 'smhdMy'
+      craft:
+        name: '&a&lCraft&f {name}'
+        name_multiple: '&a&lCraft&f {amount}x {name}'
+        lore:
+          - '{conditions}'
+          - '{conditions}&8Conditions:'
+          - '{crafting_time}'
+          - '{crafting_time}&7Crafting Time: &c{crafting_time}'
+          - '{ingredients}'
+          - '{ingredients}&8Ingredients:'
+          - '{lore}'
+          - ''
+          - '&e► Left click to craft!'
+          - '&e► Right click to preview!'
+      upgrade:
+        name: '&e&lUpgrade&f {name}'
+        lore:
+          - '{conditions}'
+          - '{conditions}&8Conditions:'
+          - '{ingredients}'
+          - '{ingredients}&8Ingredients:'
+          - '{lore}'
+          - ''
+          - '&e► Left click to upgrade!'
+          - '&e► Right click to preview!'
+      none:
+        item: GRAY_STAINED_GLASS_PANE 
+        name: '&6No Recipe'
+
+preview-gui-layout:
+  name: '&8Preview'
+  slots: 45
+  items:
+    cosmetic_border:
+      item: GRAY_STAINED_GLASS_PANE
+      name: '&6'
+      slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15, 17, 18, 19, 20, 24, 25, 26, 27, 29, 33, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+    confirm:
+      item: EMERALD
+      name: '&6Confirm'
+      slots: [ 34 ]
+    back:
+      item: PLAYER_HEAD
+      name: '&6Back'
+      slots: [ 10 ]
+      texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmQ2OWUwNmU1ZGFkZmQ4NGU1ZjNkMWMyMTA2M2YyNTUzYjJmYTk0NWVlMWQ0ZDcxNTJmZGM1NDI1YmMxMmE5In19fQ=='
+    preview_output:
+      slots: [ 16 ]
+    recipe:
+      slots: [ 28 ]
+      material: KNOWLEDGE_BOOK 
+      remove_lore_lines: 3 
+    ingredient:
+      slots: [ 12, 13, 14, 21, 22, 23, 30, 31, 32 ]
+      none:
+        material: AIR

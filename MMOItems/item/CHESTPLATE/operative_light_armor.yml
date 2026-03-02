@@ -1,0 +1,14 @@
+OPERATIVE-LIGHT-CHEST:
+  display-name: '<gradient:#5EC8E8:#3A8AAA>Operative Light Chestplate</gradient>'
+  material: CHAINMAIL_CHESTPLATE
+  lore:
+    - '&7Lightweight tactical plating worn by'
+    - '&7Operative scouts in the field.'
+    - ''
+    - '&8&m                              '
+  tier: COMMON
+  level: 1
+  ARMOR: 2
+  DODGE_RATING: 4
+  PHYSICAL_DAMAGE: 3
+  ATTACK_SPEED: 0.4

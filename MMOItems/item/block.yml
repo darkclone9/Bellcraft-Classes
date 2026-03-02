@@ -1,0 +1,53 @@
+'1':
+  base:
+    name: '&aMy First Custom Block'
+    lore:
+    - '&7Wow... It''s possible!'
+    - '&7That''s awesome!'
+    required-power: 2
+    min-xp: 10
+    max-xp: 20
+    gen-template: basic-template
+    material: STONE
+    block-id: 1.0
+'2':
+  base:
+    name: '&bMy Second Custom Block'
+    material: STONE
+    block-id: 2.0
+'3':
+  base:
+    lore:
+    - I have no display name.
+    - I only have a lore!
+    material: STONE
+    block-id: 3.0
+# plugins/MMOItems/item/block.yml
+BLACKSMITH_FORGE:
+  base:
+    # Uses a Blast Furnace as the physical block texture
+    material: BLAST_FURNACE
+    name: '&cBlacksmith Forge'
+    lore:
+    - '&7A heavy-duty forge capable'
+    - '&7of smelting steel and alloys.'
+    - ''
+    - '&eRight-click to open the Forge.'
+    crafting:
+      shaped:
+        '1':
+          hidden: false
+          input:
+          - v IRON_BLOCK - 1.0..|v IRON_BLOCK - 1.0..|v IRON_BLOCK - 1.0..
+          - v BRICKS - 1.0..|v BLAST_FURNACE - 1.0..|v BRICKS - 1.0..
+          - v BRICKS - 1.0..|v BRICKS - 1.0..|v BRICKS - 1.0..
+  
+  # This creates the Vanilla 3x3 Crafting Recipe
+  crafting:
+    shaped:
+      recipe_1:
+        amount: 1
+        ingredients:
+        - v.IRON_BLOCK | v.IRON_BLOCK | v.IRON_BLOCK
+        - v.BRICKS | v.BLAST_FURNACE | v.BRICKS
+        - v.BRICKS | v.BRICKS | v.BRICKS

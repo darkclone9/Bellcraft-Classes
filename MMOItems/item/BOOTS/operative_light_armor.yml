@@ -1,0 +1,15 @@
+OPERATIVE-LIGHT-BOOTS:
+  display-name: '<gradient:#5EC8E8:#3A8AAA>Operative Light Boots</gradient>'
+  material: CHAINMAIL_BOOTS
+  lore:
+    - '&7Lightweight tactical boots worn by'
+    - '&7Operative scouts in the field.'
+    - ''
+    - '&8&m                              '
+  tier: COMMON
+  level: 1
+  ARMOR: 1
+  DODGE_RATING: 3
+  MOVEMENT_SPEED: 0.02
+  PHYSICAL_DAMAGE: 1
+  ATTACK_SPEED: 0.2
