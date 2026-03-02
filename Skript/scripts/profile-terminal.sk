@@ -1,0 +1,160 @@
+# ============================================================
+#  Profile Terminal  –  Quick Access Terminal for Bedrock/Java
+#  Requires: Skript, Geyser, Floodgate, MMOCore
+#
+#  How it works:
+#   • Right-click a Crying Obsidian block to open the terminal.
+#   • Geyser automatically converts the chest inventory GUI into
+#     a Bedrock Simple Form so the menu is native on both
+#     Java and Bedrock Edition clients.
+#   • Shortcuts are stored in persistent Skript variables keyed
+#     by the player's UUID and survive server restarts.
+#
+#  Terminal block: CRYING_OBSIDIAN (change to PLAYER_HEAD if preferred)
+#  Max shortcuts per player: 9  (slots 10-18 in the GUI)
+# ============================================================
+
+options:
+    terminal-block: crying obsidian
+    max-shortcuts: 9
+    gui-title: "&8&lProfile Terminal"
+    prefix: "&8[&b&lTerminal&8] &7"
+
+# -------------------------------------------------------
+# Utility function – (re)build and open the terminal GUI
+# -------------------------------------------------------
+function openTerminal(p: player):
+    # 3-row chest: row 1 = fixed buttons, row 2 = shortcuts, row 3 = actions
+    set {_inv} to chest inventory with 3 rows named {@gui-title}
+
+    # Slot 0 – View My Profile
+    set slot 0 of {_inv} to ender pearl named "&b&lView My Profile" with lore "&7Opens your MMOCore profile."
+
+    # Slot 1 – Skills
+    set slot 1 of {_inv} to nether star named "&e&lSkills" with lore "&7Opens your skill list."
+
+    # Slot 8 – Close / separator
+    set slot 8 of {_inv} to gray stained glass pane named " "
+
+    # Slots 9-17 – Player shortcuts (up to {@max-shortcuts})
+    loop {@max-shortcuts} times:
+        set {_idx} to loop-number - 1
+        set {_cmd} to {terminal::shortcuts::%{p}'s uuid%::%{_idx}%}
+        if {_cmd} is set:
+            set {_lore} to "&7Click to run: &f/%{_cmd}%||&c&oShift-click to remove"
+            set slot (9 + {_idx}) of {_inv} to lime dye named "&a%{_cmd}%" with lore {_lore}
+        else:
+            set slot (9 + {_idx}) of {_inv} to gray dye named "&7&o(empty shortcut slot)"
+
+    # Slot 18 – Add New Shortcut
+    set slot 18 of {_inv} to emerald named "&a&l+ Add New Shortcut" with lore "&7Type a command to save it as a shortcut."
+
+    # Slot 26 – Close button
+    set slot 26 of {_inv} to barrier named "&c&lClose" with lore "&7Close this menu."
+
+    open {_inv} to {p}
+
+# -------------------------------------------------------
+# Open terminal when player right-clicks the terminal block
+# -------------------------------------------------------
+on right click on {@terminal-block}:
+    cancel event
+    openTerminal(player)
+
+# -------------------------------------------------------
+# Handle clicks inside the terminal inventory
+# -------------------------------------------------------
+on inventory click:
+    if name of player's current inventory is {@gui-title}:
+        cancel event
+
+        set {_slot} to event-slot
+        set {_uuid} to player's uuid
+
+        # ── View My Profile (slot 0) ──────────────────────────
+        if {_slot} is 0:
+            close player's inventory
+            make player execute command "/p"
+
+        # ── Skills (slot 1) ──────────────────────────────────
+        else if {_slot} is 1:
+            close player's inventory
+            make player execute command "/mmocore skills"
+
+        # ── Add New Shortcut (slot 18) ────────────────────────
+        else if {_slot} is 18:
+            close player's inventory
+            set {terminal::awaiting::%{_uuid}%} to true
+            send "{@prefix}&fPlease type the command you want to save &7(without the &f/&7)." to player
+            send "{@prefix}&7Type &ccancel &7to abort." to player
+
+        # ── Close button (slot 26) ────────────────────────────
+        else if {_slot} is 26:
+            close player's inventory
+
+        # ── Shortcut slots 9-17 ───────────────────────────────
+        else if {_slot} is between 9 and 17:
+            set {_idx} to {_slot} - 9
+            set {_cmd} to {terminal::shortcuts::%{_uuid}%::%{_idx}%}
+            if {_cmd} is set:
+                # Shift-click removes the shortcut
+                if event-click type is shift left click or event-click type is shift right click:
+                    delete {terminal::shortcuts::%{_uuid}%::%{_idx}%}
+                    # Compact remaining shortcuts to remove gaps (two-pass: collect, clear, write)
+                    set {_count} to 0
+                    loop {@max-shortcuts} times:
+                        set {_read} to loop-number - 1
+                        if {terminal::shortcuts::%{_uuid}%::%{_read}%} is set:
+                            set {_buf::%{_count}%} to {terminal::shortcuts::%{_uuid}%::%{_read}%}
+                            add 1 to {_count}
+                    loop {@max-shortcuts} times:
+                        delete {terminal::shortcuts::%{_uuid}%::%{loop-number - 1}%}
+                    loop {_count} times:
+                        set {_i} to loop-number - 1
+                        set {terminal::shortcuts::%{_uuid}%::%{_i}%} to {_buf::%{_i}%}
+                    send "{@prefix}&cShortcut removed." to player
+                    openTerminal(player)
+                # Normal click executes the shortcut
+                else:
+                    close player's inventory
+                    make player execute command "/%{_cmd}%"
+
+# -------------------------------------------------------
+# Capture the player's next chat message as a new shortcut
+# -------------------------------------------------------
+on chat:
+    set {_uuid} to player's uuid
+    if {terminal::awaiting::%{_uuid}%} is true:
+        cancel event
+        delete {terminal::awaiting::%{_uuid}%}
+
+        set {_input} to message
+
+        # Allow the player to abort
+        if {_input} is "cancel":
+            send "{@prefix}&7Cancelled." to player
+            stop
+
+        # Strip a leading "/" if the player included it by mistake
+        replace regex "^/" in {_input} with ""
+
+        # Reject empty input after stripping
+        if {_input} is "" or {_input} is not set:
+            send "{@prefix}&cInvalid command. No shortcut saved." to player
+            stop
+
+        # Find the first free slot
+        set {_saved} to false
+        loop {@max-shortcuts} times:
+            set {_idx} to loop-number - 1
+            if {terminal::shortcuts::%{_uuid}%::%{_idx}%} is not set:
+                set {terminal::shortcuts::%{_uuid}%::%{_idx}%} to {_input}
+                set {_saved} to true
+                stop loop
+
+        if {_saved} is true:
+            send "{@prefix}&aShortcut &f/%{_input}%&a saved!" to player
+            openTerminal(player)
+        else:
+            send "{@prefix}&cYou have reached the maximum of &f{@max-shortcuts}&c shortcuts. Remove one first." to player
+            openTerminal(player)
