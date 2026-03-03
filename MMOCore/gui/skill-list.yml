@@ -9,11 +9,12 @@ items:
   # Place this inside the 'items:' section of your skills.yml GUI
   skill_shop_button:
     item: EMERALD
+    slots: [ 26 ]
+    function: 'command{format="mmocore skilltree"}'
     name: '&a&lUnlock New Skills'
     lore:
       - '&7Click here to open the Skill Tree'
       - '&7and unlock brand new abilities!'
-    slots: [ 46 ]
     # Instantly opens your custom tree!
     function: skill-tree
   skill:
