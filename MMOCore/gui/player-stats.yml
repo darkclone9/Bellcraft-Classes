@@ -253,7 +253,7 @@ items:
       - ''
       - '❊ Max Stellium: &9{max_stellium} &7(&9{max_stellium_base} &7+ &9{max_stellium_extra}&7)'
       - '❊ Stellium Regen: &9{stellium_regeneration} &7(&9{stellium_regeneration_base} &7+ &9{stellium_regeneration_extra}&7)'
-open_skills:
+  open_skills:
     slots: [ 40, 41 ]
     item: NETHER_STAR
     name: '&a&lAbilities & Skill Tree'
