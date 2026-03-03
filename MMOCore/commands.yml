@@ -8,9 +8,7 @@ cast:
   verbose: ALL
 player:
   main: player
-  aliases:
-  - p
-  - profile
+  aliases: []
   description: Displays player stats
   permission: mmocore.profile
   verbose: ALL
