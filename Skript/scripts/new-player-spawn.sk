@@ -1,108 +1,167 @@
 # ============================================================
-#  New Player / New Character Spawn System  –  Bellcraft
-#  Requires: Skript 2.7+
+#  Profile Terminal  –  Quick Access Terminal for Bedrock/Java
+#  Requires: Skript, Geyser, Floodgate, MMOCore
 #
 #  How it works:
-#   • Brand-new players (first join ever) automatically receive
-#     a spawn-choice GUI after a short delay.
-#   • Any player (including those who just created a new profile)
-#     can open the same GUI via /spawnchoice.
-#   • The GUI offers two options:
-#       1. Ewoki Village – safe, populated starting town
-#       2. Random Teleport – dropped at a random overworld location
+#   • Right-click a Crying Obsidian block to open the terminal.
+#   • Geyser automatically converts the chest inventory GUI into
+#     a Bedrock Simple Form so the menu is native on both
+#     Java and Bedrock Edition clients.
+#   • Shortcuts are stored in persistent Skript variables keyed
+#     by the player's UUID and survive server restarts.
 #
-#  Ewoki Village coordinates (update to match in-game):
-#    world: world   x: 239   y: 63   z: 208
-#
-#  Random teleport uses a configurable radius around world origin.
+#  Terminal block: CRYING_OBSIDIAN (change to PLAYER_HEAD if preferred)
+#  Max shortcuts per player: 9  (slots 10-18 in the GUI)
 # ============================================================
 
 options:
-    gui-title:       "&8&lChoose Your Starting Location"
-    prefix:          "&8[&b&lBellcraft&8] &7"
-    ewoki-world:     "world"
-    ewoki-x:         239
-    ewoki-y:         63
-    ewoki-z:         208
-    # Radius (in blocks) around world origin for random teleport
-    random-radius:   3000
+    terminal-block: crying obsidian
+    max-shortcuts: 9
+    gui-title: "&8&lProfile Terminal"
+    prefix: &8[&b&lTerminal&8] &7
 
 # -------------------------------------------------------
-# Show the spawn-choice inventory GUI to the given player
+# Utility function – (re)build and open the terminal GUI
 # -------------------------------------------------------
-function showSpawnChoice(p: player):
+function openTerminal(p: player):
+    # 3-row chest: row 1 = fixed buttons, row 2 = shortcuts, row 3 = actions
     set {_inv} to chest inventory with 3 rows named {@gui-title}
 
-    # Fill all slots with gray stained glass pane
-    loop 27 times:
-        set slot (loop-number - 1) of {_inv} to gray stained glass pane named " "
+    # Slot 0 – View My Profile
+    set slot 0 of {_inv} to ender pearl named "&b&lView My Profile" with lore "&7Opens your MMOCore profile."
+    # Slot 1 – Skills
+    set slot 1 of {_inv} to nether star named "&e&lSkills" with lore "&7Opens your skill list."
+    # Slot 2 – Skill Tree
+    set slot 2 of {_inv} to experience bottle named "&b&lSkill Tree" with lore "&7Opens your class skill tree."
+    # Slot 8 – Close / separator
+    set slot 8 of {_inv} to gray stained glass pane named " "
 
-    # Slot 11 – Ewoki Village
-    set slot 11 of {_inv} to emerald block named "&a&lEwoki Village" with lore "&7Spawn safely in Ewoki Village,||&7the welcoming home of new adventurers."
+    # Slots 9-17 – Player shortcuts (up to {@max-shortcuts})
+    loop {@max-shortcuts} times:
+        set {_idx} to loop-number - 1
+        set {_cmd} to {terminal::shortcuts::%{p}'s uuid%::%{_idx}%}
+        if {_cmd} is set:
+            set {_lore} to "&7Click to run: &f/%{_cmd}%||&c&oShift-click to remove"
+            set slot (9 + {_idx}) of {_inv} to lime dye named "&a%{_cmd}%" with lore {_lore}
+        else:
+            set slot (9 + {_idx}) of {_inv} to gray dye named "&7&o(empty shortcut slot)"
 
-    # Slot 15 – Random Teleport
-    set slot 15 of {_inv} to compass named "&e&lRandom Teleport" with lore "&7Be dropped at a random location||&7somewhere out in the world.||&c&oBring supplies — it can be dangerous!"
-
-    open {_inv} to {p}
-
-# -------------------------------------------------------
-# Teleport the player to Ewoki Village
-# -------------------------------------------------------
-function spawnAtEwoki(p: player):
-    teleport {p} to location({@ewoki-x}, {@ewoki-y}, {@ewoki-z}, world named {@ewoki-world})
-    send "{@prefix}&aWelcome to &2Ewoki Village&a! Safe travels, adventurer." to {p}
-    play sound "entity.player.levelup" at {p}
-
-# -------------------------------------------------------
-# Teleport the player to a random overworld location
-# -------------------------------------------------------
-function spawnRandom(p: player):
-    set {_r} to {@random-radius}
-    set {_x} to random integer from -{_r} to {_r}
-    set {_z} to random integer from -{_r} to {_r}
-    # Find the highest solid block so we don't spawn inside terrain
-    # (y=256 is used as a reference; highest block at only needs x and z)
-    set {_surface} to highest block at location({_x}, 256, {_z}, world named {@ewoki-world})
-    set {_y} to y coordinate of {_surface} + 1
-    teleport {p} to location({_x}, {_y}, {_z}, world named {@ewoki-world})
-    send "{@prefix}&eTeleported to a random location! Good luck out there." to {p}
-    play sound "entity.enderman.teleport" at {p}
+    # Slot 18 – Add New Shortcut
+    set slot 18 of {_inv} to emerald named "&a&l+ Add New Shortcut" with lore "&7Type a command to save it as a shortcut."
+    # Slot 26 – Close button
+    set slot 26 of {_inv} to barrier named "&c&lClose" with lore "&7Close this menu."
+    open {_inv} to {_p}
 
 # -------------------------------------------------------
-# Trigger spawn-choice for brand-new players automatically
+# Open terminal when player right-clicks the terminal block
 # -------------------------------------------------------
-on first join:
-    wait 60 ticks
-    showSpawnChoice(player)
+on right click on {@terminal-block}:
+    cancel event
+    openTerminal(player)
 
 # -------------------------------------------------------
-# /spawnchoice – manual command for new profiles / re-use
-# New profiles can run this after creating a character.
-# -------------------------------------------------------
-command /spawnchoice:
-    description: Choose to spawn at Ewoki Village or a random world location.
-    permission: bellcraft.spawnchoice
-    permission message: {@prefix}&cYou don't have permission to use this command.
-    # Grant bellcraft.spawnchoice to all players (e.g. via LuckPerms default group)
-    # so that new characters can use this command after profile creation.
-    trigger:
-        showSpawnChoice(player)
-
-# -------------------------------------------------------
-# Handle clicks inside the spawn-choice GUI
+# Handle clicks inside the terminal inventory
 # -------------------------------------------------------
 on inventory click:
     if name of player's current inventory is {@gui-title}:
         cancel event
 
         set {_slot} to event-slot
+        set {_uuid} to player's uuid
 
-        # Ewoki Village (slot 11)
-        if {_slot} is 11:
+        # ── View My Profile (slot 0) ──────────────────────────
+        if {_slot} is 0:
             close player's inventory
-            spawnAtEwoki(player)
+            make player execute command "/p"
 
-        # Random Teleport (slot 15)
-        else if {_slot} is 15:
+        # ── Skills (slot 1) ──────────────────────────────────
+        else if {_slot} is 1:
             close player's inventory
-            spawnRandom(player)
+            make player execute command "/skills"
+
+        # ── Skill Tree (slot 2) ──────────────────────────────
+        else if {_slot} is 2:
+            close player's inventory
+            make player execute command "/skilltrees"
+
+        # ── Add New Shortcut (slot 18) ────────────────────────
+        else if {_slot} is 18:
+            close player's inventory
+            set {terminal::awaiting::%{_uuid}%} to true
+            send "{@prefix}&fPlease type the command you want to save &7(without the &f/&7)." to player
+            send "{@prefix}&7Type &ccancel &7to abort." to player
+
+        # ── Close button (slot 26) ────────────────────────────
+        else if {_slot} is 26:
+            close player's inventory
+
+        # ── Shortcut slots 9-17 ───────────────────────────────
+        else if {_slot} is between 9 and 17:
+            set {_idx} to {_slot} - 9
+            set {_cmd} to {terminal::shortcuts::%{_uuid}%::%{_idx}%}
+            if {_cmd} is set:
+                # Shift-click removes the shortcut
+                if "%click type%" contains "shift":
+                    delete {terminal::shortcuts::%{_uuid}%::%{_idx}%}
+                    # Compact remaining shortcuts to remove gaps (two-pass: collect, clear, write)
+                    set {_count} to 0
+                    loop {@max-shortcuts} times:
+                        set {_read} to loop-number - 1
+                        if {terminal::shortcuts::%{_uuid}%::%{_read}%} is set:
+                            set {_buf::%{_count}%} to {terminal::shortcuts::%{_uuid}%::%{_read}%}
+                            add 1 to {_count}
+                    loop {@max-shortcuts} times:
+                        delete {terminal::shortcuts::%{_uuid}%::%{loop-number - 1}%}
+                    loop {_count} times:
+                        set {_i} to loop-number - 1
+                        set {terminal::shortcuts::%{_uuid}%::%{_i}%} to {_buf::%{_i}%}
+                    send "{@prefix}&cShortcut removed." to player
+                    openTerminal(player)
+                # Normal click executes the shortcut
+                else:
+                    close player's inventory
+                    make player execute command "/%{_cmd}%"
+
+# -------------------------------------------------------
+# Capture the player's next chat message as a new shortcut
+# -------------------------------------------------------
+on chat:
+    set {_uuid} to player's uuid
+    if {terminal::awaiting::%{_uuid}%} is true:
+        cancel event
+        delete {terminal::awaiting::%{_uuid}%}
+
+        set {_input} to message
+
+        # Allow the player to abort
+        if {_input} is "cancel":
+            send "{@prefix}&7Cancelled." to player
+            stop
+
+        # Strip a leading "/" if the player included it by mistake
+        replace regex "^/" in {_input} with ""
+
+        # Reject empty input after stripping
+        if {_input} is not set:
+            send "{@prefix}&cInvalid command. No shortcut saved." to player
+            stop
+            
+        if {_input} is "":
+            send "{@prefix}&cInvalid command. No shortcut saved." to player
+            stop
+
+        # Find the first free slot
+        set {_saved} to false
+        loop {@max-shortcuts} times:
+            set {_idx} to loop-number - 1
+            if {terminal::shortcuts::%{_uuid}%::%{_idx}%} is not set:
+                set {terminal::shortcuts::%{_uuid}%::%{_idx}%} to {_input}
+                set {_saved} to true
+                stop loop
+
+        if {_saved} is true:
+            send "{@prefix}&aShortcut &f/%{_input}%&a saved!" to player
+            openTerminal(player)
+        else:
+            send "{@prefix}&cYou have reached the maximum of &f{@max-shortcuts}&c shortcuts. Remove one first." to player
+            openTerminal(player)
