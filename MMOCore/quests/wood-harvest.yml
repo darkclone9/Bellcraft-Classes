@@ -1,0 +1,27 @@
+
+# Display options
+name: "Woodcutter's Call"
+lore:
+- 'The village needs lumber to build new'
+- 'homes. Head to the forest and chop'
+- 'down some trees for us!'
+- ''
+- '&eRewards:'
+- '&7► 70 EXP'
+- '&7► 4 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=OAK_LOG;amount=32}'
+        lore: 'Chop 32 oak logs.'
+        triggers:
+        - message{format="&aVillage Elder> &fWonderful! These logs will build many new homes."}
+        - sound{sound=ENTITY_EXPERIENCE_ORB_PICKUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 4"}
+        - 'experience{amount=70}'

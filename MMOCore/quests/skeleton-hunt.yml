@@ -1,0 +1,27 @@
+
+# Display options
+name: "Rattlin' Bones"
+lore:
+- 'Skeletons armed with bows are attacking'
+- 'travelers on the road. Put an end to'
+- 'their bony mischief!'
+- ''
+- '&eRewards:'
+- '&7► 90 EXP'
+- '&7► 6 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=SKELETON;amount=10}'
+        lore: 'Kill 10 skeletons.'
+        triggers:
+        - message{format="&aGuard Captain> &fNo more arrows flying at our merchants!"}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 6"}
+        - 'experience{amount=90}'

@@ -26,7 +26,7 @@ intelligence:
     name: Intelligence
     max-points: 100
     buff:
-        max-mana: 5
+        max_mana: 10
         magic_damage: .8
         cooldown_reduction: 1
 

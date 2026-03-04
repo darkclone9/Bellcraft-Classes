@@ -1,0 +1,27 @@
+
+# Display options
+name: 'Explosive Trouble'
+lore:
+- 'Creepers have been blowing up our'
+- 'farmland and walls. Deal with them'
+- 'before they destroy everything!'
+- ''
+- '&eRewards:'
+- '&7► 110 EXP'
+- '&7► 10 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=CREEPER;amount=10}'
+        lore: 'Kill 10 creepers.'
+        triggers:
+        - message{format="&aFarmer> &fThank you! My crops can finally grow in peace."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 10"}
+        - 'experience{amount=110}'
