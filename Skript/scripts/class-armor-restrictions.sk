@@ -1,0 +1,119 @@
+# ============================================================
+#  Class Armor Restrictions  –  Bellcraft Classes
+#  Requires: Skript 2.7+, PlaceholderAPI with MMOCore expansion
+#            and a PlaceholderAPI-Skript bridge (e.g. skript-placeholders)
+#
+#  Tier limits by class:
+#   • Iron-limited  (Cleric, Mystic, Sorcerer) : iron armor and below only
+#   • One-netherite (Ranger, Envoy, Operative) : at most 1 netherite piece total
+#   • Unrestricted  (Soldier, Paladin)         : full netherite allowed
+#
+#  Note: "placeholder ... from player" requires the PlaceholderAPI-Skript
+#  integration.  If your server uses a different addon the expression may be
+#  "papi(""mmocore_class"", player)" – adjust the armorAllowed function below.
+# ============================================================
+
+options:
+    prefix: "&8[&b&lBellcraft&8] &7"
+
+# -------------------------------------------------------
+# Helper: is the item ANY armor piece?
+# Uses string comparison on the human-readable type name
+# returned by Skript (e.g. "netherite helmet", "iron boots").
+# -------------------------------------------------------
+function isArmorItem(i: item) :: boolean:
+    set {_t} to "%type of {_i}%"
+    if {_t} contains "helmet" or {_t} contains "chestplate" or {_t} contains "leggings" or {_t} contains "boots":
+        return true
+    return false
+
+# -------------------------------------------------------
+# Helper: is the item a netherite armor piece?
+# -------------------------------------------------------
+function isNetheriteArmor(i: item) :: boolean:
+    if type of {_i} is netherite helmet, netherite chestplate, netherite leggings, or netherite boots:
+        return true
+    return false
+
+# -------------------------------------------------------
+# Helper: is the item a diamond or netherite armor piece
+#         (i.e., above the iron tier)?
+# -------------------------------------------------------
+function isAboveIronArmor(i: item) :: boolean:
+    if type of {_i} is diamond helmet, diamond chestplate, diamond leggings, diamond boots, netherite helmet, netherite chestplate, netherite leggings, or netherite boots:
+        return true
+    return false
+
+# -------------------------------------------------------
+# Count how many netherite armor pieces the player
+# currently has equipped.
+# -------------------------------------------------------
+function countNetheriteWorn(p: player) :: number:
+    set {_n} to 0
+    if isNetheriteArmor(helmet of {_p}) is true:
+        add 1 to {_n}
+    if isNetheriteArmor(chestplate of {_p}) is true:
+        add 1 to {_n}
+    if isNetheriteArmor(leggings of {_p}) is true:
+        add 1 to {_n}
+    if isNetheriteArmor(boots of {_p}) is true:
+        add 1 to {_n}
+    return {_n}
+
+# -------------------------------------------------------
+# Core restriction check.
+# Returns true  → player MAY equip the item.
+# Returns false → player may NOT equip the item.
+# Only called when the item has already been confirmed
+# to be an armor piece.
+# -------------------------------------------------------
+function armorAllowed(p: player, i: item) :: boolean:
+    set {_class} to placeholder "mmocore_class" from {_p}
+
+    # Iron-limited classes: block diamond and netherite armor
+    if {_class} is "Cleric" or {_class} is "Mystic" or {_class} is "Sorcerer":
+        if isAboveIronArmor({_i}) is true:
+            return false
+
+    # One-netherite classes: block if a netherite piece is already worn
+    if {_class} is "Ranger" or {_class} is "Envoy" or {_class} is "Operative":
+        if isNetheriteArmor({_i}) is true:
+            if countNetheriteWorn({_p}) >= 1:
+                return false
+
+    return true
+
+# -------------------------------------------------------
+# Intercept armor equipping via inventory interaction.
+#
+# Covered cases:
+#   1. Shift-click an armor item from any inventory  →  it would
+#      auto-equip to the matching armor slot.
+#   2. Cursor-drag (left/right click) directly onto an armor
+#      slot in the player's own inventory.
+#      Slot indices checked: raw PlayerInventory slots 36-39
+#      (boots=36, leggings=37, chestplate=38, helmet=39) AND
+#      inventory-view slots 5-8 (helmet=5, chestplate=6,
+#      leggings=7, boots=8) to cover both Skript conventions.
+# -------------------------------------------------------
+on inventory click:
+    # ── Case 1: shift-click ─ armor auto-equips to matching slot ──
+    if event-click type is shift left click or event-click type is shift right click:
+        set {_item} to event-item
+        if {_item} is set:
+            if isArmorItem({_item}) is true:
+                if armorAllowed(player, {_item}) is false:
+                    cancel event
+                    send "{@prefix}&cYour class cannot equip that armor tier!" to player
+                    stop
+
+    # ── Case 2: cursor drag into an armor slot ────────────────────
+    set {_slot} to event-slot
+    if {_slot} is between 36 and 39 or {_slot} is between 5 and 8:
+        set {_cursor} to cursor item of player
+        if {_cursor} is set:
+            if isArmorItem({_cursor}) is true:
+                if armorAllowed(player, {_cursor}) is false:
+                    cancel event
+                    send "{@prefix}&cYour class cannot equip that armor tier!" to player
+                    stop

@@ -183,7 +183,7 @@ scenes:
           a1b2c3d4-0001-4000-8000-000000000002:
             type: command
             commands:
-            - mmocore party
+            - party
             setOp: false
             clickType: NONE
             executionDelay: 0.0
@@ -469,7 +469,7 @@ scenes:
           a1b2c3d4-0002-4000-8000-000000000002:
             type: command
             commands:
-            - mmocore attributes
+            - attributes
             setOp: false
             clickType: NONE
             executionDelay: 0.0
@@ -500,7 +500,7 @@ scenes:
           a1b2c3d4-0003-4000-8000-000000000002:
             type: command
             commands:
-            - mmocore quests
+            - quests
             setOp: false
             clickType: NONE
             executionDelay: 0.0
@@ -529,7 +529,7 @@ scenes:
           a1b2c3d4-0004-4000-8000-000000000002:
             type: command
             commands:
-            - mmocore skills
+            - skills
             setOp: false
             clickType: NONE
             executionDelay: 0.0
@@ -561,7 +561,7 @@ scenes:
           a1b2c3d4-0005-4000-8000-000000000002:
             type: command
             commands:
-            - mmocore skilltrees
+            - skilltrees
             setOp: false
             clickType: NONE
             executionDelay: 0.0
@@ -591,7 +591,7 @@ scenes:
           a1b2c3d4-0006-4000-8000-000000000002:
             type: command
             commands:
-            - mmocore class
+            - class
             setOp: false
             clickType: NONE
             executionDelay: 0.0
