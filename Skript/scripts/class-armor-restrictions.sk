@@ -14,7 +14,7 @@
 # ============================================================
 
 options:
-    prefix: "&8[&b&lBellcraft&8] &7"
+    prefix: &8[&b&lBellcraft&8] &7
 
 # -------------------------------------------------------
 # Helper: is the item ANY armor piece?
@@ -23,7 +23,13 @@ options:
 # -------------------------------------------------------
 function isArmorItem(i: item) :: boolean:
     set {_t} to "%type of {_i}%"
-    if {_t} contains "helmet" or {_t} contains "chestplate" or {_t} contains "leggings" or {_t} contains "boots":
+    if {_t} contains "helmet":
+        return true
+    if {_t} contains "chestplate":
+        return true
+    if {_t} contains "leggings":
+        return true
+    if {_t} contains "boots":
         return true
     return false
 
@@ -68,15 +74,15 @@ function countNetheriteWorn(p: player) :: number:
 # to be an armor piece.
 # -------------------------------------------------------
 function armorAllowed(p: player, i: item) :: boolean:
-    set {_class} to placeholder "mmocore_class" from {_p}
+    set {_class} to papi("mmocore_class", {_p})
 
     # Iron-limited classes: block diamond and netherite armor
-    if {_class} is "Cleric" or {_class} is "Mystic" or {_class} is "Sorcerer":
+    if {_class} is "Cleric" or "Mystic" or "Sorcerer":
         if isAboveIronArmor({_i}) is true:
             return false
 
     # One-netherite classes: block if a netherite piece is already worn
-    if {_class} is "Ranger" or {_class} is "Envoy" or {_class} is "Operative":
+    if {_class} is "Ranger" or "Envoy" or "Operative":
         if isNetheriteArmor({_i}) is true:
             if countNetheriteWorn({_p}) >= 1:
                 return false

@@ -14,7 +14,7 @@
 # ============================================================
 
 options:
-    prefix:  "&8[&b&lBellcraft&8] &7"
+    prefix:  &8[&b&lBellcraft&8] &7
     warmup:  3
 
 # -------------------------------------------------------
@@ -58,7 +58,14 @@ function doWarmupTeleport(p: player, dest: location, label: text):
     delete {teleport::pending::%{_uuid}%}
 
     # Check if the player moved (any coordinate change counts as movement)
-    if (x coordinate of {_p}'s location is not {_startX}) or (y coordinate of {_p}'s location is not {_startY}) or (z coordinate of {_p}'s location is not {_startZ}):
+    set {_moved} to false
+    if x coordinate of {_p}'s location is not {_startX}:
+        set {_moved} to true
+    if y coordinate of {_p}'s location is not {_startY}:
+        set {_moved} to true
+    if z coordinate of {_p}'s location is not {_startZ}:
+        set {_moved} to true
+    if {_moved} is true:
         send "{@prefix}&cTeleport cancelled — you moved!" to {_p}
         stop
 
