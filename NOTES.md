@@ -312,6 +312,73 @@ To remove:
 
 ---
 
+---
+
+### 6. Mayor Election Voting System
+
+#### What Changed
+
+- **New file**: `Skript/scripts/mayor-election.sk` — Server-wide chat voting system that allows the entire online server population to vote on whether to elect a player (or an NPC) as the Town Mayor.
+
+#### How It Works
+
+1. An admin starts an election with candidates (player names or the special keyword `npc`):
+   ```
+   /mayorelection start <candidate1> [candidate2] [candidate3] ...
+   ```
+2. All online players receive a broadcast in chat announcing the current candidate and voting options.
+3. Each player types one of the following in chat (their message is hidden from public chat):
+   - `yes` – elect the **current candidate** as Mayor
+   - `no` – deny the current candidate (prefer no winner this round)
+   - `npc` – prefer a non-player (NPC) mayor over the current candidate
+4. Once every online player has cast a vote **or** the timer expires (default: 60 s), votes are tallied:
+   - **Yes wins** (strictly more yes votes than no + npc combined) → the candidate is granted the `town_mayor` LuckPerms group automatically via console command.
+   - **Yes does not win** → the election moves to the next candidate in the list.
+5. If all candidates are exhausted with no winner, the election ends with no mayor elected.
+6. Admins may cancel an active election at any time:
+   ```
+   /mayorelection cancel
+   ```
+
+#### Configuration (top of the script)
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `vote-time` | `60` | Seconds per candidate before auto-tally |
+| `admin-perm` | `mayorelection.admin` | Permission node required to start/cancel elections |
+
+#### Command Reference
+
+| Command | Description |
+|---------|-------------|
+| `/mayorelection start <c1> [c2] ...` | Start a new election with one or more candidates |
+| `/mayorelection cancel` | Cancel the currently active election |
+
+> **NPC voting note**: `npc` has two roles: (1) as a *candidate* in the start command – if an NPC candidate wins via majority `yes` votes, no LuckPerms rank is assigned; (2) as a *vote option* – any player may vote `npc` during any round to indicate they prefer a non-player over the current candidate. Both `no` and `npc` votes count against the candidate.
+
+#### Deployment
+
+1. Copy `Skript/scripts/mayor-election.sk` → `plugins/Skript/scripts/mayor-election.sk`.
+2. Run `/skript reload mayor-election` (or restart the server).
+3. Grant the `mayorelection.admin` permission to staff who should run elections.
+4. Start an election: `/mayorelection start Steve Alex npc`
+
+#### Variables Stored
+
+All variables are automatically cleaned up when the election ends or is cancelled.
+
+| Variable | Description |
+|----------|-------------|
+| `{mayor::active}` | `true` while an election is in progress |
+| `{mayor::candidates::<n>}` | Candidate name at 1-based position n |
+| `{mayor::candidate-count}` | Total number of candidates in the current election |
+| `{mayor::current-index}` | 1-based index of the candidate currently being voted on |
+| `{mayor::generation}` | Incremented on cancel/advance to invalidate stale timers |
+| `{mayor::votes::yes/no/npc}` | Vote counts for the current candidate |
+| `{mayor::voted::<uuid>}` | `true` once a specific player has cast their vote |
+
+---
+
 ## Assumptions Made
 
 1. **Skill unlock trigger syntax**: Used `unlock_skill{skill=SKILL_ID}` consistent with the existing Technomancer and Envoy skill trees. The alternative `skill{skill="ID";level=1}` seen in the broken Cleric tree was replaced with `unlock_skill` for consistency.

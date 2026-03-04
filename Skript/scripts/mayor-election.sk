@@ -1,0 +1,280 @@
+# ============================================================
+#  Mayor Election System – Bellcraft
+#  Requires: Skript 2.7+, LuckPerms
+#
+#  How it works:
+#   • An admin starts an election:
+#       /mayorelection start <candidate1> [candidate2] ...
+#     Candidates can be online player names OR the keyword "npc"
+#     (representing a non-player, flavour mayor).
+#   • Every online player is prompted in chat to vote.
+#   • Each player gets exactly ONE vote per election round.
+#   • Voting options (type in chat during the vote window):
+#       yes  – elect the current candidate
+#       no   – deny the current candidate
+#       npc  – vote for the NPC (no real player) as mayor
+#   • After all online players have voted OR the timer expires,
+#     votes are tallied:
+#       – If "yes" votes are strictly more than "no"+"npc" votes
+#         → the candidate is granted the town_mayor LuckPerms group.
+#       – Otherwise → the election moves to the next candidate.
+#   • If all candidates are exhausted with no winner,
+#     the election ends with no mayor elected.
+#   • Admins may cancel an active election at any time:
+#       /mayorelection cancel
+#
+#  Persistent variables used (auto-cleaned after each election):
+#   {mayor::active}                   – true while an election is running
+#   {mayor::candidates::<n>}          – candidate name at position n (1-based)
+#   {mayor::candidate-count}          – total number of candidates
+#   {mayor::current-index}            – 1-based index of the candidate being voted on
+#   {mayor::generation}               – incremented on cancel/advance to invalidate
+#                                       pending timers from previous rounds
+#   {mayor::votes::yes}               – running yes-vote count
+#   {mayor::votes::no}                – running no-vote count
+#   {mayor::votes::npc}               – running npc-vote count
+#   {mayor::voted::<uuid>}            – true once a player has cast their vote
+# ============================================================
+
+options:
+    prefix: "&6[&lElection&6] &r"
+    # Seconds each candidate gets before votes are tallied automatically
+    vote-time: 60
+    # Permission required to start/cancel an election
+    admin-perm: "mayorelection.admin"
+
+# ============================================================
+#  Utility: clean up all election state variables.
+#  Incrementing {mayor::generation} also invalidates any
+#  pending wait-based timers still sleeping in the background.
+# ============================================================
+function cleanElectionState():
+    delete {mayor::active}
+    loop {mayor::candidate-count} times:
+        delete {mayor::candidates::%loop-number%}
+    delete {mayor::candidate-count}
+    delete {mayor::current-index}
+    delete {mayor::votes::yes}
+    delete {mayor::votes::no}
+    delete {mayor::votes::npc}
+    delete {mayor::voted::*}
+    add 1 to {mayor::generation}
+
+# ============================================================
+#  Utility: broadcast a formatted election message to everyone
+# ============================================================
+function electionBroadcast(msg: text):
+    broadcast "{@prefix}%{_msg}%"
+
+# ============================================================
+#  Utility: announce voting instructions for the current candidate
+# ============================================================
+function announceCandidate():
+    set {_idx} to {mayor::current-index}
+    set {_name} to {mayor::candidates::%{_idx}%}
+    electionBroadcast("&8&m                                        ")
+    electionBroadcast("&e&lMAYOR ELECTION — VOTE NOW!")
+    if {_name} is "npc":
+        electionBroadcast("&7Candidate: &b&lNPC Mayor &7(no player)")
+    else:
+        electionBroadcast("&7Candidate: &f&l%{_name}%")
+    electionBroadcast("&7Type in chat to cast your vote:")
+    electionBroadcast("  &a&lyes &r&7– Elect this candidate as Mayor")
+    electionBroadcast("  &c&lno  &r&7– Deny this candidate")
+    electionBroadcast("  &e&lnpc &r&7– Vote for an NPC Mayor instead")
+    electionBroadcast("&7You have &f{@vote-time} &7seconds to vote. Each player gets ONE vote.")
+    electionBroadcast("&8&m                                        ")
+
+# ============================================================
+#  Utility: tally votes and advance or conclude the election.
+#  Called when the timer fires OR when all players have voted.
+#  {_gen} must match {mayor::generation} or the call is stale.
+# ============================================================
+function tallyVotes(gen: number):
+    # Guard: if the election was cancelled or already advanced, bail out
+    if {mayor::active} is not true:
+        stop
+    if {mayor::generation} is not {_gen}:
+        stop
+
+    set {_yes} to {mayor::votes::yes} ? 0
+    set {_no}  to {mayor::votes::no}  ? 0
+    set {_npc} to {mayor::votes::npc} ? 0
+    set {_total} to {_yes} + {_no} + {_npc}
+
+    set {_idx}  to {mayor::current-index}
+    set {_name} to {mayor::candidates::%{_idx}%}
+
+    electionBroadcast("&8&m                                        ")
+    electionBroadcast("&eVoting closed for: &f%{_name}%")
+    electionBroadcast("  &aYes: &f%{_yes}%   &cNo: &f%{_no}%   &eNPC: &f%{_npc}%   &7(total: %{_total}%)")
+
+    # Yes wins only when strictly more than the combined no+npc count
+    if {_yes} > {_no} + {_npc}:
+        electionBroadcast("&a&l%{_name}% has been ELECTED as Mayor!")
+        if {_name} is not "npc":
+            # Grant the town_mayor LuckPerms group
+            make console execute command "lp user %{_name}% parent add town_mayor"
+            electionBroadcast("&7The &6[Mayor] &7rank has been granted to &f%{_name}%&7.")
+        else:
+            electionBroadcast("&7An NPC will serve as Mayor. No player rank has been assigned.")
+        electionBroadcast("&8&m                                        ")
+        cleanElectionState()
+    else:
+        electionBroadcast("&c%{_name}% was NOT elected. Moving to the next candidate...")
+        electionBroadcast("&8&m                                        ")
+        # Advance to the next candidate
+        add 1 to {mayor::current-index}
+        add 1 to {mayor::generation}
+        if {mayor::current-index} > {mayor::candidate-count}:
+            electionBroadcast("&c&lAll candidates have been voted on. No mayor was elected.")
+            cleanElectionState()
+        else:
+            # Reset per-round vote counts and voter flags, then announce next candidate
+            delete {mayor::votes::yes}
+            delete {mayor::votes::no}
+            delete {mayor::votes::npc}
+            delete {mayor::voted::*}
+            set {_next-gen} to {mayor::generation}
+            wait 3 seconds
+            # Guard: election may have been cancelled during the delay
+            if {mayor::active} is not true or {mayor::generation} is not {_next-gen}:
+                stop
+            # Explicitly initialise vote counts for the next candidate
+            set {mayor::votes::yes} to 0
+            set {mayor::votes::no}  to 0
+            set {mayor::votes::npc} to 0
+            announceCandidate()
+            startVoteTimer()
+
+# ============================================================
+#  Utility: start the per-candidate countdown timer.
+#  Captures the current generation so the timer can detect
+#  if the election was cancelled or advanced before it fires.
+# ============================================================
+function startVoteTimer():
+    set {_gen} to {mayor::generation}
+    wait {@vote-time} seconds
+    # Only tally if still the same election round (not cancelled/advanced)
+    if {mayor::active} is true:
+        if {mayor::generation} is {_gen}:
+            electionBroadcast("&eTime is up! Tallying votes now...")
+            tallyVotes({_gen})
+
+# ============================================================
+#  Command: /mayorelection start <candidate1> [candidate2] ...
+#           /mayorelection cancel
+# ============================================================
+command /mayorelection <text>:
+    permission: {@admin-perm}
+    permission message: "&cYou do not have permission to manage mayor elections."
+    trigger:
+        set {_parts::*} to arg 1 split at " "
+        set {_sub} to {_parts::1}
+
+        # ── /mayorelection cancel ────────────────────────────
+        if {_sub} is "cancel":
+            if {mayor::active} is true:
+                electionBroadcast("&cThe mayor election has been cancelled by an administrator.")
+                cleanElectionState()
+                send "{@prefix}&aElection cancelled." to player
+            else:
+                send "{@prefix}&cThere is no active election to cancel." to player
+            stop
+
+        # ── /mayorelection start <candidates...> ─────────────
+        if {_sub} is "start":
+            if {mayor::active} is true:
+                send "{@prefix}&cAn election is already in progress. Use &f/mayorelection cancel &cto stop it first." to player
+                stop
+
+            # Collect the candidate names (everything after "start")
+            set {_count} to 0
+            set {_total-parts} to size of {_parts::*}
+            loop integers from 2 to {_total-parts}:
+                set {_cname} to {_parts::%loop-number%}
+                if {_cname} is set:
+                    add 1 to {_count}
+                    set {mayor::candidates::%{_count}%} to {_cname}
+
+            if {_count} is 0:
+                send "{@prefix}&cUsage: &f/mayorelection start <candidate1> [candidate2] ..." to player
+                send "{@prefix}&7Use player names or the keyword &fnpc &7for a non-player candidate." to player
+                stop
+
+            set {mayor::active} to true
+            set {mayor::candidate-count} to {_count}
+            set {mayor::current-index} to 1
+            # Initialise generation counter if not already set
+            if {mayor::generation} is not set:
+                set {mayor::generation} to 0
+            # Explicitly initialise vote counts for the first candidate
+            set {mayor::votes::yes} to 0
+            set {mayor::votes::no}  to 0
+            set {mayor::votes::npc} to 0
+
+            send "{@prefix}&aElection started with &f%{_count}% &acandidate(s)." to player
+            # Small delay so the confirmation message renders before the broadcast
+            set {_start-gen} to {mayor::generation}
+            wait 1 tick
+            if {mayor::active} is not true or {mayor::generation} is not {_start-gen}:
+                stop
+            announceCandidate()
+            startVoteTimer()
+            stop
+
+        # ── Unknown subcommand ────────────────────────────────
+        send "{@prefix}&cUnknown subcommand. Usage:" to player
+        send "{@prefix}&f  /mayorelection start <candidate1> [candidate2] ..." to player
+        send "{@prefix}&f  /mayorelection cancel" to player
+
+# ============================================================
+#  Chat listener: capture votes from online players
+# ============================================================
+on chat:
+    # Only intercept when an election is active
+    if {mayor::active} is not true:
+        stop
+
+    set {_uuid} to player's uuid
+
+    # Ignore players who already voted
+    if {mayor::voted::%{_uuid}%} is true:
+        stop
+
+    set {_msg} to message in lowercase
+
+    # Only react to valid vote keywords; ignore everything else
+    if {_msg} is "yes" or {_msg} is "no" or {_msg} is "npc":
+        # Cancel the chat message – the vote should not appear in public chat
+        cancel event
+
+        set {mayor::voted::%{_uuid}%} to true
+
+        if {_msg} is "yes":
+            add 1 to {mayor::votes::yes}
+            send "{@prefix}&aYour vote: &f&lYES &a(Elect)" to player
+        else if {_msg} is "no":
+            add 1 to {mayor::votes::no}
+            send "{@prefix}&cYour vote: &f&lNO &c(Deny)" to player
+        else:
+            add 1 to {mayor::votes::npc}
+            send "{@prefix}&eYour vote: &f&lNPC &e(No player mayor)" to player
+
+        # Count how many online players still need to vote
+        set {_online} to number of all players
+        set {_voted}  to 0
+        loop all players:
+            if {mayor::voted::%loop-player's uuid%} is true:
+                add 1 to {_voted}
+
+        set {_remaining} to {_online} - {_voted}
+
+        if {_remaining} <= 0:
+            # Everyone has voted – brief delay so the last vote confirmation
+            # message renders before the tally broadcast appears
+            electionBroadcast("&aAll players have voted! Tallying results...")
+            wait 1 tick
+            tallyVotes({mayor::generation})
+        else:
+            electionBroadcast("&7Vote cast. &f%{_remaining}% &7player(s) still need to vote.")
