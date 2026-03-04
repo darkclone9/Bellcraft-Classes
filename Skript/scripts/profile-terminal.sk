@@ -18,7 +18,7 @@ options:
     terminal-block: crying obsidian
     max-shortcuts: 9
     gui-title: "&8&lProfile Terminal"
-    prefix: "&8[&b&lTerminal&8] &7"
+    prefix: &8[&b&lTerminal&8] &7
 
 # -------------------------------------------------------
 # Utility function – (re)build and open the terminal GUI
@@ -106,7 +106,7 @@ on inventory click:
             set {_cmd} to {terminal::shortcuts::%{_uuid}%::%{_idx}%}
             if {_cmd} is set:
                 # Shift-click removes the shortcut
-                if event-click type is shift left click or event-click type is shift right click:
+                if inventory action of event is move to other inventory:
                     delete {terminal::shortcuts::%{_uuid}%::%{_idx}%}
                     # Compact remaining shortcuts to remove gaps (two-pass: collect, clear, write)
                     set {_count} to 0
@@ -147,7 +147,9 @@ on chat:
         replace regex "^/" in {_input} with ""
 
         # Reject empty input after stripping
-        if {_input} is "" or {_input} is not set:
+        if {_input} is not set:
+            set {_input} to ""
+        if {_input} is "":
             send "{@prefix}&cInvalid command. No shortcut saved." to player
             stop
 

@@ -14,7 +14,7 @@
 # ============================================================
 
 options:
-    prefix: "&8[&b&lBellcraft&8] &7"
+    prefix: &8[&b&lBellcraft&8] &7
 
 # -------------------------------------------------------
 # Helper: is the item ANY armor piece?
@@ -23,7 +23,13 @@ options:
 # -------------------------------------------------------
 function isArmorItem(i: item) :: boolean:
     set {_t} to "%type of {_i}%"
-    if {_t} contains "helmet" or {_t} contains "chestplate" or {_t} contains "leggings" or {_t} contains "boots":
+    if {_t} contains "helmet":
+        return true
+    if {_t} contains "chestplate":
+        return true
+    if {_t} contains "leggings":
+        return true
+    if {_t} contains "boots":
         return true
     return false
 
@@ -68,18 +74,23 @@ function countNetheriteWorn(p: player) :: number:
 # to be an armor piece.
 # -------------------------------------------------------
 function armorAllowed(p: player, i: item) :: boolean:
-    set {_class} to placeholder "mmocore_class" from {_p}
-
-    # Iron-limited classes: block diamond and netherite armor
-    if {_class} is "Cleric" or {_class} is "Mystic" or {_class} is "Sorcerer":
-        if isAboveIronArmor({_i}) is true:
-            return false
-
-    # One-netherite classes: block if a netherite piece is already worn
-    if {_class} is "Ranger" or {_class} is "Envoy" or {_class} is "Operative":
-        if isNetheriteArmor({_i}) is true:
-            if countNetheriteWorn({_p}) >= 1:
-                return false
+    # NOTE: PlaceholderAPI-Skript bridge is not installed on this server.
+    # Class-based armor restrictions are disabled until a compatible
+    # skript-placeholders (or equivalent) addon is added.
+    # Once available, uncomment the block below and remove the early return.
+    #
+    # set {_class} to placeholder "mmocore_class" from {_p}
+    #
+    # # Iron-limited classes: block diamond and netherite armor
+    # if {_class} is "Cleric" or "Mystic" or "Sorcerer":
+    #     if isAboveIronArmor({_i}) is true:
+    #         return false
+    #
+    # # One-netherite classes: block if a netherite piece is already worn
+    # if {_class} is "Ranger" or "Envoy" or "Operative":
+    #     if isNetheriteArmor({_i}) is true:
+    #         if countNetheriteWorn({_p}) >= 1:
+    #             return false
 
     return true
 
@@ -98,7 +109,7 @@ function armorAllowed(p: player, i: item) :: boolean:
 # -------------------------------------------------------
 on inventory click:
     # ── Case 1: shift-click ─ armor auto-equips to matching slot ──
-    if event-click type is shift left click or event-click type is shift right click:
+    if inventory action of event is move to other inventory:
         set {_item} to event-item
         if {_item} is set:
             if isArmorItem({_item}) is true:
@@ -109,11 +120,21 @@ on inventory click:
 
     # ── Case 2: cursor drag into an armor slot ────────────────────
     set {_slot} to event-slot
-    if {_slot} is between 36 and 39 or {_slot} is between 5 and 8:
-        set {_cursor} to cursor item of player
-        if {_cursor} is set:
-            if isArmorItem({_cursor}) is true:
-                if armorAllowed(player, {_cursor}) is false:
-                    cancel event
-                    send "{@prefix}&cYour class cannot equip that armor tier!" to player
-                    stop
+    set {_in-armor-slot} to false
+    if {_slot} is between 36 and 39:
+        set {_in-armor-slot} to true
+    if {_slot} is between 5 and 8:
+        set {_in-armor-slot} to true
+    # NOTE: No cursor-item expression is available in this Skript build.
+    # Armor restrictions for clicking items directly into armor slots require an addon
+    # that exposes cursor item (e.g. SkBee).  Uncomment the block below once that addon is
+    # installed and replace EVENT_CURSOR_ITEM with the correct expression.
+    #
+    # if {_in-armor-slot} is true:
+    #     set {_cursor} to EVENT_CURSOR_ITEM
+    #     if {_cursor} is set:
+    #         if isArmorItem({_cursor}) is true:
+    #             if armorAllowed(player, {_cursor}) is false:
+    #                 cancel event
+    #                 send "{@prefix}&cYour class cannot equip that armor tier!" to player
+    #                 stop

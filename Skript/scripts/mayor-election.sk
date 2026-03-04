@@ -37,7 +37,7 @@
 # ============================================================
 
 options:
-    prefix: "&6[&lElection&6] &r"
+    prefix: &6[&lElection&6] &r
     # Seconds each candidate gets before votes are tallied automatically
     vote-time: 60
     # Permission required to start/cancel an election
@@ -138,7 +138,9 @@ function tallyVotes(gen: number):
             set {_next-gen} to {mayor::generation}
             wait 3 seconds
             # Guard: election may have been cancelled during the delay
-            if {mayor::active} is not true or {mayor::generation} is not {_next-gen}:
+            if {mayor::active} is not true:
+                stop
+            if {mayor::generation} is not {_next-gen}:
                 stop
             # Explicitly initialise vote counts for the next candidate
             set {mayor::votes::yes} to 0
@@ -217,7 +219,9 @@ command /mayorelection <text>:
             # Small delay so the confirmation message renders before the broadcast
             set {_start-gen} to {mayor::generation}
             wait 1 tick
-            if {mayor::active} is not true or {mayor::generation} is not {_start-gen}:
+            if {mayor::active} is not true:
+                stop
+            if {mayor::generation} is not {_start-gen}:
                 stop
             announceCandidate()
             startVoteTimer()
@@ -245,7 +249,7 @@ on chat:
     set {_msg} to message in lowercase
 
     # Only react to valid vote keywords; ignore everything else
-    if {_msg} is "yes" or {_msg} is "no" or {_msg} is "npc":
+    if {_msg} is "yes" or "no" or "npc":
         # Cancel the chat message – the vote should not appear in public chat
         cancel event
 
