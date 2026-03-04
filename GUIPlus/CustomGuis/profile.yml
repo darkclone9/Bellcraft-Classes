@@ -610,10 +610,34 @@ scenes:
         unbreakable: false
       '44':
         slot: 43
-        item: BLACK_STAINED_GLASS_PANE
+        item: GOLDEN_HELMET
         amount: 1
-        item-name: ' '
-        item-flags: []
+        click-events:
+          a1b2c3d4-0008-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0008-4000-8000-000000000002:
+            type: command
+            commands:
+            - gui open ranks %player%
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&6&lRanks'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7View the server rank hierarchy,'
+            - '&7including the Town Mayor rank and'
+            - '&7the perks each rank provides.'
+            - ''
+            - '&e► Click to open Ranks.'
+        item-flags:
+        - HIDE_ATTRIBUTES
         unbreakable: false
       '45':
         slot: 44

@@ -1,0 +1,251 @@
+id: ranks
+rows: 3
+type: chest
+title: '&6&lServer Ranks'
+commandAlias: ranks
+commandAliasTarget: DISABLED
+disable-scene-animation: false
+scenes:
+  '0':
+    delay: 0
+    items:
+      # ==================== Row 1: Top border (slots 0-8) ====================
+      '1':
+        slot: 0
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '2':
+        slot: 1
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '3':
+        slot: 2
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '4':
+        slot: 3
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '5':
+        slot: 4
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '6':
+        slot: 5
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '7':
+        slot: 6
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '8':
+        slot: 7
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '9':
+        slot: 8
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================== Row 2: Rank entries (slots 9-17) ====================
+      '10':
+        slot: 9
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Default rank
+      '11':
+        slot: 10
+        item: STONE_SWORD
+        amount: 1
+        item-name: '&7&lDefault'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7Every player starts with this rank.'
+            - ''
+            - '&7Prefix: &7[Player]'
+            - ''
+            - '&7Perks:'
+            - '&8• Basic gameplay access'
+            - '&8• Access to /p, /bank, /ranks'
+            - '&8• Join and create towns'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      # Spacer between Default and Town Mayor
+      '11b':
+        slot: 11
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Town Mayor rank
+      '12':
+        slot: 12
+        item: GOLDEN_HELMET
+        amount: 1
+        item-name: '&6&lTown Mayor'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7Awarded to players who found or lead a town.'
+            - ''
+            - '&7Prefix: &6[Mayor]'
+            - '&7Group: &etown_mayor'
+            - '&7LuckPerms: &elp user <name> parent add town_mayor'
+            - ''
+            - '&7Perks:'
+            - '&8• &eTowny mayor commands (claim, invite, kick...)'
+            - '&8• &eTown spawn teleport for others'
+            - '&8• &eManage town permissions and name'
+            - '&8• &eDeposit and withdraw from town bank'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      # Spacer after Town Mayor
+      '12b':
+        slot: 13
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '13':
+        slot: 14
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '14':
+        slot: 15
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '15':
+        slot: 16
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '16':
+        slot: 17
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================== Row 3: Bottom border with close (slots 18-26) ====================
+      '17':
+        slot: 18
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '18':
+        slot: 19
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '19':
+        slot: 20
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '20':
+        slot: 21
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 22
+        item: ARROW
+        amount: 1
+        click-events:
+          b2c3d4e5-0001-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&c&lClose'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - '&7Click to close this menu.'
+        item-flags: []
+        unbreakable: false
+      '22':
+        slot: 23
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '23':
+        slot: 24
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '24':
+        slot: 25
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '25':
+        slot: 26
+        item: GOLD_BLOCK
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
