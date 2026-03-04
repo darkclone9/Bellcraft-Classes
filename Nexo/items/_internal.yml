@@ -1,0 +1,7 @@
+gui-invisible-item:
+  itemname: GUI Invisible Item
+  material: PAPER
+  Pack:
+    custom_model_data: 777
+    texture: bellcraft-stuffs:item/_internal/gui-invisible-item
+    parent_model: bellcraft-stuffs:item/_internal/gui-invisible-item

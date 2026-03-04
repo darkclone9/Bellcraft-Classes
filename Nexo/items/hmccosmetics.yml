@@ -1,0 +1,179 @@
+arrow_next:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:arrow_next
+    custom_model_data: 1011
+  itemname: Arrow (next)
+
+arrow_back:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:arrow_back
+    custom_model_data: 1012
+  itemname: Arrow (back)
+
+hmc_hat_icon:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:hat_icon
+    custom_model_data: 1027
+  itemname: Hat Icon
+
+hmc_backpack_icon:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:backpack_icon
+    custom_model_data: 1028
+  itemname: Backpack Icon
+
+hmc_hand_icon:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:hand_icon
+    custom_model_data: 1029
+  itemname: Hand Icon
+
+hmc_balloon_icon:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:balloon_icon
+    custom_model_data: 1030
+  itemname: Balloon Icon
+
+colorful:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:colorful
+    custom_model_data: 1013
+  itemname: HMCCosmetics Icon
+
+backpack:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:backpack
+    custom_model_data: 1014
+  itemname: Backpack
+
+backpack_thirdperson:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:backpack_thirdperson
+    custom_model_data: 1015
+  itemname: Backpack (thirdperson)
+
+paintbrush:
+  material: POTION
+  color: 255, 255, 255
+  Pack:
+    model: hmccosmetics:paintbrush
+    custom_model_data: 1000
+  itemname: Paintbrush
+
+beanie:
+  material: POTION
+  color: 255, 255, 255
+  Pack:
+    model: hmccosmetics:beanie
+    custom_model_data: 1001
+  itemname: Beanie
+
+lantern_cosmetic:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:lantern_cosmetic
+    custom_model_data: 1016
+  itemname: Lantern Cosmetic
+
+baseball_hat:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:baseball_hat
+    custom_model_data: 1017
+  itemname: Baseball Hat
+
+kite_item:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:kite
+    custom_model_data: 1018
+  itemname: Kite
+
+future_wings:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:future_wings
+    custom_model_data: 1019
+  itemname: Future Wings
+
+future_wings_thirdperson:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:future_wings_thirdperson
+    custom_model_data: 1020
+  itemname: Future Wings (thirdperson)
+
+frog_hat:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:frog_hat
+    custom_model_data: 1021
+  itemname: Frog Hat
+
+jetpack:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:jetpack
+    custom_model_data: 1022
+  itemname: Jetpack
+
+hammer:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:hammer
+    custom_model_data: 1023
+  itemname: Hammer
+
+explorer_backpack:
+  material: LEATHER_HORSE_ARMOR
+  color: 255, 255, 255
+  Pack:
+    model: hmccosmetics:explorer_backpack
+    custom_model_data: 1000
+  itemname: Explorer's Backpack
+
+garbage_truck_balloon:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:garbage_truck_balloon_item
+    custom_model_data: 1024
+  itemname: Garbage Truck Balloon
+
+earth_day_grabber:
+  material: LEATHER_HORSE_ARMOR
+  color: 255, 255, 255
+  Pack:
+    model: hmccosmetics:earth_day_grabber
+    custom_model_data: 1001
+  itemname: Earth Day Grabber
+
+explorer_backpack_thirdperson:
+  material: LEATHER_HORSE_ARMOR
+  color: 255, 255, 255
+  Pack:
+    model: hmccosmetics:explorer_backpack_thirdperson
+    custom_model_data: 1002
+  itemname: Explorer's Backpack
+
+jetpack_thirdperson:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:jetpack_thirdperson
+    custom_model_data: 1025
+  itemname: Jetpack
+
+hibiscus_flower:
+  material: PAPER
+  Pack:
+    model: hmccosmetics:hibiscus_flower
+    custom_model_data: 1026
+  itemname: Hibiscus Flower

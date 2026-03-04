@@ -1,0 +1,8 @@
+black_top_hat:
+  itemname: Black Top Hat
+  material: PAPER
+  Pack:
+    custom_model_data: 1001
+    texture: bellcraft-stuffs:item/hats/black_top_hat
+    parent_model: bellcraft-stuffs:item/hats/black_top_hat
+    dyeable_texture: bellcraft-stuffs:item/hats/black_top_hat

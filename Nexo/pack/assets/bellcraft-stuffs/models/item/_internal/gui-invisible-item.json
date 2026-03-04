@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bellcraft-stuffs:item/_internal/gui-invisible-item"
+  }
+}

@@ -1,0 +1,95 @@
+hmcc_cosmetics_gui:
+  texture: hmccosmetics:cosmetics_gui.png
+  ascent: 14
+  height: 256
+  char: ꐓ
+
+hmcc_dye_menu:
+  texture: hmccosmetics:dye_menu.png
+  ascent: 13
+  height: 256
+  char: ꐔ
+
+hmcc_colorful:
+  texture: hmccosmetics:colorful.png
+  ascent: 8
+  height: 8
+  char: ꐕ
+
+hmcc_title:
+  texture: hmccosmetics:title.png
+  ascent: 128
+  height: 256
+  char: ꐖ
+
+hmcc_shade_row_1:
+  texture: hmccosmetics:shade.png
+  ascent: -5
+  height: 16
+  char: ꐗ
+
+hmcc_shade_row_2:
+  texture: hmccosmetics:shade.png
+  ascent: -23
+  height: 16
+  char: ꐘ
+
+hmcc_shade_row_3:
+  texture: hmccosmetics:shade.png
+  ascent: -41
+  height: 16
+  char: ꐙ
+
+hmcc_shade_row_4:
+  texture: hmccosmetics:shade.png
+  ascent: -59
+  height: 16
+  char: ꐚ
+
+hmcc_shade_row_5:
+  texture: hmccosmetics:shade.png
+  ascent: -77
+  height: 16
+  char: ꐛ
+
+hmcc_shade_row_6:
+  texture: hmccosmetics:shade.png
+  ascent: -95
+  height: 16
+  char: ꐜ
+
+hmcc_clear_row_1:
+  texture: hmccosmetics:clear_image.png
+  ascent: -5
+  height: 16
+  char: ꐝ
+
+hmcc_clear_row_2:
+  texture: hmccosmetics:clear_image.png
+  ascent: -23
+  height: 16
+  char: ꐞ
+
+hmcc_clear_row_3:
+  texture: hmccosmetics:clear_image.png
+  ascent: -41
+  height: 16
+  char: ꐟ
+
+hmcc_clear_row_4:
+  texture: hmccosmetics:clear_image.png
+  ascent: -59
+  height: 16
+  char: ꐠ
+
+hmcc_clear_row_5:
+  texture: hmccosmetics:clear_image.png
+  ascent: -77
+  height: 16
+  char: ꐡ
+
+hmcc_clear_row_6:
+  texture: hmccosmetics:clear_image.png
+  ascent: -95
+  height: 16
+  char: ꐢ

@@ -1,0 +1,120 @@
+mmoinventory_helmet:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/helmet
+mmoinventory_chestplate:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/chestplate
+mmoinventory_leggings:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/leggings
+mmoinventory_boots:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/boots
+mmoinventory_off_hand:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/off_hand
+mmoinventory_elytra:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/elytra
+mmoinventory_left_ring:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/left_ring
+mmoinventory_right_ring:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/right_ring
+mmoinventory_amulet:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/amulet
+mmoinventory_bracelet:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/bracelet
+mmoinventory_gloves:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/gloves
+mmoinventory_artifact_1:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/artifact_1
+mmoinventory_artifact_2:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/artifact_2
+mmoinventory_artifact_3:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/artifact_3
+mmoinventory_fill:
+  material: GOLD_NUGGET
+  excludeFromInventory: true
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+    - items/mmoinventory/fill
