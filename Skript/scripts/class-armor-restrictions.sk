@@ -109,7 +109,7 @@ function armorAllowed(p: player, i: item) :: boolean:
 # -------------------------------------------------------
 on inventory click:
     # ── Case 1: shift-click ─ armor auto-equips to matching slot ──
-    if event-click type is shift left click or event-click type is shift right click:
+    if inventory action of event is move to other inventory:
         set {_item} to event-item
         if {_item} is set:
             if isArmorItem({_item}) is true:
@@ -125,11 +125,16 @@ on inventory click:
         set {_in-armor-slot} to true
     if {_slot} is between 5 and 8:
         set {_in-armor-slot} to true
-    if {_in-armor-slot} is true:
-        set {_cursor} to event-cursor-item
-        if {_cursor} is set:
-            if isArmorItem({_cursor}) is true:
-                if armorAllowed(player, {_cursor}) is false:
-                    cancel event
-                    send "{@prefix}&cYour class cannot equip that armor tier!" to player
-                    stop
+    # NOTE: No cursor-item expression is available in this Skript build.
+    # Armor restrictions for clicking items directly into armor slots require an addon
+    # that exposes cursor item (e.g. SkBee).  Uncomment the block below once that addon is
+    # installed and replace EVENT_CURSOR_ITEM with the correct expression.
+    #
+    # if {_in-armor-slot} is true:
+    #     set {_cursor} to EVENT_CURSOR_ITEM
+    #     if {_cursor} is set:
+    #         if isArmorItem({_cursor}) is true:
+    #             if armorAllowed(player, {_cursor}) is false:
+    #                 cancel event
+    #                 send "{@prefix}&cYour class cannot equip that armor tier!" to player
+    #                 stop
