@@ -1,0 +1,28 @@
+operative_light_helmet_shaped:
+  result:
+    nexo_item: operative_light_helmet
+  ingredients:
+    A:
+      minecraft_type: PURPLE_WOOL
+    B:
+      minecraft_type: REDSTONE_BLOCK
+    C:
+      minecraft_type: NETHERITE_INGOT
+    D:
+      minecraft_type: LIGHT_GRAY_WOOL
+  shape:
+    - AAA
+    - BCB
+    - CDC
+black_top_hat_shaped:
+  result:
+    nexo_item: black_top_hat
+  ingredients:
+    A:
+      minecraft_type: BLACK_WOOL
+    B:
+      minecraft_type: RED_WOOL
+  shape:
+    - _A_
+    - ABA
+    - ___

@@ -1,0 +1,24 @@
+{
+  "pack": {
+    "pack_format": 61,
+    "description": "§9§lOraxen §8| §7Extend the Game §7www§8.§7oraxen§8.§7com"
+  },
+  "overlays": {
+    "entries": [
+      {
+        "formats": {
+          "min_inclusive": 46,
+          "max_inclusive": 54
+        },
+        "directory": "overlay_1_21_4_5"
+      },
+      {
+        "formats": {
+          "min_inclusive": 46,
+          "max_inclusive": 54
+        },
+        "directory": "overlay_1_21_4_5"
+      }
+    ]
+  }
+}

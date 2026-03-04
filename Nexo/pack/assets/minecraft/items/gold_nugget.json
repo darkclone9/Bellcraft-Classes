@@ -1,0 +1,29 @@
+{
+  "model": {
+    "type": "select",
+    "property": "custom_model_data",
+    "fallback": {
+      "type": "model",
+      "model": "item/gold_nugget"
+    },
+    "cases": [
+      { "when": "helmet", "model": { "type": "model", "model": "mmoinventory:item/helmet" } },
+      { "when": "chestplate", "model": { "type": "model", "model": "mmoinventory:item/chestplate" } },
+      { "when": "leggings", "model": { "type": "model", "model": "mmoinventory:item/leggings" } },
+      { "when": "boots", "model": { "type": "model", "model": "mmoinventory:item/boots" } },
+      { "when": "amulet", "model": { "type": "model", "model": "mmoinventory:item/amulet" } },
+      { "when": "bracelet", "model": { "type": "model", "model": "mmoinventory:item/bracelet" } },
+      { "when": "ring1", "model": { "type": "model", "model": "mmoinventory:item/ring" } },
+      { "when": "ring2", "model": { "type": "model", "model": "mmoinventory:item/ring" } },
+      { "when": "gloves", "model": { "type": "model", "model": "mmoinventory:item/gloves" } },
+      { "when": "artifact1", "model": { "type": "model", "model": "mmoinventory:item/artifact" } },
+      { "when": "artifact2", "model": { "type": "model", "model": "mmoinventory:item/artifact" } },
+      { "when": "artifact3", "model": { "type": "model", "model": "mmoinventory:item/artifact" } },
+      { "when": "mainhand", "model": { "type": "model", "model": "mmoinventory:item/mainhand" } },
+      { "when": "off_hand", "model": { "type": "model", "model": "mmoinventory:item/off_hand" } },
+      { "when": "elytra", "model": { "type": "model", "model": "mmoinventory:item/elytra" } },
+      { "when": "info", "model": { "type": "model", "model": "mmoinventory:item/info" } },
+      { "when": "fill", "model": { "type": "model", "model": "mmoinventory:item/fill" } }
+    ]
+  }
+}

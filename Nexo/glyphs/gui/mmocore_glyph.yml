@@ -1,0 +1,7 @@
+mmocore_glyph:
+  texture: bellcraft-stuffs:gui/mmocore_glyph
+  ascent: 14
+  height: 256
+  placeholders:
+  - <gui_mmocore>
+  char: ꐣ

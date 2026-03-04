@@ -1,0 +1,19 @@
+tesy:
+  itemname: Mandle Blade
+  lore:
+  - A blade made by the corporations to keep civilians
+  - ' under control.'
+  - ''
+  material: PAPER
+  AttributeModifiers:
+  - attribute: ATTACK_DAMAGE
+    amount: 7
+  - attribute: ATTACK_SPEED
+    amount: 1.6
+  Components:
+    repairable: minecraft:heavy_core
+    enchantable:
+      value: 1
+  Pack:
+    texture: bellcraft-custom-stuff:item/garyofcinema/tesy
+    parent_model: bellcraft-custom-stuff:item/garyofcinema/tesy
