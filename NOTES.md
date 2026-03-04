@@ -40,16 +40,44 @@ Standalone MythicLib skills added to class `skills:` sections (with `unlocked-by
 
 > Classes that already had their custom skills registered (Cleric, Ranger, Paladin, Sorcerer, Envoy) were not changed.
 
-### 3. Profile GUI – `/p` Menu (`MMOCore/gui/player-stats.yml`)
+### 3. Profile GUI – `/p` Menu (GUIPlus replacement)
 
-Two new buttons added to the player profile menu at slots **40** and **41** (Row 5, previously empty):
+The MMOCore built-in profile GUI (`MMOCore/gui/player-stats.yml`) had persistent button bugs where click handlers silently failed. To work around these MMOCore GUI issues, the `/p` menu has been **replaced with a GUIPlus custom GUI**.
 
-- **Slot 40 – Open Skills** (`function: skills`): Opens the skill list GUI where players can view and upgrade learned skills.
-- **Slot 41 – Open Skill Tree** (`function: skill-tree`): Opens the class skill tree GUI where players can spend skill-tree points to unlock new abilities.
+#### What Changed
 
-> **Bug fix (PR #2):** The buttons were originally set to `function: 'command{format="skills"}'` and `function: 'command{format="skilltrees"}'`. The `command{format="..."}` syntax is not a registered function ID in MMOCore's profile GUI handler — clicking these buttons silently did nothing. The fix changes both buttons to use the correct built-in MMOCore function names: `skills` and `skill-tree`.
->
-> **If buttons still do nothing after deploying PR #2 changes** (PR #3 investigation): All configuration files have been verified correct — YAML syntax is valid, all skills are defined in MythicLib, all skill trees exist for all classes. The most likely cause is the server has not been restarted/reloaded after deploying the updated config files. See the Deployment Instructions section below.
+- **New file**: `GUIPlus/CustomGuis/profile.yml` — A GUIPlus-powered profile menu that opens via `/p`.
+- **Modified**: `MMOCore/commands.yml` — Removed `p` and `profile` aliases from the MMOCore `player` command so that `/p` is handled by GUIPlus instead.
+- The original `MMOCore/gui/player-stats.yml` is kept as-is (still accessible via `/player` if needed).
+
+#### GUIPlus Profile Layout (6 rows, 54 slots)
+
+| Row | Slots | Contents |
+|-----|-------|----------|
+| 1 | 0–8 | Black glass border |
+| 2 | 10–12 | Mining, Woodcutting, Farming professions |
+| 2 | 15–16 | Player profile head, Party button |
+| 3 | 19–21 | Fishing, Alchemy, Smithing professions |
+| 4 | 28–29 | Enchanting, Smelting professions |
+| 4 | 32–34 | Physical / Dexterity / Intellect stat displays |
+| 5 | 38–42 | **Clickable buttons**: Attributes, Quests, Abilities, Skill Tree, Change Class |
+| 6 | 49 | Close button |
+
+#### Clickable Buttons (Row 5)
+
+| Slot | Label | Command Executed |
+|------|-------|-----------------|
+| 38 | Attributes | `mmocore attributes` |
+| 39 | Quests | `mmocore quests` |
+| 40 | Abilities | `mmocore skills` |
+| 41 | Skill Tree | `mmocore skilltrees` |
+| 42 | Change Class | `mmocore class` |
+| 16 | Party | `mmocore party` |
+| 49 | Close | Closes the menu |
+
+All buttons use GUIPlus `close-inventory` + `command` click events, bypassing MMOCore's GUI handler entirely.
+
+> **Why GUIPlus?** MMOCore's built-in profile GUI handler has bugs where registered `function:` click handlers (e.g., `skills`, `skill-tree`) silently fail on certain server configurations. GUIPlus handles click events independently via its own event system, avoiding these issues entirely.
 
 ### 4. Skill Mapping Reference (`config/skills/mapping.yml`)
 
@@ -70,7 +98,8 @@ Created a reference/documentation file mapping every custom skill to:
 | MythicLib skill definitions | `MythicLib/skill/*.yml` |
 | MMOCore class configs | `MMOCore/classes/*.yml` |
 | MMOCore skill trees | `MMOCore/skill-trees/*.yml` |
-| Profile GUI config | `MMOCore/gui/player-stats.yml` |
+| Profile GUI config (GUIPlus) | `GUIPlus/CustomGuis/profile.yml` |
+| Profile GUI config (old MMOCore) | `MMOCore/gui/player-stats.yml` |
 | Skill menu GUI config | `MMOCore/gui/skill-list.yml` |
 | Skill tree GUI config | `MMOCore/gui/skill-tree.yml` |
 | Skill mapping reference | `config/skills/mapping.yml` |
@@ -82,13 +111,14 @@ Created a reference/documentation file mapping every custom skill to:
 After pulling these config changes from the repository, apply them to the live server:
 
 1. **Copy updated files** to your server's plugin data folders:
-   - `MMOCore/gui/player-stats.yml` → `plugins/MMOCore/gui/player-stats.yml`
+   - `GUIPlus/CustomGuis/profile.yml` → `plugins/GUIPlus/CustomGuis/profile.yml`
+   - `MMOCore/commands.yml` → `plugins/MMOCore/commands.yml`
    - `MMOCore/gui/skill-list.yml` → `plugins/MMOCore/gui/skill-list.yml`
    - Any new class files in `MMOCore/classes/` → `plugins/MMOCore/classes/`
    - Any new skill tree files in `MMOCore/skill-trees/` → `plugins/MMOCore/skill-trees/`
    - Any new MythicLib skill files in `MythicLib/skill/` → `plugins/MythicLib/skill/`
 
-2. **Restart the server** (or run `/mmocore reload` if your MMOCore version supports it).
+2. **Restart the server** (or run `/gui reload` for GUIPlus and `/mmocore reload` for MMOCore).
 
 3. **Verify** using the checklist below.
 
@@ -97,31 +127,41 @@ After pulling these config changes from the repository, apply them to the live s
 ## How to Verify (Server Admin Checklist)
 
 1. **Reload/restart** the server after deploying these config changes.
-2. Log in and run `/p` (or `/profile`) – confirm the "Open Skills" and "Open Skill Tree" buttons appear in slots 40 and 41.
-3. Click "Open Skills" – confirms the skill list opens.
-4. Click "Open Skill Tree" – confirms the skill tree GUI opens.
-5. As a Soldier: confirm you have skill-tree points and can see the Shield Bash / Warriors Leap / Battle Cry / Combat Stance / Suppressing Fire / Tactical Reload unlock nodes in your skill tree.
-6. Spend a skill-tree point on a skill node – confirm the skill is added to your profile and you can bind it to a skill slot.
-7. Bind the skill and use it – confirm cooldown and mana cost apply correctly.
-8. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
-9. Confirm all previously existing skills still function normally.
-10. Check the console for any YAML load errors or skill registration warnings.
+2. Log in and run `/p` – confirm the GUIPlus profile menu opens (titled "Your Character", 6 rows, black glass border).
+3. Click **Abilities** (Nether Star, slot 40) – confirm the MMOCore skill list opens.
+4. Reopen with `/p`, click **Skill Tree** (Experience Bottle, slot 41) – confirm the skill tree GUI opens.
+5. Reopen with `/p`, click **Attributes** (Golden Apple, slot 38) – confirm the attributes GUI opens.
+6. Reopen with `/p`, click **Quests** (Book, slot 39) – confirm the quest list opens.
+7. Reopen with `/p`, click **Change Class** (Armor Stand, slot 42) – confirm the class select GUI opens.
+8. Reopen with `/p`, click **Party** (Cake, slot 16) – confirm the party menu opens.
+9. Reopen with `/p`, click **Close** (Arrow, slot 49) – confirm the menu closes.
+10. Verify profession levels and player stats display correctly in the item lore (requires PlaceholderAPI + MMOCore expansion).
+11. As a Soldier: confirm you have skill-tree points and can see the Shield Bash / Warriors Leap / Battle Cry / Combat Stance / Suppressing Fire / Tactical Reload unlock nodes in your skill tree.
+12. Spend a skill-tree point on a skill node – confirm the skill is added to your profile and you can bind it to a skill slot.
+13. Bind the skill and use it – confirm cooldown and mana cost apply correctly.
+14. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
+15. Confirm all previously existing skills still function normally.
+16. Check the console for any YAML load errors or skill registration warnings.
 
 ---
 
-## Troubleshooting: Buttons Still Not Working
+## Troubleshooting: GUIPlus Profile Menu
 
-If after restarting the server the "Open Skills" and "Open Skill Tree" buttons in `/p` still do nothing:
+If after restarting the server the `/p` menu buttons still do nothing or the GUI does not open:
 
-1. **Confirm updated files are in place**: Check that `plugins/MMOCore/gui/player-stats.yml` contains `function: skills` and `function: skill-tree` (not the old `command{format="..."}` values).
+1. **Confirm GUIPlus is installed and enabled**: GUIPlus must be installed and running on the server. Check startup logs for `[GUIPlus]` messages.
 
-2. **Check your MMOCore version**: The `function: skills` and `function: skill-tree` handlers are registered in the ProfileGUI in MMOCore 3.x (config-version 10). Run `/mmocore version` or check the startup log to confirm the version.
+2. **Confirm the profile GUI file is in place**: Check that `plugins/GUIPlus/CustomGuis/profile.yml` exists and contains `commandAlias: p`.
 
-3. **Check permissions**: Ensure players have the `mmocore.skills` and `mmocore.skilltrees` permissions granted. Without these permissions the underlying command dispatch will be silently blocked.
+3. **Reload GUIPlus**: Run `/gui reload` to reload all GUIPlus custom GUIs.
 
-4. **Check the console for errors**: Look for `[MMOCore]` error or warning lines after the server starts, particularly around loading `player-stats.yml` or registering GUI handlers.
+4. **Check for command conflicts**: If `/p` still opens the old MMOCore profile menu, confirm that `plugins/MMOCore/commands.yml` has `aliases: []` for the `player` command (not `aliases: [p, profile]`). Restart the server after changing MMOCore commands.
 
-5. **Confirm class selection**: The "Open Skill Tree" button requires the player to have a class with at least one skill tree assigned. With `force-class-selection: true` this should always be the case for in-game players, but verify via `/mmocore info <player>` if in doubt.
+5. **Check permissions**: Ensure players have the `mmocore.skills`, `mmocore.skilltrees`, `mmocore.attributes`, `mmocore.quests`, and `mmocore.class-select` permissions. Without these, the underlying MMOCore commands dispatched by the buttons will be silently blocked.
+
+6. **Check PlaceholderAPI**: The profession levels, stats, and player info in the item lore require PlaceholderAPI with the MMOCore expansion installed. Run `/papi ecloud download MMOCore` and `/papi reload` if placeholders show as raw text (e.g., `%mmocore_level%` instead of a number).
+
+7. **Check the console for errors**: Look for `[GUIPlus]` error lines after `/gui reload`, particularly around loading `profile.yml`.
 
 ---
 
