@@ -2,28 +2,19 @@ name: Deploy Configs to Bloom.host
 
 # This tells GitHub to run this script ONLY when a change is pushed to the 'main' branch.
 on:
-  push:
+  pull_request:
+    types:
+      - closed # Triggers when the PR is closed (whether merged or not)
     branches:
       - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # This ensures the job ONLY runs if the PR was actually merged, not just closed without merging.
+    if: github.event.pull_request.merged == true 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          # Only check out the actual plugin config folders so that .git, .github,
-          # README.md, and NOTES.md are never present in the workspace and therefore
-          # never uploaded to the server.
-          sparse-checkout: |
-            MMOCore
-            MMOItems
-            MMOInventory
-            MMOProfiles
-            MythicLib
-            MythicMobs
-            config
+      - run: echo "Deploying after merge!"
 
       - name: Sync files via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
