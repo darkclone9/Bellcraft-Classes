@@ -37,7 +37,7 @@
 # ============================================================
 
 options:
-    prefix: "&6[&lElection&6] &r"
+    prefix: &6[&lElection&6] &r
     # Seconds each candidate gets before votes are tallied automatically
     vote-time: 60
     # Permission required to start/cancel an election

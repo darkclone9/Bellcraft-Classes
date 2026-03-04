@@ -19,7 +19,7 @@
 
 options:
     gui-title:       "&8&lChoose Your Starting Location"
-    prefix:          "&8[&b&lBellcraft&8] &7"
+    prefix:          &8[&b&lBellcraft&8] &7
     ewoki-world:     "world"
     ewoki-x:         239
     ewoki-y:         63
@@ -58,8 +58,9 @@ function spawnAtEwoki(p: player):
 # -------------------------------------------------------
 function spawnRandom(p: player):
     set {_r} to {@random-radius}
-    set {_x} to random integer from -{_r} to {_r}
-    set {_z} to random integer from -{_r} to {_r}
+    set {_neg-r} to 0 - {_r}
+    set {_x} to random integer from {_neg-r} to {_r}
+    set {_z} to random integer from {_neg-r} to {_r}
     # Find the highest solid block so we don't spawn inside terrain
     # (y=256 is used as a reference; highest block at only needs x and z)
     set {_surface} to highest block at location({_x}, 256, {_z}, world named {@ewoki-world})
