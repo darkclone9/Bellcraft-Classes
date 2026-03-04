@@ -1,0 +1,108 @@
+# ============================================================
+#  New Player / New Character Spawn System  –  Bellcraft
+#  Requires: Skript 2.7+
+#
+#  How it works:
+#   • Brand-new players (first join ever) automatically receive
+#     a spawn-choice GUI after a short delay.
+#   • Any player (including those who just created a new profile)
+#     can open the same GUI via /spawnchoice.
+#   • The GUI offers two options:
+#       1. Ewoki Village – safe, populated starting town
+#       2. Random Teleport – dropped at a random overworld location
+#
+#  Ewoki Village coordinates (update to match in-game):
+#    world: world   x: 239   y: 63   z: 208
+#
+#  Random teleport uses a configurable radius around world origin.
+# ============================================================
+
+options:
+    gui-title:       "&8&lChoose Your Starting Location"
+    prefix:          "&8[&b&lBellcraft&8] &7"
+    ewoki-world:     "world"
+    ewoki-x:         239
+    ewoki-y:         63
+    ewoki-z:         208
+    # Radius (in blocks) around world origin for random teleport
+    random-radius:   3000
+
+# -------------------------------------------------------
+# Show the spawn-choice inventory GUI to the given player
+# -------------------------------------------------------
+function showSpawnChoice(p: player):
+    set {_inv} to chest inventory with 3 rows named {@gui-title}
+
+    # Fill all slots with gray stained glass pane
+    loop 27 times:
+        set slot (loop-number - 1) of {_inv} to gray stained glass pane named " "
+
+    # Slot 11 – Ewoki Village
+    set slot 11 of {_inv} to emerald block named "&a&lEwoki Village" with lore "&7Spawn safely in Ewoki Village,||&7the welcoming home of new adventurers."
+
+    # Slot 15 – Random Teleport
+    set slot 15 of {_inv} to compass named "&e&lRandom Teleport" with lore "&7Be dropped at a random location||&7somewhere out in the world.||&c&oBring supplies — it can be dangerous!"
+
+    open {_inv} to {p}
+
+# -------------------------------------------------------
+# Teleport the player to Ewoki Village
+# -------------------------------------------------------
+function spawnAtEwoki(p: player):
+    teleport {p} to location({@ewoki-x}, {@ewoki-y}, {@ewoki-z}, world named {@ewoki-world})
+    send "{@prefix}&aWelcome to &2Ewoki Village&a! Safe travels, adventurer." to {p}
+    play sound "entity.player.levelup" at {p}
+
+# -------------------------------------------------------
+# Teleport the player to a random overworld location
+# -------------------------------------------------------
+function spawnRandom(p: player):
+    set {_r} to {@random-radius}
+    set {_x} to random integer from -{_r} to {_r}
+    set {_z} to random integer from -{_r} to {_r}
+    # Find the highest solid block so we don't spawn inside terrain
+    # (y=256 is used as a reference; highest block at only needs x and z)
+    set {_surface} to highest block at location({_x}, 256, {_z}, world named {@ewoki-world})
+    set {_y} to y coordinate of {_surface} + 1
+    teleport {p} to location({_x}, {_y}, {_z}, world named {@ewoki-world})
+    send "{@prefix}&eTeleported to a random location! Good luck out there." to {p}
+    play sound "entity.enderman.teleport" at {p}
+
+# -------------------------------------------------------
+# Trigger spawn-choice for brand-new players automatically
+# -------------------------------------------------------
+on first join:
+    wait 60 ticks
+    showSpawnChoice(player)
+
+# -------------------------------------------------------
+# /spawnchoice – manual command for new profiles / re-use
+# New profiles can run this after creating a character.
+# -------------------------------------------------------
+command /spawnchoice:
+    description: Choose to spawn at Ewoki Village or a random world location.
+    permission: bellcraft.spawnchoice
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    # Grant bellcraft.spawnchoice to all players (e.g. via LuckPerms default group)
+    # so that new characters can use this command after profile creation.
+    trigger:
+        showSpawnChoice(player)
+
+# -------------------------------------------------------
+# Handle clicks inside the spawn-choice GUI
+# -------------------------------------------------------
+on inventory click:
+    if name of player's current inventory is {@gui-title}:
+        cancel event
+
+        set {_slot} to event-slot
+
+        # Ewoki Village (slot 11)
+        if {_slot} is 11:
+            close player's inventory
+            spawnAtEwoki(player)
+
+        # Random Teleport (slot 15)
+        else if {_slot} is 15:
+            close player's inventory
+            spawnRandom(player)

@@ -316,7 +316,7 @@ script:
   # MythicLib script ran when a player creates a new profile.
   profile-create:
     mechanics:
-      - 'tell{format="&eProfile created. Have fun!"}'
+      - 'tell{format="&eProfile created! Run &b/spawnchoice &eto pick your starting location: &aEwoki Village &eor a &eRandom Teleport&e."}'
 
   # MythicLib script ran when a player logs in (before profile selection)
   # or just after a player leaves their current profile
