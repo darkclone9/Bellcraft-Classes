@@ -386,3 +386,65 @@ All variables are automatically cleaned up when the election ends or is cancelle
 3. **Cleric-divinity tree**: The missing stat nodes were fully recreated based on the Cleric class theme (healing, mana, health, armor). The max-point-spent value (30) was kept as-is.
 4. **GUI slots**: Slots 40 and 41 were confirmed empty (not used by any existing GUI items).
 5. **`skill-tree` function name**: The correct MMOCore built-in function names are `skills` (opens skill list menu) and `skill-tree` (opens skill tree menu). These are the function IDs registered in MMOCore's ProfileGUI handler. The `command{format="..."}` syntax used previously is not valid for this GUI type and was the root cause of the buttons doing nothing when clicked. The `skill_shop_button` in `skill-list.yml` was also corrected to use `item`/`slots` field names and `function: skill-tree`.
+
+---
+
+## 7. New Player / New Character Spawn System
+
+### What Changed
+
+- **New file**: `Skript/scripts/new-player-spawn.sk` — spawn-choice GUI for new players and new characters.
+- **Modified**: `MMOProfiles/config.yml` — updated `profile-create` script to prompt players to run `/spawnchoice`.
+
+### How It Works
+
+1. **Brand-new players** (first time ever joining the server) automatically see a spawn-choice GUI 3 seconds after they first load in.
+2. **New profiles / characters** (existing players who created a new MMOProfiles character) receive a chat message on profile creation telling them to run `/spawnchoice`.
+3. The GUI presents two options:
+   - **Ewoki Village** (emerald block) – safe starting town; teleports to the configured coordinates.
+   - **Random Teleport** (compass) – dropped at a random surface location within a configurable radius.
+
+### Command
+
+| Command | Permission | Description |
+|---------|-----------|-------------|
+| `/spawnchoice` | `bellcraft.spawnchoice` | Open the spawn-choice GUI at any time |
+
+### Configuration (top of `new-player-spawn.sk`)
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `ewoki-world` | `world` | World name for Ewoki Village |
+| `ewoki-x` / `ewoki-y` / `ewoki-z` | 239 / 63 / 208 | Ewoki Village coordinates |
+| `random-radius` | 3000 | Max random teleport distance (blocks from origin) |
+
+### Deployment
+
+1. Copy `Skript/scripts/new-player-spawn.sk` → `plugins/Skript/scripts/new-player-spawn.sk`.
+2. Copy updated `MMOProfiles/config.yml` → `plugins/MMOProfiles/config.yml`.
+3. Run `/skript reload new-player-spawn` and `/mmoprofiles reload`.
+4. Grant `bellcraft.spawnchoice` to the `default` LuckPerms group so all players can use `/spawnchoice` after creating a new profile: `lp group default permission set bellcraft.spawnchoice true`.
+
+---
+
+## 8. Enchanting Table XP Debuff
+
+### What Changed
+
+- **New file**: `Skript/scripts/enchanting-xp-debuff.sk` — halves the vanilla XP level cost when using an enchanting table.
+
+### How It Works
+
+Listens to the `on enchant` Skript event (fires when a player enchants an item). The configured cost multiplier (default `0.5`) is applied to the original XP level cost; the result is floored to a whole number and clamped to a minimum of 1 level.
+
+### Configuration (top of `enchanting-xp-debuff.sk`)
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `cost-multiplier` | `0.5` | Fraction of normal XP cost to charge (0.5 = half price) |
+| `min-cost` | `1` | Minimum XP levels always charged |
+
+### Deployment
+
+1. Copy `Skript/scripts/enchanting-xp-debuff.sk` → `plugins/Skript/scripts/enchanting-xp-debuff.sk`.
+2. Run `/skript reload enchanting-xp-debuff` (or restart the server).

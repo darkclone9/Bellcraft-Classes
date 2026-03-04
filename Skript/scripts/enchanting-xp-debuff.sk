@@ -1,0 +1,24 @@
+# ============================================================
+#  Enchanting Table XP Debuff  –  Bellcraft
+#  Requires: Skript 2.7+
+#
+#  Reduces the vanilla XP level cost charged when a player
+#  enchants an item at an enchanting table.
+#
+#  The cost multiplier is configurable below.
+#  A multiplier of 0.5 halves the normal cost (default).
+#  The minimum cost is always 1 level to keep the mechanic
+#  consistent with vanilla behaviour.
+# ============================================================
+
+options:
+    # Fraction of the normal XP cost to charge (0.5 = half price)
+    cost-multiplier: 0.5
+    # Minimum XP levels charged regardless of multiplier
+    min-cost: 1
+
+on enchant:
+    set {_original} to event-experience-cost
+    set {_reduced} to floor({_original} * {@cost-multiplier})
+    set {_final} to max({@min-cost}, {_reduced})
+    set event-experience-cost to {_final}
