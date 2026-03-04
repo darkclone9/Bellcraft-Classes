@@ -1,0 +1,136 @@
+# ============================================================
+#  Home & Back Teleport System  –  Bellcraft
+#  Requires: Skript 2.7+
+#
+#  Commands:
+#   • /home       – Teleport to your set home after a 3-second warmup.
+#   • /sethome    – Set your home to your current location.
+#   • /back       – Teleport to your last death or prior location
+#                   after a 3-second warmup.
+#   • /return     – Alias for /back.
+#
+#  Warmup: If the player moves or takes damage during the 3-second
+#          countdown, the teleport is cancelled.
+# ============================================================
+
+options:
+    prefix:  "&8[&b&lBellcraft&8] &7"
+    warmup:  3
+
+# -------------------------------------------------------
+# Store the player's location at death so /back can return
+# them to where they died
+# -------------------------------------------------------
+on death of player:
+    set {back::location::%player's uuid%} to player's location
+
+# -------------------------------------------------------
+# Cancel a pending warmup teleport if the player takes damage
+# -------------------------------------------------------
+on damage of player:
+    set {_uuid} to victim's uuid
+    if {teleport::pending::%{_uuid}%} is true:
+        delete {teleport::pending::%{_uuid}%}
+        send "{@prefix}&cTeleport cancelled — you took damage!" to victim
+
+# -------------------------------------------------------
+# Shared warmup + teleport function.
+# Sends a countdown, then teleports if the player has not moved
+# or taken damage. {_dest} is the destination location.
+# -------------------------------------------------------
+function doWarmupTeleport(p: player, dest: location, label: text):
+    set {_uuid}   to {_p}'s uuid
+    set {_startX} to x coordinate of {_p}'s location
+    set {_startY} to y coordinate of {_p}'s location
+    set {_startZ} to z coordinate of {_p}'s location
+
+    # Mark as pending so the damage event handler can cancel it
+    set {teleport::pending::%{_uuid}%} to true
+
+    send "{@prefix}&eTeleporting to &f%{_label}%&e in &f{@warmup}&e seconds. Don't move or take damage!" to {_p}
+
+    wait {@warmup} seconds
+
+    # Check if still pending (damage handler clears the flag on hit)
+    if {teleport::pending::%{_uuid}%} is not true:
+        stop
+
+    delete {teleport::pending::%{_uuid}%}
+
+    # Check if the player moved (any coordinate change counts as movement)
+    if (x coordinate of {_p}'s location is not {_startX}) or (y coordinate of {_p}'s location is not {_startY}) or (z coordinate of {_p}'s location is not {_startZ}):
+        send "{@prefix}&cTeleport cancelled — you moved!" to {_p}
+        stop
+
+    teleport {_p} to {_dest}
+    send "{@prefix}&aTeleported to &2%{_label}%&a!" to {_p}
+    play sound "entity.enderman.teleport" at {_p}
+
+# -------------------------------------------------------
+# /sethome – save the player's current location as home
+# -------------------------------------------------------
+command /sethome:
+    description: Set your home to your current location.
+    permission: bellcraft.home
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    trigger:
+        set {home::location::%player's uuid%} to player's location
+        send "{@prefix}&aHome set to your current location." to player
+        play sound "block.amethyst_block.chime" at player
+
+# -------------------------------------------------------
+# /home – teleport to set home with a 3-second warmup
+# -------------------------------------------------------
+command /home:
+    description: Teleport to your home after a 3-second warmup.
+    permission: bellcraft.home
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    trigger:
+        if {teleport::pending::%player's uuid%} is true:
+            send "{@prefix}&cYou already have a teleport pending!" to player
+            stop
+        if {home::location::%player's uuid%} is not set:
+            send "{@prefix}&cYou have not set a home yet. Use &f/sethome&c to set one." to player
+            stop
+        set {_dest} to {home::location::%player's uuid%}
+        # Save current location now so the player can /back after arriving home
+        set {back::location::%player's uuid%} to player's location
+        doWarmupTeleport(player, {_dest}, "home")
+
+# -------------------------------------------------------
+# /back – teleport to last death or prior location with a 3-second warmup
+# -------------------------------------------------------
+command /back:
+    description: Teleport to your last death or prior location after a 3-second warmup.
+    permission: bellcraft.back
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    trigger:
+        if {teleport::pending::%player's uuid%} is true:
+            send "{@prefix}&cYou already have a teleport pending!" to player
+            stop
+        if {back::location::%player's uuid%} is not set:
+            send "{@prefix}&cNo previous location found." to player
+            stop
+        set {_dest} to {back::location::%player's uuid%}
+        # Save current location now so the player can /back again after arriving
+        set {back::location::%player's uuid%} to player's location
+        doWarmupTeleport(player, {_dest}, "last location")
+
+# -------------------------------------------------------
+# /return – alias for /back
+# -------------------------------------------------------
+command /return:
+    description: Teleport to your last death or prior location after a 3-second warmup.
+    permission: bellcraft.back
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    trigger:
+        if {teleport::pending::%player's uuid%} is true:
+            send "{@prefix}&cYou already have a teleport pending!" to player
+            stop
+        if {back::location::%player's uuid%} is not set:
+            send "{@prefix}&cNo previous location found." to player
+            stop
+        set {_dest} to {back::location::%player's uuid%}
+        # Save current location now so the player can /back again after arriving
+        set {back::location::%player's uuid%} to player's location
+        doWarmupTeleport(player, {_dest}, "last location")
