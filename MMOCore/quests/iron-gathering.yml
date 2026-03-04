@@ -1,0 +1,29 @@
+
+# Display options
+name: 'Iron Veins'
+lore:
+- 'The blacksmith needs iron ore to craft'
+- 'weapons and tools. Head into the mines'
+- 'and bring back what you find!'
+- ''
+- '&eRewards:'
+- '&7► 80 EXP'
+- '&7► 5 Gold Coins'
+
+# Quests the player must finish
+# in order to unlock this one.
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=IRON_ORE;amount=20}'
+        lore: 'Mine 20 iron ore.'
+        triggers:
+        - message{format="&aBlacksmith> &fExcellent work! This iron will serve us well."}
+        - sound{sound=ENTITY_EXPERIENCE_ORB_PICKUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 5"}
+        - 'experience{amount=80}'

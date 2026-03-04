@@ -1,0 +1,30 @@
+
+# Display options
+name: 'Dimensional Rift'
+lore:
+- 'Endermen have been teleporting into the'
+- 'village and stealing blocks from buildings.'
+- 'Track them down and drive them away!'
+- ''
+- '&eRewards:'
+- '&7► 280 EXP'
+- '&7► 28 Gold Coins'
+
+level-req:
+    main: 10
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=ENDERMAN;amount=8}'
+        lore: 'Kill 8 endermen.'
+        triggers:
+        - message{format="&aVillage Elder> &fOur buildings are safe once more. Well done!"}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 28"}
+        - 'experience{amount=280}'

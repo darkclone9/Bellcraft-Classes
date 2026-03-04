@@ -1,0 +1,30 @@
+
+# Display options
+name: 'The Gilded Path'
+lore:
+- 'Gold is worth more than just coin.'
+- 'A traveling alchemist needs gold ingots'
+- 'for their experiments. Mine the ore!'
+- ''
+- '&eRewards:'
+- '&7► 150 EXP'
+- '&7► 15 Gold Coins'
+
+level-req:
+    main: 5
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=GOLD_ORE;amount=15}'
+        lore: 'Mine 15 gold ore.'
+        triggers:
+        - message{format="&aAlchemist> &fSplendid! This gold will fuel my greatest work yet."}
+        - sound{sound=ENTITY_EXPERIENCE_ORB_PICKUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 15"}
+        - 'experience{amount=150}'
