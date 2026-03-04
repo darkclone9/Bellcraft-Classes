@@ -19,7 +19,7 @@
 
 options:
     gui-title:       "&8&lChoose Your Starting Location"
-    prefix:          "&8[&b&lBellcraft&8] &7"
+    prefix:          &8[&b&lBellcraft&8] &7
     ewoki-world:     "world"
     ewoki-x:         239
     ewoki-y:         63
@@ -39,34 +39,33 @@ function showSpawnChoice(p: player):
 
     # Slot 11 – Ewoki Village
     set slot 11 of {_inv} to emerald block named "&a&lEwoki Village" with lore "&7Spawn safely in Ewoki Village,||&7the welcoming home of new adventurers."
-
     # Slot 15 – Random Teleport
     set slot 15 of {_inv} to compass named "&e&lRandom Teleport" with lore "&7Be dropped at a random location||&7somewhere out in the world.||&c&oBring supplies — it can be dangerous!"
-
-    open {_inv} to {p}
+    open {_inv} to {_p}
 
 # -------------------------------------------------------
 # Teleport the player to Ewoki Village
 # -------------------------------------------------------
 function spawnAtEwoki(p: player):
-    teleport {p} to location({@ewoki-x}, {@ewoki-y}, {@ewoki-z}, world named {@ewoki-world})
-    send "{@prefix}&aWelcome to &2Ewoki Village&a! Safe travels, adventurer." to {p}
-    play sound "entity.player.levelup" at {p}
+    teleport {_p} to location({@ewoki-x}, {@ewoki-y}, {@ewoki-z}, world named {@ewoki-world})
+    send "{@prefix}&aWelcome to &2Ewoki Village&a! Safe travels, adventurer." to {_p}
+    play sound "entity.player.levelup" at {_p}
 
 # -------------------------------------------------------
 # Teleport the player to a random overworld location
 # -------------------------------------------------------
 function spawnRandom(p: player):
     set {_r} to {@random-radius}
-    set {_x} to random integer from -{_r} to {_r}
-    set {_z} to random integer from -{_r} to {_r}
+    set {_minR} to {_r} * -1
+    set {_x} to a random integer between {_minR} and {_r}
+    set {_z} to a random integer between {_minR} and {_r}
     # Find the highest solid block so we don't spawn inside terrain
     # (y=256 is used as a reference; highest block at only needs x and z)
     set {_surface} to highest block at location({_x}, 256, {_z}, world named {@ewoki-world})
     set {_y} to y coordinate of {_surface} + 1
-    teleport {p} to location({_x}, {_y}, {_z}, world named {@ewoki-world})
-    send "{@prefix}&eTeleported to a random location! Good luck out there." to {p}
-    play sound "entity.enderman.teleport" at {p}
+    teleport {_p} to location({_x}, {_y}, {_z}, world named {@ewoki-world})
+    send "{@prefix}&eTeleported to a random location! Good luck out there." to {_p}
+    play sound "entity.enderman.teleport" at {_p}
 
 # -------------------------------------------------------
 # Trigger spawn-choice for brand-new players automatically
