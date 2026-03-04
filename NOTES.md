@@ -229,6 +229,51 @@ storage backend) and survive server restarts with no additional setup.
 
 ---
 
+### 5. Ranks GUI & Town Mayor LuckPerms Group
+
+#### What Changed
+
+- **New file**: `LuckPerms/groups/town_mayor.yml` — LuckPerms group definition for the Town Mayor rank. Grants all relevant Towny mayor permissions and the `&6[Mayor]` chat prefix at weight 100.
+- **New file**: `GUIPlus/CustomGuis/ranks.yml` — A GUIPlus ranks info menu accessible via `/ranks`. Displays all server ranks (Default and Town Mayor) with descriptions and perk lists.
+- **Modified**: `GUIPlus/CustomGuis/profile.yml` — Added a **Ranks** button (GOLDEN_HELMET, slot 43, Row 5) that opens the ranks GUI via `gui open ranks %player%`.
+
+#### LuckPerms: Town Mayor Group
+
+| Field | Value |
+|-------|-------|
+| Group name | `town_mayor` |
+| File | `LuckPerms/groups/town_mayor.yml` |
+| Prefix | `&6[&lMayor&6]&r` at weight 100 |
+| Permissions | All `towny.command.town.*` mayor commands, `towny.town.mayor`, `towny.town.spawn.others` |
+
+To assign a player the Mayor rank in-game:
+```
+/lp user <player> parent add town_mayor
+```
+To remove:
+```
+/lp user <player> parent remove town_mayor
+```
+
+#### Ranks GUI Layout (3 rows, 27 slots)
+
+| Slot | Item | Contents |
+|------|------|----------|
+| 0–8 | Gold Block | Top border |
+| 10 | Stone Sword | Default rank info |
+| 12 | Golden Helmet | Town Mayor rank info |
+| 22 | Arrow | Close button |
+| Other | Gold Block | Border filler |
+
+#### Deployment
+
+1. Copy `LuckPerms/groups/town_mayor.yml` → `plugins/LuckPerms/groups/town_mayor.yml` and run `/lp importdata` or restart.
+2. Copy `GUIPlus/CustomGuis/ranks.yml` → `plugins/GUIPlus/CustomGuis/ranks.yml`.
+3. Run `/gui reload` to load the new ranks GUI.
+4. The `/ranks` command and the **Ranks** button in `/p` (slot 43) will now open the ranks info menu.
+
+---
+
 ## Assumptions Made
 
 1. **Skill unlock trigger syntax**: Used `unlock_skill{skill=SKILL_ID}` consistent with the existing Technomancer and Envoy skill trees. The alternative `skill{skill="ID";level=1}` seen in the broken Cleric tree was replaced with `unlock_skill` for consistency.

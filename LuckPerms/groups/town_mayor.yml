@@ -1,0 +1,51 @@
+# LuckPerms Group: town_mayor
+# Town Mayors receive this group when they are assigned as the mayor of a Towny town.
+# Copy this file to: plugins/LuckPerms/groups/town_mayor.yml
+# Then run: /lp importdata   OR restart the server with LuckPerms YAML storage enabled.
+#
+# To assign a player to this group:
+#   /lp user <player> parent add town_mayor
+# To remove:
+#   /lp user <player> parent remove town_mayor
+
+name: town_mayor
+permissions:
+  - permission: towny.town.mayor
+    value: true
+    contexts: {}
+  - permission: towny.town.spawn.others
+    value: true
+    contexts: {}
+  - permission: towny.command.town.claim
+    value: true
+    contexts: {}
+  - permission: towny.command.town.unclaim
+    value: true
+    contexts: {}
+  - permission: towny.command.town.invite
+    value: true
+    contexts: {}
+  - permission: towny.command.town.kick
+    value: true
+    contexts: {}
+  - permission: towny.command.town.set.perm
+    value: true
+    contexts: {}
+  - permission: towny.command.town.set.name
+    value: true
+    contexts: {}
+  - permission: towny.command.town.set.spawn
+    value: true
+    contexts: {}
+  - permission: towny.command.town.deposit
+    value: true
+    contexts: {}
+  - permission: towny.command.town.withdraw
+    value: true
+    contexts: {}
+  - permission: meta.prefix.100.&6[&lMayor&6]&r
+    value: true
+    contexts: {}
+  - permission: weight.100
+    value: true
+    contexts: {}
