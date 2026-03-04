@@ -109,7 +109,7 @@ function armorAllowed(p: player, i: item) :: boolean:
 # -------------------------------------------------------
 on inventory click:
     # ── Case 1: shift-click ─ armor auto-equips to matching slot ──
-    if event-click type is shift left click or shift right click:
+    if event-click type is shift left click or event-click type is shift right click:
         set {_item} to event-item
         if {_item} is set:
             if isArmorItem({_item}) is true:
@@ -126,7 +126,7 @@ on inventory click:
     if {_slot} is between 5 and 8:
         set {_in-armor-slot} to true
     if {_in-armor-slot} is true:
-        set {_cursor} to cursor item of player
+        set {_cursor} to event-cursor-item
         if {_cursor} is set:
             if isArmorItem({_cursor}) is true:
                 if armorAllowed(player, {_cursor}) is false:
