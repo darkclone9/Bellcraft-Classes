@@ -40,7 +40,45 @@ Standalone MythicLib skills added to class `skills:` sections (with `unlocked-by
 
 > Classes that already had their custom skills registered (Cleric, Ranger, Paladin, Sorcerer, Envoy) were not changed.
 
-### 3. Profile GUI – `/p` Menu (GUIPlus replacement)
+### 3. GUI Fixes
+
+#### `GUIPlus/CustomGuis/profile.yml` – **FIXED**
+All six clickable action buttons used the `mmocore <command>` prefix (which invokes the
+admin-only `/mmocore` command), causing them to silently fail for normal players.
+Fixed by removing the `mmocore` prefix so each button dispatches the correct player command:
+
+| Button | Was (broken) | Now (correct) |
+|--------|-------------|---------------|
+| Party | `mmocore party` | `party` |
+| Attributes | `mmocore attributes` | `attributes` |
+| Quests | `mmocore quests` | `quests` |
+| Abilities | `mmocore skills` | `skills` |
+| Skill Tree | `mmocore skilltrees` | `skilltrees` |
+| Change Class | `mmocore class` | `class` |
+
+#### `MMOCore/gui/skill-list.yml` – **FIXED**
+The `skill_shop_button` used `[player] mmocore skilltree` (non-existent command) instead of
+`[player] skilltrees`. Fixed to use the registered MMOCore `skilltrees` command.
+
+---
+
+### 4. Class Armor Restrictions
+
+New Skript file `Skript/scripts/class-armor-restrictions.sk` enforces armor tier limits
+per class whenever a player equips armor via inventory interaction.
+
+| Class group | Classes | Restriction |
+|-------------|---------|-------------|
+| Iron-limited | Cleric, Mystic, Sorcerer | Iron armor and below only (diamond & netherite blocked) |
+| One-netherite | Ranger, Envoy, Operative | At most 1 netherite piece total |
+| Unrestricted | Soldier, Paladin | Full netherite allowed |
+
+**Dependencies:** Skript 2.7+, PlaceholderAPI with MMOCore expansion, and a
+PlaceholderAPI-Skript bridge (e.g. `skript-placeholders`).
+
+---
+
+### 5. Profile GUI – `/p` Menu (GUIPlus replacement)
 
 The MMOCore built-in profile GUI (`MMOCore/gui/player-stats.yml`) had persistent button bugs where click handlers silently failed. To work around these MMOCore GUI issues, the `/p` menu has been **replaced with a GUIPlus custom GUI**.
 

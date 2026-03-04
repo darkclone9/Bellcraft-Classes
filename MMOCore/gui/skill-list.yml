@@ -16,7 +16,7 @@ items:
       - '&7and unlock brand new abilities!'
     commands:
       - '[close]'
-      - '[player] mmocore skilltree'
+      - '[player] skilltrees'
   skill:
     slots: [ 10,11,12,19,20,21,28,29,30,37,38,39 ]
     function: skill
