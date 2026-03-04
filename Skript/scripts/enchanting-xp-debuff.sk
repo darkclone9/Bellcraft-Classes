@@ -17,8 +17,12 @@ options:
     # Minimum XP levels charged regardless of multiplier
     min-cost: 1
 
-on enchant:
-    set {_original} to event-experience-cost
-    set {_reduced} to floor({_original} * {@cost-multiplier})
-    set {_final} to max({@min-cost}, {_reduced})
-    set event-experience-cost to {_final}
+# NOTE: The lines below require Skript 2.9+ or the SkBee addon for
+# event-experience-cost support. Uncomment once the server has a
+# compatible build.
+#
+# on enchant:
+#     set {_original} to event-experience-cost
+#     set {_reduced} to floor({_original} * {@cost-multiplier})
+#     set {_final} to max({@min-cost}, {_reduced})
+#     set event-experience-cost to {_final}

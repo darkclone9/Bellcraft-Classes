@@ -22,7 +22,7 @@ options:
 # them to where they died
 # -------------------------------------------------------
 on death of player:
-    set {back::location::%player's uuid%} to player's location
+    set {back::location::%victim's uuid%} to victim's location
 
 # -------------------------------------------------------
 # Cancel a pending warmup teleport if the player takes damage

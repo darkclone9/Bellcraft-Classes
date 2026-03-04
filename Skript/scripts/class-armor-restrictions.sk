@@ -14,7 +14,7 @@
 # ============================================================
 
 options:
-    prefix: "&8[&b&lBellcraft&8] &7"
+    prefix: &8[&b&lBellcraft&8] &7
 
 # -------------------------------------------------------
 # Helper: is the item ANY armor piece?
@@ -98,7 +98,7 @@ function armorAllowed(p: player, i: item) :: boolean:
 # -------------------------------------------------------
 on inventory click:
     # ── Case 1: shift-click ─ armor auto-equips to matching slot ──
-    if event-click type is shift left click or event-click type is shift right click:
+    if event-click type is shift left click or shift right click:
         set {_item} to event-item
         if {_item} is set:
             if isArmorItem({_item}) is true:
@@ -109,7 +109,12 @@ on inventory click:
 
     # ── Case 2: cursor drag into an armor slot ────────────────────
     set {_slot} to event-slot
-    if {_slot} is between 36 and 39 or {_slot} is between 5 and 8:
+    set {_in-armor-slot} to false
+    if {_slot} is between 36 and 39:
+        set {_in-armor-slot} to true
+    if {_slot} is between 5 and 8:
+        set {_in-armor-slot} to true
+    if {_in-armor-slot} is true:
         set {_cursor} to cursor item of player
         if {_cursor} is set:
             if isArmorItem({_cursor}) is true:
