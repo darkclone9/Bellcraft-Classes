@@ -1,0 +1,33 @@
+
+# Display options
+name: 'Skeleton Army'
+lore:
+- 'An army of skeletons has risen from'
+- 'the ancient battlefields. Only a true'
+- 'warrior can defeat their endless ranks!'
+- ''
+- '&eRewards:'
+- '&7► 240 EXP'
+- '&7► 24 Gold Coins'
+- '&7► Cutlass'
+
+level-req:
+    main: 8
+
+parent:
+- 'night-watch'
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=SKELETON;amount=30}'
+        lore: 'Kill 30 skeletons.'
+        triggers:
+        - message{format="&aCommander> &fThe skeleton army is shattered! Take this blade as your reward."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 24"}
+        - 'mmoitem{type=SWORD;id=CUTLASS}'
+        - 'experience{amount=240}'

@@ -1,0 +1,33 @@
+
+# Display options
+name: 'Witch Trial'
+lore:
+- 'The witches have returned in force,'
+- 'brewing deadly concoctions. End their'
+- 'reign of terror once and for all!'
+- ''
+- '&eRewards:'
+- '&7► 260 EXP'
+- '&7► 26 Gold Coins'
+- '&7► Large Health Potion'
+
+level-req:
+    main: 9
+
+parent:
+- 'swamp-clearance'
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=WITCH;amount=15}'
+        lore: 'Kill 15 witches.'
+        triggers:
+        - message{format="&aAlchemist> &fThe coven is broken! Take this potion — you earned it."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 26"}
+        - 'mmoitem{type=CONSUMABLE;id=LARGE_HEALTH_POTION}'
+        - 'experience{amount=260}'

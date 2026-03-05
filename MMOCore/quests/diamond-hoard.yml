@@ -1,0 +1,32 @@
+
+# Display options
+name: 'Diamond Hoard'
+lore:
+- 'Legends speak of a massive diamond vein'
+- 'deep underground. Find it and claim the'
+- 'riches for yourself!'
+- ''
+- '&eRewards:'
+- '&7► 450 EXP'
+- '&7► 45 Gold Coins'
+- '&7► Rare Weapon Essence'
+
+level-req:
+    main: 12
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=DIAMOND_ORE;amount=20}'
+        lore: 'Mine 20 diamond ore.'
+        triggers:
+        - message{format="&aMiner> &fA king's ransom in diamonds! You are a legend of the deep."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 45"}
+        - 'mmoitem{type=MATERIAL;id=RARE_WEAPON_ESSENCE}'
+        - 'experience{amount=450}'

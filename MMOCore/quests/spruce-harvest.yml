@@ -1,0 +1,27 @@
+
+# Display options
+name: 'Spruce Harvest'
+lore:
+- 'The builders guild needs sturdy spruce'
+- 'wood for their latest project. Head to'
+- 'the taiga and start chopping!'
+- ''
+- '&eRewards:'
+- '&7► 75 EXP'
+- '&7► 5 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=SPRUCE_LOG;amount=20}'
+        lore: 'Mine 20 spruce logs.'
+        triggers:
+        - message{format="&aBlacksmith> &fSturdy spruce! The guild will be pleased with this haul."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 5"}
+        - 'experience{amount=75}'

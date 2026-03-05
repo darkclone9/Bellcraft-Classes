@@ -1,0 +1,27 @@
+
+# Display options
+name: 'Creeper Cleanup'
+lore:
+- 'Creepers are blowing holes in the'
+- 'village walls! Hunt them down before'
+- 'they destroy everything!'
+- ''
+- '&eRewards:'
+- '&7► 80 EXP'
+- '&7► 6 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=CREEPER;amount=6}'
+        lore: 'Kill 6 creepers.'
+        triggers:
+        - message{format="&aGuard Captain> &fNo more explosions! The walls are safe, thanks to you."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 6"}
+        - 'experience{amount=80}'
