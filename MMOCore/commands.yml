@@ -46,6 +46,7 @@ upgrade:
   main: upgrade
   aliases:
   - u
+  - skills
   description: Spend skill points to upgrade your skills
   permission: mmocore.skills
   verbose: ALL

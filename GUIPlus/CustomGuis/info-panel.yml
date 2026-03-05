@@ -259,7 +259,7 @@ scenes:
         item: BARRIER
         amount: 1
         click-events:
-          c0c0c0c0-0000-0049-8000-NAVBUTTON0001:
+          c0c0c0c0-0000-0049-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
@@ -293,7 +293,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0000-0053-8000-NAVBUTTON0001:
+          c0c0c0c0-0000-0053-8000-000000000001:
             type: change-scene
             scene: 1
             clickType: NONE
@@ -624,7 +624,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0001-0045-8000-NAVBUTTON0001:
+          c0c0c0c0-0001-0045-8000-000000000001:
             type: change-scene
             scene: 0
             clickType: NONE
@@ -659,7 +659,7 @@ scenes:
         item: BARRIER
         amount: 1
         click-events:
-          c0c0c0c0-0001-0049-8000-NAVBUTTON0001:
+          c0c0c0c0-0001-0049-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
@@ -693,7 +693,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0001-0053-8000-NAVBUTTON0001:
+          c0c0c0c0-0001-0053-8000-000000000001:
             type: change-scene
             scene: 2
             clickType: NONE
@@ -985,7 +985,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0002-0045-8000-NAVBUTTON0001:
+          c0c0c0c0-0002-0045-8000-000000000001:
             type: change-scene
             scene: 1
             clickType: NONE
@@ -1020,7 +1020,7 @@ scenes:
         item: BARRIER
         amount: 1
         click-events:
-          c0c0c0c0-0002-0049-8000-NAVBUTTON0001:
+          c0c0c0c0-0002-0049-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
@@ -1054,7 +1054,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0002-0053-8000-NAVBUTTON0001:
+          c0c0c0c0-0002-0053-8000-000000000001:
             type: change-scene
             scene: 3
             clickType: NONE
@@ -1307,7 +1307,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0003-0045-8000-NAVBUTTON0001:
+          c0c0c0c0-0003-0045-8000-000000000001:
             type: change-scene
             scene: 2
             clickType: NONE
@@ -1342,7 +1342,7 @@ scenes:
         item: BARRIER
         amount: 1
         click-events:
-          c0c0c0c0-0003-0049-8000-NAVBUTTON0001:
+          c0c0c0c0-0003-0049-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
@@ -1376,7 +1376,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0003-0053-8000-NAVBUTTON0001:
+          c0c0c0c0-0003-0053-8000-000000000001:
             type: change-scene
             scene: 4
             clickType: NONE
@@ -1691,7 +1691,7 @@ scenes:
         item: ARROW
         amount: 1
         click-events:
-          c0c0c0c0-0004-0045-8000-NAVBUTTON0001:
+          c0c0c0c0-0004-0045-8000-000000000001:
             type: change-scene
             scene: 3
             clickType: NONE
@@ -1726,7 +1726,7 @@ scenes:
         item: BARRIER
         amount: 1
         click-events:
-          c0c0c0c0-0004-0049-8000-NAVBUTTON0001:
+          c0c0c0c0-0004-0049-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
