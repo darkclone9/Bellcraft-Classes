@@ -141,6 +141,8 @@ Created a reference/documentation file mapping every custom skill to:
 | Skill menu GUI config | `MMOCore/gui/skill-list.yml` |
 | Skill tree GUI config | `MMOCore/gui/skill-tree.yml` |
 | Skill mapping reference | `config/skills/mapping.yml` |
+| Info Panel GUI (GUIPlus) | `GUIPlus/CustomGuis/info-panel.yml` |
+| Quest configs (66 total) | `MMOCore/quests/*.yml` |
 
 ---
 
@@ -448,3 +450,91 @@ Listens to the `on enchant` Skript event (fires when a player enchants an item).
 
 1. Copy `Skript/scripts/enchanting-xp-debuff.sk` → `plugins/Skript/scripts/enchanting-xp-debuff.sk`.
 2. Run `/skript reload enchanting-xp-debuff` (or restart the server).
+
+---
+
+## Interactive Info Panel GUI
+
+### What it does
+
+A multi-page GUIPlus menu accessible via `/info` that acts as a server information panel for new and returning players. Designed to be bound to lobby NPCs using Citizens traits.
+
+| Page | Title | Content |
+|------|-------|---------|
+| 1 | Welcome & Server Overview | Introduction, getting started tips, key features, navigation help |
+| 2 | Classes & Combat | All 9 classes with roles and resource types, combat tips |
+| 3 | Professions & Economy | All 8 professions, economy/gold system |
+| 4 | Quests & Progression | Quest system, leveling, skill trees, rewards, exploration, boss fights |
+| 5 | Commands & Tips | All player commands, pro tips |
+
+### File location
+
+`GUIPlus/CustomGuis/info-panel.yml` → copy to `plugins/GUIPlus/CustomGuis/info-panel.yml`
+
+### NPC Binding (Citizens)
+
+To bind the info panel to a lobby NPC:
+1. Select the NPC: `/npc select`
+2. Add the command trait: `/npc command add info`
+3. Players right-clicking the NPC will open the info panel
+
+### Deployment
+
+1. Copy `GUIPlus/CustomGuis/info-panel.yml` → `plugins/GUIPlus/CustomGuis/`
+2. Run `/gui reload` to load the new GUI.
+3. Test with `/info` in-game.
+
+---
+
+## Scalable Quest System (40 New Quests)
+
+### What it does
+
+Adds 40 progressive quests on top of the existing 26, for a total of 66 quests. Quests are organized into 4 difficulty tiers with a "higher risk, higher reward" philosophy.
+
+### Tier Breakdown
+
+| Tier | Quests | Level Req | Reward Range | Categories |
+|------|--------|-----------|-------------|------------|
+| Beginner | 1–10 | None – 3 | 50–120 XP, 3–10 Gold | Simple kills, basic gathering |
+| Intermediate | 11–20 | 5–9 | 150–260 XP, 15–26 Gold, common MMOItems | Multi-step, mixed objectives |
+| Advanced | 21–30 | 10–17 | 350–600 XP, 35–60 Gold, rare MMOItems | Nether, ocean, multi-mob |
+| Expert | 31–40 | 18–30 | 750–2000 XP, 75–200 Gold, legendary MMOItems | Boss fights, epic chains |
+
+### Quest Categories
+
+- **Mob Hunting**: Kill vanilla mobs (zombies, skeletons, spiders, blazes, endermen, wardens, etc.)
+- **Item Gathering**: Mine ores and gather resources (iron, gold, diamond, copper, emerald, etc.)
+- **Boss Fights**: Face wardens, elder guardians, ravagers, and piglin brutes
+- **Multi-Objective**: Combination quests requiring both combat and gathering
+
+### MMOItems Integration
+
+Quest rewards are mapped directly to MMOItems:
+
+| Tier | Example Rewards |
+|------|----------------|
+| Beginner | Gold coins, XP only |
+| Intermediate | STEEL_INGOT, CUTLASS, UNCOMMON_WEAPON_ESSENCE, LARGE_HEALTH_POTION |
+| Advanced | LONG_SWORD, RARE_WEAPON_ESSENCE, LARGE_MANA_POTION, APPLE_OF_DISCORD |
+| Expert | FALCON_BLADE, AMETHYST_SWORD, FROZEN_BLADE, LEGENDARY_WEAPON_ESSENCE, RESTORATION_GEM |
+
+### Quest Chain (Parent Dependencies)
+
+```
+first-blood → night-watch → skeleton-army → nether-vanguard → fortress-assault → brute-force → warden-awakening → warden-revenge → final-reckoning
+                                                                                                                  └→ nether-overlord
+pest-control → spider-nest
+river-fisher → swamp-clearance → witch-trial
+                               └→ night-watch → phantom-slayer → phantom-king
+enderman-stalker → ender-expedition
+guardian-depths → ocean-terror → elder-guardian-hunt → ocean-abyss
+diamond-hoard → ancient-depths
+ravager-rampage → pillager-warlord
+```
+
+### Deployment
+
+1. Copy all new `.yml` files from `MMOCore/quests/` → `plugins/MMOCore/quests/`
+2. Run `/mmocore reload` to load the new quests.
+3. Players can access quests via `/quests` or the profile GUI.
