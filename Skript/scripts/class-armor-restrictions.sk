@@ -51,7 +51,7 @@ function armorAllowed(p: player, i: item) :: boolean:
     return true
 
 on inventory click:
-    if click type is shift left click or click type is shift right click:
+    if "%click type%" contains "shift":
         set {_item} to event-item
         if {_item} is set:
             if isArmorItem({_item}) is true:
