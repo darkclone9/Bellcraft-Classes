@@ -1,0 +1,1764 @@
+id: info-panel
+rows: 6
+type: chest
+title: '&b&lBellcraft &8» &7Server Info'
+commandAlias: info
+commandAliasTarget: DISABLED
+disable-scene-animation: false
+scenes:
+  # ============================================================
+  # Scene 0: Welcome & Server Overview (Page 1/5)
+  # ============================================================
+  '0':
+    delay: 0
+    items:
+      # ==================================================
+      # Row 1: Top border (slots 0-8)
+      # ==================================================
+      '1':
+        slot: 0
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '2':
+        slot: 1
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '3':
+        slot: 2
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '4':
+        slot: 3
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '5':
+        slot: 4
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '6':
+        slot: 5
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '7':
+        slot: 6
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '8':
+        slot: 7
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '9':
+        slot: 8
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 2 (slots 9-17)
+      # ==================================================
+      '10':
+        slot: 9
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '11':
+        slot: 13
+        item: NETHER_STAR
+        amount: 1
+        item-name: '&b&lWelcome to Bellcraft!'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Welcome to an &bMMO RPG &7experience!'
+            - '&7Explore classes, quests, professions,'
+            - '&7towns, and much more.'
+            - ''
+            - '&8Bellcraft is a custom Minecraft server'
+            - '&8with deep progression and community.'
+        item-flags: []
+        unbreakable: false
+      '12':
+        slot: 17
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 3 (slots 18-26)
+      # ==================================================
+      '13':
+        slot: 18
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '14':
+        slot: 20
+        item: COMPASS
+        amount: 1
+        item-name: '&e&lGetting Started'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Pick a class with &e/class'
+            - '&7Check your profile with &e/p'
+            - '&7Upgrade skills with &e/upgrade'
+            - ''
+            - '&8Start your adventure today!'
+        item-flags: []
+        unbreakable: false
+      '15':
+        slot: 22
+        item: BOOK
+        amount: 1
+        item-name: '&a&lKey Features'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7• &f9 Class System'
+            - '&7• &f40+ Quests'
+            - '&7• &fSkill Trees & Abilities'
+            - '&7• &fCustom MMOItems Gear'
+            - '&7• &fProfessions & Crafting'
+            - '&7• &fTowns & Nations'
+            - '&7• &fPvP Mode Toggle'
+        item-flags: []
+        unbreakable: false
+      '16':
+        slot: 24
+        item: OAK_SIGN
+        amount: 1
+        item-name: '&d&lNavigation'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Use the &darrows &7at the bottom'
+            - '&7to browse pages.'
+            - ''
+            - '&7Each page covers a different'
+            - '&7game system.'
+        item-flags: []
+        unbreakable: false
+      '17':
+        slot: 26
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 4 (slots 27-35)
+      # ==================================================
+      '18':
+        slot: 27
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '19':
+        slot: 35
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 5 (slots 36-44)
+      # ==================================================
+      '20':
+        slot: 36
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 44
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 6: Bottom border + Navigation (slots 45-53)
+      # ==================================================
+      # Navigation: Previous Page
+      '22':
+        slot: 45
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '23':
+        slot: 46
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '24':
+        slot: 47
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '25':
+        slot: 48
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Close
+      '26':
+        slot: 49
+        item: BARRIER
+        amount: 1
+        click-events:
+          c0c0c0c0-0000-0049-8000-NAVBUTTON0001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&c&lClose'
+        item-flags: []
+        unbreakable: false
+      '27':
+        slot: 50
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '28':
+        slot: 51
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '29':
+        slot: 52
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Next Page
+      '30':
+        slot: 53
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0000-0053-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 1
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&lNext Page →'
+        item-flags: []
+        unbreakable: false
+  # ============================================================
+  # Scene 1: Classes & Combat (Page 2/5)
+  # ============================================================
+  '1':
+    delay: 0
+    items:
+      # ==================================================
+      # Row 1: Top border (slots 0-8)
+      # ==================================================
+      '1':
+        slot: 0
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '2':
+        slot: 1
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '3':
+        slot: 2
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '4':
+        slot: 3
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '5':
+        slot: 4
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '6':
+        slot: 5
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '7':
+        slot: 6
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '8':
+        slot: 7
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '9':
+        slot: 8
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 2 (slots 9-17)
+      # ==================================================
+      '10':
+        slot: 9
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '11':
+        slot: 11
+        item: IRON_CHESTPLATE
+        amount: 1
+        item-name: '&c&lSoldier'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fTank / Frontline Fighter'
+            - '&7High HP, heavy armor, and'
+            - '&7damage mitigation abilities.'
+            - '&7Resource: &cResolve'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '12':
+        slot: 12
+        item: IRON_SWORD
+        amount: 1
+        item-name: '&b&lOperative'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fStriker / Scout'
+            - '&7Fast attacks, stealth, and'
+            - '&7precision-based combat.'
+            - '&7Resource: &bFocus'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '13':
+        slot: 13
+        item: GOLDEN_CHESTPLATE
+        amount: 1
+        item-name: '&6&lPaladin'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fTank / Holy Knight'
+            - '&7Divine protection, auras,'
+            - '&7and healing abilities.'
+            - '&7Resource: &6Radiance'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '14':
+        slot: 14
+        item: AMETHYST_SHARD
+        amount: 1
+        item-name: '&d&lMystic'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fSupport / Cosmic Caster'
+            - '&7Healing, shields, and'
+            - '&7cosmic manipulation.'
+            - '&7Resource: &dCosmic Energy'
+        item-flags: []
+        unbreakable: false
+      '15':
+        slot: 15
+        item: BLAZE_ROD
+        amount: 1
+        item-name: '&e&lTechnomancer'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fArcane DPS'
+            - '&7High magic damage and'
+            - '&7technological augmentation.'
+            - '&7Resource: &eNanites'
+        item-flags: []
+        unbreakable: false
+      '16':
+        slot: 17
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 3 (slots 18-26)
+      # ==================================================
+      '17':
+        slot: 18
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '18':
+        slot: 20
+        item: BOW
+        amount: 1
+        item-name: '&a&lRanger'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fDPS Ranged / Hunter'
+            - '&7Projectile damage, traps,'
+            - '&7and nature abilities.'
+            - '&7Resource: &aFocus'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '19':
+        slot: 21
+        item: BLAZE_ROD
+        amount: 1
+        item-name: '&c&lSorcerer'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fCaster DPS'
+            - '&7Elemental magic and high'
+            - '&7burst damage spells.'
+            - '&7Resource: &cArcana'
+        item-flags: []
+        unbreakable: false
+      '20':
+        slot: 22
+        item: GOLDEN_APPLE
+        amount: 1
+        item-name: '&b&lCleric'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fSupport / Divine Healer'
+            - '&7Healing, purification, and'
+            - '&7protective blessings.'
+            - '&7Resource: &bDevotion'
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 23
+        item: BOOK
+        amount: 1
+        item-name: '&6&lEnvoy'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fTactician / Commander'
+            - '&7Team buffs, debuffs, and'
+            - '&7strategic battlefield control.'
+            - '&7Resource: &6Influence'
+        item-flags: []
+        unbreakable: false
+      '22':
+        slot: 26
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 4 (slots 27-35)
+      # ==================================================
+      '23':
+        slot: 27
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '24':
+        slot: 31
+        item: DIAMOND_SWORD
+        amount: 1
+        item-name: '&7&lCombat Tips'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Use &e/upgrade &7to level skills.'
+            - '&7Use &e/skilltrees &7for passive bonuses.'
+            - '&7Each class has unique abilities.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '25':
+        slot: 35
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 5 (slots 36-44)
+      # ==================================================
+      '26':
+        slot: 36
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '27':
+        slot: 44
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 6: Bottom border + Navigation (slots 45-53)
+      # ==================================================
+      # Navigation: Previous Page
+      '28':
+        slot: 45
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0001-0045-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 0
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&l← Previous Page'
+        item-flags: []
+        unbreakable: false
+      '29':
+        slot: 46
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '30':
+        slot: 47
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '31':
+        slot: 48
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Close
+      '32':
+        slot: 49
+        item: BARRIER
+        amount: 1
+        click-events:
+          c0c0c0c0-0001-0049-8000-NAVBUTTON0001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&c&lClose'
+        item-flags: []
+        unbreakable: false
+      '33':
+        slot: 50
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '34':
+        slot: 51
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '35':
+        slot: 52
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Next Page
+      '36':
+        slot: 53
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0001-0053-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 2
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&lNext Page →'
+        item-flags: []
+        unbreakable: false
+  # ============================================================
+  # Scene 2: Professions & Economy (Page 3/5)
+  # ============================================================
+  '2':
+    delay: 0
+    items:
+      # ==================================================
+      # Row 1: Top border (slots 0-8)
+      # ==================================================
+      '1':
+        slot: 0
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '2':
+        slot: 1
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '3':
+        slot: 2
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '4':
+        slot: 3
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '5':
+        slot: 4
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '6':
+        slot: 5
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '7':
+        slot: 6
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '8':
+        slot: 7
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '9':
+        slot: 8
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 2 (slots 9-17)
+      # ==================================================
+      '10':
+        slot: 9
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '11':
+        slot: 11
+        item: IRON_PICKAXE
+        amount: 1
+        item-name: '&e&lMining'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Mine ores to level up.'
+            - '&7Higher levels unlock rare drops.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '12':
+        slot: 12
+        item: IRON_AXE
+        amount: 1
+        item-name: '&e&lWoodcutting'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Chop trees for materials and XP.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '13':
+        slot: 13
+        item: IRON_HOE
+        amount: 1
+        item-name: '&e&lFarming'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Grow crops for food'
+            - '&7and consumables.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '14':
+        slot: 14
+        item: FISHING_ROD
+        amount: 1
+        item-name: '&e&lFishing'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Catch fish for unique drops.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '15':
+        slot: 15
+        item: BREWING_STAND
+        amount: 1
+        item-name: '&e&lAlchemy'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Brew custom potions and elixirs.'
+        item-flags: []
+        unbreakable: false
+      '16':
+        slot: 17
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 3 (slots 18-26)
+      # ==================================================
+      '17':
+        slot: 18
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '18':
+        slot: 20
+        item: ANVIL
+        amount: 1
+        item-name: '&e&lSmithing'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Forge and upgrade'
+            - '&7weapons and armor.'
+        item-flags: []
+        unbreakable: false
+      '19':
+        slot: 21
+        item: ENCHANTED_BOOK
+        amount: 1
+        item-name: '&e&lEnchanting'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Enchant gear with powerful effects.'
+        item-flags: []
+        unbreakable: false
+      '20':
+        slot: 22
+        item: FURNACE
+        amount: 1
+        item-name: '&e&lSmelting'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Refine ores into ingots faster.'
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 26
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 4 (slots 27-35)
+      # ==================================================
+      '22':
+        slot: 27
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '23':
+        slot: 31
+        item: GOLD_INGOT
+        amount: 1
+        item-name: '&6&lEconomy'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Earn gold coins from quests and mobs.'
+            - '&7Use &e/deposit &7and &e/withdraw'
+            - '&7to manage your balance.'
+        item-flags: []
+        unbreakable: false
+      '24':
+        slot: 35
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 5 (slots 36-44)
+      # ==================================================
+      '25':
+        slot: 36
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '26':
+        slot: 44
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 6: Bottom border + Navigation (slots 45-53)
+      # ==================================================
+      # Navigation: Previous Page
+      '27':
+        slot: 45
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0002-0045-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 1
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&l← Previous Page'
+        item-flags: []
+        unbreakable: false
+      '28':
+        slot: 46
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '29':
+        slot: 47
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '30':
+        slot: 48
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Close
+      '31':
+        slot: 49
+        item: BARRIER
+        amount: 1
+        click-events:
+          c0c0c0c0-0002-0049-8000-NAVBUTTON0001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&c&lClose'
+        item-flags: []
+        unbreakable: false
+      '32':
+        slot: 50
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '33':
+        slot: 51
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '34':
+        slot: 52
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Next Page
+      '35':
+        slot: 53
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0002-0053-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 3
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&lNext Page →'
+        item-flags: []
+        unbreakable: false
+  # ============================================================
+  # Scene 3: Quests & Progression (Page 4/5)
+  # ============================================================
+  '3':
+    delay: 0
+    items:
+      # ==================================================
+      # Row 1: Top border (slots 0-8)
+      # ==================================================
+      '1':
+        slot: 0
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '2':
+        slot: 1
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '3':
+        slot: 2
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '4':
+        slot: 3
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '5':
+        slot: 4
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '6':
+        slot: 5
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '7':
+        slot: 6
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '8':
+        slot: 7
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '9':
+        slot: 8
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 2 (slots 9-17)
+      # ==================================================
+      '10':
+        slot: 9
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '11':
+        slot: 11
+        item: WRITABLE_BOOK
+        amount: 1
+        item-name: '&a&lQuest System'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&740+ quests with scaling difficulty.'
+            - '&7Type &e/quests &7to browse'
+            - '&7available quests.'
+        item-flags: []
+        unbreakable: false
+      '12':
+        slot: 13
+        item: EXPERIENCE_BOTTLE
+        amount: 1
+        item-name: '&b&lLeveling Up'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Gain XP from mobs, mining, quests.'
+            - '&7Every 4 levels earn skill'
+            - '&7and attribute points.'
+        item-flags: []
+        unbreakable: false
+      '13':
+        slot: 15
+        item: OAK_SAPLING
+        amount: 1
+        item-name: '&e&lSkill Trees'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Each class has a unique skill tree.'
+            - '&7Unlock passives and abilities'
+            - '&7with &e/skilltrees&7.'
+        item-flags: []
+        unbreakable: false
+      '14':
+        slot: 17
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 3 (slots 18-26)
+      # ==================================================
+      '15':
+        slot: 18
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '16':
+        slot: 20
+        item: CHEST
+        amount: 1
+        item-name: '&6&lRewards'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Higher-risk quests grant better loot.'
+            - '&7Earn MMOItems weapons, armor,'
+            - '&7materials, and gold.'
+        item-flags: []
+        unbreakable: false
+      '17':
+        slot: 22
+        item: ENDER_PEARL
+        amount: 1
+        item-name: '&d&lExploration'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Discover waypoints with &e/waypoints&7.'
+            - '&7Travel across the world to'
+            - '&7find new challenges.'
+        item-flags: []
+        unbreakable: false
+      '18':
+        slot: 24
+        item: DRAGON_HEAD
+        amount: 1
+        item-name: '&c&lBoss Fights'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Face powerful bosses in'
+            - '&7endgame quests for'
+            - '&7legendary rewards.'
+        item-flags: []
+        unbreakable: false
+      '19':
+        slot: 26
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 4 (slots 27-35)
+      # ==================================================
+      '20':
+        slot: 27
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 35
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 5 (slots 36-44)
+      # ==================================================
+      '22':
+        slot: 36
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '23':
+        slot: 44
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 6: Bottom border + Navigation (slots 45-53)
+      # ==================================================
+      # Navigation: Previous Page
+      '24':
+        slot: 45
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0003-0045-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 2
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&l← Previous Page'
+        item-flags: []
+        unbreakable: false
+      '25':
+        slot: 46
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '26':
+        slot: 47
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '27':
+        slot: 48
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Close
+      '28':
+        slot: 49
+        item: BARRIER
+        amount: 1
+        click-events:
+          c0c0c0c0-0003-0049-8000-NAVBUTTON0001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&c&lClose'
+        item-flags: []
+        unbreakable: false
+      '29':
+        slot: 50
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '30':
+        slot: 51
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '31':
+        slot: 52
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Next Page
+      '32':
+        slot: 53
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0003-0053-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 4
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&lNext Page →'
+        item-flags: []
+        unbreakable: false
+  # ============================================================
+  # Scene 4: Commands & Tips (Page 5/5)
+  # ============================================================
+  '4':
+    delay: 0
+    items:
+      # ==================================================
+      # Row 1: Top border (slots 0-8)
+      # ==================================================
+      '1':
+        slot: 0
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '2':
+        slot: 1
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '3':
+        slot: 2
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '4':
+        slot: 3
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '5':
+        slot: 4
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '6':
+        slot: 5
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '7':
+        slot: 6
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '8':
+        slot: 7
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '9':
+        slot: 8
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 2 (slots 9-17)
+      # ==================================================
+      '10':
+        slot: 9
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '11':
+        slot: 11
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/p'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Open your full profile and stats.'
+        item-flags: []
+        unbreakable: false
+      '12':
+        slot: 12
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/upgrade'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Spend skill points on abilities.'
+        item-flags: []
+        unbreakable: false
+      '13':
+        slot: 13
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/skilltrees'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Browse your class skill tree.'
+        item-flags: []
+        unbreakable: false
+      '14':
+        slot: 14
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/class'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Change or view classes.'
+        item-flags: []
+        unbreakable: false
+      '15':
+        slot: 15
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/quests'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7View available quests.'
+        item-flags: []
+        unbreakable: false
+      '16':
+        slot: 17
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 3 (slots 18-26)
+      # ==================================================
+      '17':
+        slot: 18
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '18':
+        slot: 20
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/attributes'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Manage your stat points.'
+        item-flags: []
+        unbreakable: false
+      '19':
+        slot: 21
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/party'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Join or create a party.'
+        item-flags: []
+        unbreakable: false
+      '20':
+        slot: 22
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/waypoints'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Travel to discovered waypoints.'
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 23
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/pvpmode'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Toggle PvP on or off.'
+        item-flags: []
+        unbreakable: false
+      '22':
+        slot: 24
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/deposit'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Deposit gold coins to bank.'
+        item-flags: []
+        unbreakable: false
+      '23':
+        slot: 26
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 4 (slots 27-35)
+      # ==================================================
+      '24':
+        slot: 27
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '25':
+        slot: 31
+        item: EMERALD
+        amount: 1
+        item-name: '&a&lPro Tips'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7• Join a party for &a+5% EXP'
+            - '&7• Support classes get more'
+            - '&7  skill points per level-up'
+            - '&7• Use &e/info &7anytime to'
+            - '&7  reopen this guide!'
+        item-flags: []
+        unbreakable: false
+      '26':
+        slot: 35
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 5 (slots 36-44)
+      # ==================================================
+      '27':
+        slot: 36
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '28':
+        slot: 44
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # ==================================================
+      # Row 6: Bottom border + Navigation (slots 45-53)
+      # ==================================================
+      # Navigation: Previous Page
+      '29':
+        slot: 45
+        item: ARROW
+        amount: 1
+        click-events:
+          c0c0c0c0-0004-0045-8000-NAVBUTTON0001:
+            type: change-scene
+            scene: 3
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&l← Previous Page'
+        item-flags: []
+        unbreakable: false
+      '30':
+        slot: 46
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '31':
+        slot: 47
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '32':
+        slot: 48
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Close
+      '33':
+        slot: 49
+        item: BARRIER
+        amount: 1
+        click-events:
+          c0c0c0c0-0004-0049-8000-NAVBUTTON0001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&c&lClose'
+        item-flags: []
+        unbreakable: false
+      '34':
+        slot: 50
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '35':
+        slot: 51
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      '36':
+        slot: 52
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
+      # Navigation: Next Page
+      '37':
+        slot: 53
+        item: BLACK_STAINED_GLASS_PANE
+        amount: 1
+        item-name: ' '
+        item-flags: []
+        unbreakable: false
