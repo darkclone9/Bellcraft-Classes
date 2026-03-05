@@ -120,5 +120,5 @@ skill-trees:
 triggers:
   level-up-multiple-4:
     - 'command{format="mmocore admin attribute-points give %player% 1"}'
-    - 'command{format="mmocore admin skill-points give %player% 2"}'
+    - 'command{format="bellcraft-grant-sp %player%"}'
     - 'command{format="mmocore admin skill-tree-points give %player% 1 technomancer"}'

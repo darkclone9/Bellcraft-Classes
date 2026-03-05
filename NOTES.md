@@ -216,7 +216,7 @@ block interaction.
 | Trigger block | **Crying Obsidian** (right-click) |
 | GUI type | Chest inventory (3 rows); Geyser automatically converts this to a **Bedrock Simple Form** |
 | Profile button | Runs `/p` (MMOCore profile) |
-| Skills button | Runs `/skills` (MMOCore player skill list) |
+| Skills button | Runs `/upgrade` (MMOCore player skill list) |
 | Skill Tree button | Runs `/skilltrees` (MMOCore skill tree) |
 | Shortcuts | Up to **9** player-specific saved commands, persisted across restarts |
 | Add shortcut | Player is prompted in chat; next chat message is captured (cancelled from public chat) and saved |
@@ -234,7 +234,7 @@ block interaction.
 | **Skript** (2.7+) | Script engine |
 | **Geyser** | Translates Java inventory GUI → Bedrock Simple Form automatically |
 | **Floodgate** | (Already installed for Bedrock UUID bridging; no extra config needed) |
-| **MMOCore** | Target of `/p`, `/skills`, and `/skilltrees` commands |
+| **MMOCore** | Target of `/p`, `/upgrade`, and `/skilltrees` commands |
 
 ### Deployment
 

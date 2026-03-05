@@ -77,7 +77,7 @@ on inventory click:
         # ── Skills (slot 1) ──────────────────────────────────
         else if {_slot} is 1:
             close player's inventory
-            make player execute command "/skills"
+            make player execute command "/upgrade"
 
         # ── Skill Tree (slot 2) ──────────────────────────────
         else if {_slot} is 2:
