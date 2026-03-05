@@ -36,20 +36,23 @@ function isSupportClass(className: text) :: boolean:
     return false
 
 command /bellcraft-grant-sp [<text>]:
-    permission: *
+    permission: bellcraft.admin.grantsp
     executable by: console
     trigger:
         if arg-1 is not set:
             stop
 
-        set {_target} to arg-1 parsed as offline player
-        if {_target} is not online:
+        set {_player} to arg-1 parsed as offline player
+        if {_player} is not online:
             stop
-
-        set {_player} to {_target}
 
         # Get the player's class via placeholder
         set {_class} to placeholder "mmocore_class" from {_player}
+        if {_class} is not set:
+            stop
+        if {_class} is "":
+            stop
+
         # Get the player's current level via placeholder
         set {_levelStr} to placeholder "mmocore_level" from {_player}
         set {_level} to {_levelStr} parsed as number
