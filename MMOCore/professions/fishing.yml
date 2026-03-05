@@ -54,3 +54,10 @@ on-fish:
         items:
         - 'vanilla{type=SALMON;tugs=4-5;experience=1-6} 1 2-5 1'
 
+skill-trees:
+  - 'profession-fishing'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-fishing"}'
+

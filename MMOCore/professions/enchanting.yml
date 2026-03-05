@@ -73,3 +73,10 @@ base-enchant-exp:
     feather_falling: 10
     power: 10
     infinity: 10
+
+skill-trees:
+  - 'profession-enchanting'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-enchanting"}'

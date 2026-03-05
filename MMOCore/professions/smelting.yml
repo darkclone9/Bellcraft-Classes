@@ -26,3 +26,10 @@ exp-sources:
   - 'smeltitem{type=COOKED_PORKCHOP;amount=1-3}'
   - 'smeltitem{type=COOKED_RABBIT;amount=1-3}'
   - 'smeltitem{type=COOKED_SALMON;amount=1-3}'
+
+skill-trees:
+  - 'profession-smelting'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-smelting"}'

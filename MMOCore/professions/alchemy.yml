@@ -68,3 +68,10 @@ alchemy-experience:
         LUCK: 10
         TURTLE_MASTER: 10
         SLOW_FALLING: 10
+
+skill-trees:
+  - 'profession-alchemy'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-alchemy"}'
