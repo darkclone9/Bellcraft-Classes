@@ -1,0 +1,48 @@
+# ============================================================
+#  Healing Factor System  –  Bellcraft Classes
+#  Requires: Skript 2.7+, PlaceholderAPI with MMOCore expansion
+#            and skript-placeholders addon!
+#
+#  Functionality:
+#    - Increases health regeneration speed from saturation
+#    - Decreases hunger depletion rate (players eat less often)
+#
+#  Applied to: Operative, Soldier, Envoy, Ranger, Paladin
+#
+#  The Healing Factor stat scales with Strength via MMOCore
+#  attributes (health_regeneration buff in default_attributes.yml).
+#  This script handles the saturation-based regen boost and
+#  hunger depletion reduction at the gameplay level.
+# ============================================================
+
+options:
+    prefix: &8[&b&lBellcraft&8] &7
+    # Base healing factor bonus (multiplied by class modifier)
+    regen_interval: 60  # ticks between each bonus heal tick (3 seconds)
+    hunger_save_chance: 30  # base % chance to prevent hunger loss
+
+function hasHealingFactor(p: player) :: boolean:
+    set {_class} to placeholder "mmocore_class" from {_p}
+    if {_class} is "Operative", "Soldier", "Envoy", "Ranger" or "Paladin":
+        return true
+    return false
+
+# ── Saturation-based Health Regeneration Boost ──
+# Players with Healing Factor who have high saturation
+# regenerate health faster than normal.
+every {@regen_interval} ticks:
+    loop all players:
+        if hasHealingFactor(loop-player) is true:
+            if saturation of loop-player >= 8:
+                if health of loop-player < max health of loop-player:
+                    heal loop-player by 1
+
+# ── Hunger Depletion Reduction ──
+# Players with Healing Factor have a chance to cancel
+# hunger/saturation loss, effectively making them need
+# to eat less frequently.
+on hunger meter change:
+    if hasHealingFactor(player) is true:
+        if new hunger level < past hunger level:
+            chance of {@hunger_save_chance}%:
+                cancel event

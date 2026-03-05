@@ -36,6 +36,12 @@ stats:
   ARMOR:
     base: 4.0
     per-level: 1.5
+    # AC HARDCAP: Soldier cannot gain bonus ARMOR from abilities,
+    # skills, or passive buffs. All ARMOR stat triggers have been
+    # removed from Soldier skills (SOLDIER_SKILLS.yml) and a
+    # runtime safety net (soldier-ac-hardcap.sk) enforces this.
+    # Soldier's armor comes entirely from equipped gear (full
+    # Netherite is permitted for this class only).
   KNOCKBACK_RESISTANCE:
     base: 10.0
     per-level: 1.0
