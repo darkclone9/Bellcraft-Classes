@@ -42,7 +42,7 @@ quests:
   description: Display available quests
   permission: mmocore.quests
   verbose: ALL
-upgrade:
+skills:
   main: upgrade
   aliases:
   - u

@@ -1,13 +1,12 @@
-id: info-panel
+id: info-panel-p2
 rows: 6
 type: chest
-title: '&b&lBellcraft &8» &7Server Info'
-commandAlias: info
+title: '&b&lBellcraft &8» &7Classes & Combat'
 commandAliasTarget: DISABLED
 disable-scene-animation: false
 scenes:
   # ============================================================
-  # Scene 0: Welcome & Server Overview (Page 1/5)
+  # Classes & Combat (Page 2/5)
   # ============================================================
   '0':
     delay: 0
@@ -89,25 +88,94 @@ scenes:
         item-flags: []
         unbreakable: false
       '11':
-        slot: 13
-        item: NETHER_STAR
+        slot: 11
+        item: IRON_CHESTPLATE
         amount: 1
-        item-name: '&b&lWelcome to Bellcraft!'
+        item-name: '&c&lSoldier'
         item-lore-data:
           '1':
             page: 1
             delay: 0
             lore:
             - ''
-            - '&7Welcome to an &bMMO RPG &7experience!'
-            - '&7Explore classes, quests, professions,'
-            - '&7towns, and much more.'
-            - ''
-            - '&8Bellcraft is a custom Minecraft server'
-            - '&8with deep progression and community.'
-        item-flags: []
+            - '&7Role: &fTank / Frontline Fighter'
+            - '&7High HP, heavy armor, and'
+            - '&7damage mitigation abilities.'
+            - '&7Resource: &cResolve'
+        item-flags:
+        - HIDE_ATTRIBUTES
         unbreakable: false
       '12':
+        slot: 12
+        item: IRON_SWORD
+        amount: 1
+        item-name: '&b&lOperative'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fStriker / Scout'
+            - '&7Fast attacks, stealth, and'
+            - '&7precision-based combat.'
+            - '&7Resource: &bFocus'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '13':
+        slot: 13
+        item: GOLDEN_CHESTPLATE
+        amount: 1
+        item-name: '&6&lPaladin'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fTank / Holy Knight'
+            - '&7Divine protection, auras,'
+            - '&7and healing abilities.'
+            - '&7Resource: &6Radiance'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '14':
+        slot: 14
+        item: AMETHYST_SHARD
+        amount: 1
+        item-name: '&d&lMystic'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fSupport / Cosmic Caster'
+            - '&7Healing, shields, and'
+            - '&7cosmic manipulation.'
+            - '&7Resource: &dCosmic Energy'
+        item-flags: []
+        unbreakable: false
+      '15':
+        slot: 15
+        item: BLAZE_ROD
+        amount: 1
+        item-name: '&e&lTechnomancer'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fArcane DPS'
+            - '&7High magic damage and'
+            - '&7technological augmentation.'
+            - '&7Resource: &eNanites'
+        item-flags: []
+        unbreakable: false
+      '16':
         slot: 17
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -117,70 +185,83 @@ scenes:
       # ==================================================
       # Row 3 (slots 18-26)
       # ==================================================
-      '13':
+      '17':
         slot: 18
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '14':
+      '18':
         slot: 20
-        item: COMPASS
+        item: BOW
         amount: 1
-        item-name: '&e&lGetting Started'
+        item-name: '&a&lRanger'
         item-lore-data:
           '1':
             page: 1
             delay: 0
             lore:
             - ''
-            - '&7Pick a class with &e/class'
-            - '&7Check your profile with &e/p'
-            - '&7Upgrade skills with &e/upgrade'
+            - '&7Role: &fDPS Ranged / Hunter'
+            - '&7Projectile damage, traps,'
+            - '&7and nature abilities.'
+            - '&7Resource: &aFocus'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '19':
+        slot: 21
+        item: BLAZE_ROD
+        amount: 1
+        item-name: '&c&lSorcerer'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
             - ''
-            - '&8Start your adventure today!'
+            - '&7Role: &fCaster DPS'
+            - '&7Elemental magic and high'
+            - '&7burst damage spells.'
+            - '&7Resource: &cArcana'
         item-flags: []
         unbreakable: false
-      '15':
+      '20':
         slot: 22
+        item: GOLDEN_APPLE
+        amount: 1
+        item-name: '&b&lCleric'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Role: &fSupport / Divine Healer'
+            - '&7Healing, purification, and'
+            - '&7protective blessings.'
+            - '&7Resource: &bDevotion'
+        item-flags: []
+        unbreakable: false
+      '21':
+        slot: 23
         item: BOOK
         amount: 1
-        item-name: '&a&lKey Features'
+        item-name: '&6&lEnvoy'
         item-lore-data:
           '1':
             page: 1
             delay: 0
             lore:
             - ''
-            - '&7• &f9 Class System'
-            - '&7• &f40+ Quests'
-            - '&7• &fSkill Trees & Abilities'
-            - '&7• &fCustom MMOItems Gear'
-            - '&7• &fProfessions & Crafting'
-            - '&7• &fTowns & Nations'
-            - '&7• &fPvP Mode Toggle'
+            - '&7Role: &fTactician / Commander'
+            - '&7Team buffs, debuffs, and'
+            - '&7strategic battlefield control.'
+            - '&7Resource: &6Influence'
         item-flags: []
         unbreakable: false
-      '16':
-        slot: 24
-        item: OAK_SIGN
-        amount: 1
-        item-name: '&d&lNavigation'
-        item-lore-data:
-          '1':
-            page: 1
-            delay: 0
-            lore:
-            - ''
-            - '&7Use the &darrows &7at the bottom'
-            - '&7to browse pages.'
-            - ''
-            - '&7Each page covers a different'
-            - '&7game system.'
-        item-flags: []
-        unbreakable: false
-      '17':
+      '22':
         slot: 26
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -190,14 +271,31 @@ scenes:
       # ==================================================
       # Row 4 (slots 27-35)
       # ==================================================
-      '18':
+      '23':
         slot: 27
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '19':
+      '24':
+        slot: 31
+        item: DIAMOND_SWORD
+        amount: 1
+        item-name: '&7&lCombat Tips'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Use &e/upgrade &7to level skills.'
+            - '&7Use &e/skilltrees &7for passive bonuses.'
+            - '&7Each class has unique abilities.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '25':
         slot: 35
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -207,14 +305,14 @@ scenes:
       # ==================================================
       # Row 5 (slots 36-44)
       # ==================================================
-      '20':
+      '26':
         slot: 36
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '21':
+      '27':
         slot: 44
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -224,28 +322,41 @@ scenes:
       # ==================================================
       # Row 6: Bottom border + Navigation (slots 45-53)
       # ==================================================
-      '22':
+      # Navigation: Previous Page
+      '28':
         slot: 45
-        item: BLACK_STAINED_GLASS_PANE
+        item: ARROW
         amount: 1
-        item-name: ' '
+        click-events:
+          d0d0d0d1-0001-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          d0d0d0d1-0001-4000-8000-000000000002:
+            type: command
+            commands:
+            - gui open info-panel %player%
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&l← Previous Page'
         item-flags: []
         unbreakable: false
-      '23':
+      '29':
         slot: 46
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '24':
+      '30':
         slot: 47
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '25':
+      '31':
         slot: 48
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -253,33 +364,33 @@ scenes:
         item-flags: []
         unbreakable: false
       # Navigation: Close
-      '26':
+      '32':
         slot: 49
         item: BARRIER
         amount: 1
         click-events:
-          d0d0d0d0-0001-4000-8000-000000000001:
+          d0d0d0d1-0002-4000-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
         item-name: '&c&lClose'
         item-flags: []
         unbreakable: false
-      '27':
+      '33':
         slot: 50
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '28':
+      '34':
         slot: 51
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '29':
+      '35':
         slot: 52
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -287,19 +398,19 @@ scenes:
         item-flags: []
         unbreakable: false
       # Navigation: Next Page
-      '30':
+      '36':
         slot: 53
         item: ARROW
         amount: 1
         click-events:
-          d0d0d0d0-0002-4000-8000-000000000001:
+          d0d0d0d1-0003-4000-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
-          d0d0d0d0-0002-4000-8000-000000000002:
+          d0d0d0d1-0003-4000-8000-000000000002:
             type: command
             commands:
-            - gui open info-panel-p2 %player%
+            - gui open info-panel-p3 %player%
             setOp: false
             clickType: NONE
             executionDelay: 0.0
