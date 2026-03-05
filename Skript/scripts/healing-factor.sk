@@ -11,15 +11,19 @@
 #
 #  The Healing Factor stat scales with Strength via MMOCore
 #  attributes (health_regeneration buff in default_attributes.yml).
-#  This script handles the saturation-based regen boost and
-#  hunger depletion reduction at the gameplay level.
+#  The attribute system handles the actual health_regeneration
+#  scaling (+0.1/sec per Strength point). This script provides
+#  the additional saturation-based regen boost and hunger
+#  depletion reduction that together form the Healing Factor
+#  gameplay mechanic.
 # ============================================================
 
 options:
     prefix: &8[&b&lBellcraft&8] &7
-    # Base healing factor bonus (multiplied by class modifier)
-    regen_interval: 60  # ticks between each bonus heal tick (3 seconds)
-    hunger_save_chance: 30  # base % chance to prevent hunger loss
+    # Ticks between each bonus saturation heal (60 ticks = 3 seconds)
+    regen_interval: 60
+    # Base % chance to prevent hunger loss for Healing Factor classes
+    hunger_save_chance: 30
 
 function hasHealingFactor(p: player) :: boolean:
     set {_class} to placeholder "mmocore_class" from {_p}
@@ -29,7 +33,9 @@ function hasHealingFactor(p: player) :: boolean:
 
 # ── Saturation-based Health Regeneration Boost ──
 # Players with Healing Factor who have high saturation
-# regenerate health faster than normal.
+# regenerate health faster than normal. This is a flat
+# bonus heal on top of the health_regeneration stat scaling
+# provided by the Strength attribute.
 every {@regen_interval} ticks:
     loop all players:
         if hasHealingFactor(loop-player) is true:

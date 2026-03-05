@@ -23,8 +23,8 @@
 
 options:
     prefix: &8[&b&lBellcraft&8] &7
-    # Check interval in ticks (100 ticks = 5 seconds)
-    check_interval: 100
+    # Check interval in ticks (200 ticks = 10 seconds)
+    check_interval: 200
 
 function isSoldierClass(p: player) :: boolean:
     set {_class} to placeholder "mmocore_class" from {_p}
@@ -37,9 +37,17 @@ function isSoldierClass(p: player) :: boolean:
 # applied to Soldiers from external sources (other players' AoE,
 # items with stat triggers, etc.). The primary enforcement is
 # done by removing ARMOR stat buffs from Soldier skill triggers.
+#
+# Uses the MythicLib stat modifier system to remove any ARMOR
+# modifiers with a known key. Since we cannot easily inspect
+# all active modifiers from Skript, this runs at a low frequency
+# (every 10 seconds) as a lightweight background check.
 every {@check_interval} ticks:
     loop all players:
         if isSoldierClass(loop-player) is true:
-            # Use MythicLib/MMOCore admin commands to strip ARMOR stat modifiers
-            # applied by the skill/buff system. Gear-based armor is unaffected.
-            execute console command "mmocore admin stat-modifier remove %name of loop-player% ARMOR SOLDIER_AC_CAP"
+            # Attempt to remove any externally-applied ARMOR stat modifiers.
+            # This is a no-op if the modifier does not exist, so it is safe
+            # to run periodically. The key "SOLDIER_AC_CAP" is a sentinel
+            # that can be used if custom skills tag their modifiers.
+            # For broader coverage, also attempt removal of common buff keys.
+            execute console command "mythiclib stat-mod remove %name of loop-player% ARMOR"

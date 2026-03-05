@@ -16,10 +16,10 @@ strength:
     # and natural health regeneration (Healing Factor).
     # Max health boost has been removed for balance.
     buff:
-        attack_damage: 0.5              # +0.5 flat attack damage per point (configurable: adjust this value to tune damage scaling)
+        attack_damage: 0.5              # +0.5 flat attack damage per point (balance tuning: adjust this value as needed)
         critical_strike_chance: 0.5%     # +0.5% critical strike chance on basic attacks per point
         saturation: 1%                   # +1% saturation retention/efficiency per point
-        health_regeneration: 0.1         # +0.1 health regen per point (Healing Factor: +1 per Strength level)
+        health_regeneration: 0.1         # +0.1 health regen/sec per point (contributes to Healing Factor)
 
 dexterity:
     name: Dexterity
