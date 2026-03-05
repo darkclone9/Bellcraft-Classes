@@ -1,0 +1,32 @@
+
+# Display options
+name: 'Iron Forger'
+lore:
+- 'The forge demands iron! The blacksmith'
+- 'needs a large supply to craft weapons'
+- 'for the garrison. Get mining!'
+- ''
+- '&eRewards:'
+- '&7► 150 EXP'
+- '&7► 15 Gold Coins'
+- '&7► Steel Ingot'
+
+level-req:
+    main: 5
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=IRON_ORE;amount=30}'
+        lore: 'Mine 30 iron ore.'
+        triggers:
+        - message{format="&aBlacksmith> &fMagnificent ore! Here, take this steel ingot as thanks."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 15"}
+        - 'mmoitem{type=MATERIAL;id=STEEL_INGOT}'
+        - 'experience{amount=150}'

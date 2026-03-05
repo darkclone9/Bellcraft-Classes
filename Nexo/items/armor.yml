@@ -1,21 +1,6 @@
-operative_light_chestplate:
-  itemname: Operative Light Chestplate
-  material: PAPER
-  Components:
-    equippable:
-      slot: CHEST
-  Pack:
-    custom_model_data: 2003
-    texture: bellcraft-stuffs:item/armor/operative_light_chestplate
-    parent_model: bellcraft-stuffs:item/armor/operative_light_chestplate
 operative_light_armor_helmet:
   itemname: Operative Light Helmet
-  lore:
-  - A Snug Helmet designed by Helix Bio Solutions
   material: PAPER
-  AttributeModifiers:
-  - attribute: MOVEMENT_EFFICIENCY
-    amount: 2
   Components:
     equippable:
       slot: HEAD
@@ -23,3 +8,28 @@ operative_light_armor_helmet:
     custom_model_data: 2002
     texture: bellcraft-stuffs:item/armor/operative_light_helmet
     parent_model: bellcraft-stuffs:item/armor/operative_light_helmet
+operative_light_armor_chestplate:
+  itemname: Operative Light Chestplate
+  material: PAPER
+  Components:
+    equippable:
+      slot: CHEST
+      asset_id: bellcraft-stuffs:operative_light_armor
+  Pack:
+    custom_model_data: 2003
+    texture: bellcraft-stuffs:item/armor/operative_light_chestplate
+    parent_model: bellcraft-stuffs:item/armor/operative_light_chestplate
+operative_light_armor_leggings:
+  itemname: Operative Light Leggings
+  material: PAPER
+  Components:
+    equippable:
+      slot: LEGS
+      asset_id: bellcraft-stuffs:operative_light_armor
+operative_light_armor_boots:
+  itemname: Operative Light Boots
+  material: PAPER
+  Components:
+    equippable:
+      slot: FEET
+      asset_id: bellcraft-stuffs:operative_light_armor

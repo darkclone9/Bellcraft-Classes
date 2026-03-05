@@ -529,7 +529,7 @@ scenes:
           a1b2c3d4-0004-4000-8000-000000000002:
             type: command
             commands:
-            - skills
+            - upgrade
             setOp: false
             clickType: NONE
             executionDelay: 0.0

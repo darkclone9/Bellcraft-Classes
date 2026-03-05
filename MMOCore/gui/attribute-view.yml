@@ -43,10 +43,12 @@ items:
       - ''
       - '&8When Leveled Up:'
       - '&7  +{buff_attack_damage} Attack Damage (&a+{total_attack_damage} total&7)'
-      - '&7  +{buff_max_health}% Max Health (&a+{total_max_health}%&7)'
+      - '&7  +{buff_critical_strike_chance}% Crit Chance (&a+{total_critical_strike_chance}%&7)'
+      - '&7  +{buff_saturation}% Saturation Efficiency (&a+{total_saturation}%&7)'
+      - '&7  +{buff_health_regeneration} Healing Factor (&a+{total_health_regeneration} total&7)'
       - ''
       - '&eClick to level up for 1 attribute point.'
-      - '&eâ—† Current Attribute Points: {attribute_points}'
+      - '&e◆ Current Attribute Points: {attribute_points}'
   dex:
     slots: [ 13 ]
     function: attribute_dexterity
@@ -77,8 +79,9 @@ items:
       - '&7Current {name}: &6&l{current}'
       - ''
       - '&8When Leveled Up:'
+      - '&7  +{buff_max_mana} Class Resource Pool (&a+{total_max_mana} total&7)'
       - '&7  +{buff_magic_damage}% Magic Damage (&a+{total_magic_damage}%&7)'
       - '&7  +{buff_cooldown_reduction}% Cooldown Reduction (&a+{total_cooldown_reduction}%&7)'
       - ''
       - '&eClick to level up for 1 attribute point.'
-      - '&eâ—† Current Attribute Points: {attribute_points}'
+      - '&e◆ Current Attribute Points: {attribute_points}'

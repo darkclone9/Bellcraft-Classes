@@ -36,6 +36,12 @@ stats:
   ARMOR:
     base: 4.0
     per-level: 1.5
+    # AC HARDCAP: Soldier cannot gain bonus ARMOR from abilities,
+    # skills, or passive buffs. All ARMOR stat triggers have been
+    # removed from Soldier skills (SOLDIER_SKILLS.yml) and a
+    # runtime safety net (soldier-ac-hardcap.sk) enforces this.
+    # Soldier's armor comes entirely from equipped gear (full
+    # Netherite is permitted for this class only).
   KNOCKBACK_RESISTANCE:
     base: 10.0
     per-level: 1.0
@@ -132,5 +138,5 @@ skill-trees:
 triggers:
   level-up-multiple-4:
     - 'command{format="mmocore admin attribute-points give %player_name% 1"}'
-    - 'command{format="mmocore admin skill-points give %player_name% 2"}'
+    - 'command{format="bellcraft-grant-sp %player_name%"}'
     - 'command{format="mmocore admin skill-tree-points give %player% 1 soldier"}'

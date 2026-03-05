@@ -1,0 +1,31 @@
+
+# Display options
+name: 'Spider Nest'
+lore:
+- 'The spiders have grown bolder and more'
+- 'numerous. Their nest must be destroyed'
+- 'before they overrun the countryside!'
+- ''
+- '&eRewards:'
+- '&7► 160 EXP'
+- '&7► 16 Gold Coins'
+
+level-req:
+    main: 5
+
+parent:
+- 'pest-control'
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=SPIDER;amount=20}'
+        lore: 'Kill 20 spiders.'
+        triggers:
+        - message{format="&aScout> &fThe nest is destroyed! You are braver than most."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 16"}
+        - 'experience{amount=160}'

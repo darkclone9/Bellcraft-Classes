@@ -41,7 +41,10 @@ SOLDIER_FORTIFY:
       name: Duration
   triggers:
     cast:
-      - 'stat{stat=ARMOR;amount=40;operation=RELATIVE;duration={duration}}'
+      # NOTE: ARMOR stat buff removed — Soldier AC hardcap restriction.
+      # Soldier is the only class permitted to equip full Netherite armor,
+      # so bonus AC from abilities/skills/passive buffs is not allowed.
+      # The Fortify skill now grants only knockback resistance + visual effects.
       - 'stat{stat=KNOCKBACK_RESISTANCE;amount=50;operation=RELATIVE;duration={duration}}'
       - 'particle{p=BLOCK_CRACK;material=OBSIDIAN;amount=60;speed=0.2;hS=1;vS=1}'
       - 'sound{s=ITEM_ARMOR_EQUIP_IRON;v=1.5;p=0.7}'
@@ -101,7 +104,10 @@ SOLDIER_LAST_STAND:
   triggers:
     cast:
       - 'heal{amount=15}'
-      - 'stat{stat=ARMOR;amount=80;operation=RELATIVE;duration={duration}}'
+      # NOTE: ARMOR stat buff removed — Soldier AC hardcap restriction.
+      # Soldier is the only class permitted to equip full Netherite armor,
+      # so bonus AC from abilities/skills/passive buffs is not allowed.
+      # Last Stand retains its heal, resistance, regeneration, and visual effects.
       - 'potion{type=RESISTANCE;duration={duration};amplifier=3}'
       - 'potion{type=REGENERATION;duration={duration};amplifier=2}'
       - 'particle{p=BLOCK_CRACK;material=IRON_BLOCK;amount=200;speed=0.5;hS=3;vS=3}'

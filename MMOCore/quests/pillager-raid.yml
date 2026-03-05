@@ -1,0 +1,30 @@
+
+# Display options
+name: 'Pillager Raid'
+lore:
+- 'A pillager war band is marching toward'
+- 'the village! Intercept them before'
+- 'they can launch their attack!'
+- ''
+- '&eRewards:'
+- '&7► 200 EXP'
+- '&7► 20 Gold Coins'
+
+level-req:
+    main: 6
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'killmob{type=PILLAGER;amount=12}'
+        lore: 'Kill 12 pillagers.'
+        triggers:
+        - message{format="&aGuard Captain> &fThe raid is broken! The village is saved once again."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 20"}
+        - 'experience{amount=200}'

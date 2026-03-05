@@ -11,7 +11,7 @@ level-up:
     - ''
     - '&6&l✦ &e&lLEVEL UP! &eYou are now Level {level} &6&l✦'
     - '&eYou have unspent points to assign:'
-    - '&8» &e%mmocore_skill_points% &7Skill Point(s) &8➔ &6/skills'
+    - '&8» &e%mmocore_skill_points% &7Skill Point(s) &8➔ &6/upgrade'
     - '&8» &e%mmocore_attribute_points% &7Attribute Point(s) &8➔ &6/attributes'
     - '&8» &e%mmocore_skill_tree_points_global% &7Skill Tree Points &8➔ &6/skilltrees'
     - ''
@@ -432,7 +432,7 @@ skill-points-reallocated:
   message: '&eYou successfully reset your skill points. You now have &6{points} &eskill points.'
   sound: ENTITY_PLAYER_LEVELUP
 upgrade-skill:
-  message: '&eYour &6{skill} &eis now Level &6{level}&e! &8| &7Skill points remaining: &6{skill_points} &8| &6/skills'
+  message: '&eYour &6{skill} &eis now Level &6{level}&e! &8| &7Skill points remaining: &6{skill_points} &8| &6/upgrade'
   sound: ENTITY_EXPERIENCE_ORB_PICKUP,1,2
 
 

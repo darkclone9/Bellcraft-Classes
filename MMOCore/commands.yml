@@ -42,11 +42,11 @@ quests:
   description: Display available quests
   permission: mmocore.quests
   verbose: ALL
-skills:
-  main: skills
+upgrade:
+  main: upgrade
   aliases:
-  - s
-  description: Spend skill points to unlock new skills
+  - u
+  description: Spend skill points to upgrade your skills
   permission: mmocore.skills
   verbose: ALL
 friends:

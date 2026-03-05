@@ -1,0 +1,27 @@
+
+# Display options
+name: 'Wood for Days'
+lore:
+- 'The carpenter needs a fresh supply'
+- 'of oak logs to repair the village'
+- 'buildings. Grab an axe and get chopping!'
+- ''
+- '&eRewards:'
+- '&7► 60 EXP'
+- '&7► 4 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=OAK_LOG;amount=15}'
+        lore: 'Mine 15 oak logs.'
+        triggers:
+        - message{format="&aBlacksmith> &fFine lumber! This will keep the forge burning bright."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 4"}
+        - 'experience{amount=60}'

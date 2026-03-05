@@ -1,0 +1,85 @@
+# ============================================================
+#  Dynamic Skill Point Allocation  –  Bellcraft Classes
+#  Requires: Skript 2.7+, PlaceholderAPI with MMOCore expansion
+#            and skript-placeholders addon!
+#
+#  Functionality:
+#    Replaces the static "2 skill points per 4 levels" system
+#    with a randomized skill point grant that scales with the
+#    player's current level and class type.
+#
+#  Support classes (Cleric, Mystic, Envoy) receive a higher
+#  base range to compensate for lower damage output and
+#  encourage utility/healing skill investment.
+#
+#  Called from each class's level-up-multiple-4 trigger via:
+#    command{format="bellcraft-grant-sp %player_name%"}
+# ============================================================
+
+options:
+    prefix: &8[&b&lBellcraft&8] &7
+    # ── Base skill point ranges per class category ──
+    # Support classes: higher base to encourage utility builds
+    support_min: 2
+    support_max: 4
+    # Standard / DPS classes: normal progression
+    standard_min: 1
+    standard_max: 3
+    # ── Level scaling thresholds ──
+    # At these level thresholds, +1 is added to both min and max
+    level_threshold_1: 20
+    level_threshold_2: 40
+
+function isSupportClass(className: text) :: boolean:
+    if {_className} is "Cleric", "Mystic" or "Envoy":
+        return true
+    return false
+
+command /bellcraft-grant-sp [<text>]:
+    permission: bellcraft.admin.grantsp
+    executable by: console
+    trigger:
+        if arg-1 is not set:
+            stop
+
+        set {_player} to arg-1 parsed as offline player
+        if {_player} is not online:
+            stop
+
+        # Get the player's class via placeholder
+        set {_class} to placeholder "mmocore_class" from {_player}
+        if {_class} is not set:
+            stop
+        if {_class} is "":
+            stop
+
+        # Get the player's current level via placeholder
+        set {_levelStr} to placeholder "mmocore_level" from {_player}
+        set {_level} to {_levelStr} parsed as number
+        if {_level} is not set:
+            set {_level} to 1
+
+        # Determine base range from class category
+        if isSupportClass({_class}) is true:
+            set {_min} to {@support_min}
+            set {_max} to {@support_max}
+        else:
+            set {_min} to {@standard_min}
+            set {_max} to {@standard_max}
+
+        # Apply level scaling bonuses
+        if {_level} >= {@level_threshold_2}:
+            add 2 to {_min}
+            add 2 to {_max}
+        else if {_level} >= {@level_threshold_1}:
+            add 1 to {_min}
+            add 1 to {_max}
+
+        # Roll random skill points within the computed range
+        set {_points} to random integer between {_min} and {_max}
+
+        # Grant the skill points via MMOCore admin command
+        execute console command "mmocore admin skill-points give %name of {_player}% %{_points}%"
+
+        # Notify the player
+        send "{@prefix}&a+%{_points}% Skill Points &7(Level %{_level}% %{_class}% bonus)" to {_player}

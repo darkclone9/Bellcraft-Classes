@@ -1,0 +1,27 @@
+
+# Display options
+name: 'Copper Collection'
+lore:
+- 'The blacksmith is running low on copper'
+- 'for his projects. Head into the mines'
+- 'and bring back a good haul!'
+- ''
+- '&eRewards:'
+- '&7► 65 EXP'
+- '&7► 4 Gold Coins'
+
+parent: []
+
+bossbar:
+    enabled: true
+    objective: true
+
+objectives:
+    1:
+        type: 'mineblock{type=COPPER_ORE;amount=15}'
+        lore: 'Mine 15 copper ore.'
+        triggers:
+        - message{format="&aBlacksmith> &fPerfect copper! I can forge some fine tools with this."}
+        - sound{sound=ENTITY_PLAYER_LEVELUP;pitch=1;volume=1}
+        - command{format="mmocore coins %player_name% 4"}
+        - 'experience{amount=65}'
