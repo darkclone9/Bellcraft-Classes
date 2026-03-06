@@ -1,13 +1,12 @@
-id: info-panel
+id: info-panel-p3
 rows: 6
 type: chest
-title: '&b&lBellcraft &8» &7Server Info'
-commandAlias: info
+title: '&b&lBellcraft &8» &7Professions & Economy'
 commandAliasTarget: DISABLED
 disable-scene-animation: false
 scenes:
   # ============================================================
-  # Scene 0: Welcome & Server Overview (Page 1/5)
+  # Professions & Economy (Page 3/5)
   # ============================================================
   '0':
     delay: 0
@@ -89,25 +88,82 @@ scenes:
         item-flags: []
         unbreakable: false
       '11':
-        slot: 13
-        item: NETHER_STAR
+        slot: 11
+        item: IRON_PICKAXE
         amount: 1
-        item-name: '&b&lWelcome to Bellcraft!'
+        item-name: '&e&lMining'
         item-lore-data:
           '1':
             page: 1
             delay: 0
             lore:
             - ''
-            - '&7Welcome to an &bMMO RPG &7experience!'
-            - '&7Explore classes, quests, professions,'
-            - '&7towns, and much more.'
-            - ''
-            - '&8Bellcraft is a custom Minecraft server'
-            - '&8with deep progression and community.'
-        item-flags: []
+            - '&7Mine ores to level up.'
+            - '&7Higher levels unlock rare drops.'
+        item-flags:
+        - HIDE_ATTRIBUTES
         unbreakable: false
       '12':
+        slot: 12
+        item: IRON_AXE
+        amount: 1
+        item-name: '&e&lWoodcutting'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Chop trees for materials and XP.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '13':
+        slot: 13
+        item: IRON_HOE
+        amount: 1
+        item-name: '&e&lFarming'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Grow crops for food'
+            - '&7and consumables.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '14':
+        slot: 14
+        item: FISHING_ROD
+        amount: 1
+        item-name: '&e&lFishing'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Catch fish for unique drops.'
+        item-flags:
+        - HIDE_ATTRIBUTES
+        unbreakable: false
+      '15':
+        slot: 15
+        item: BREWING_STAND
+        amount: 1
+        item-name: '&e&lAlchemy'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Brew custom potions and elixirs.'
+        item-flags: []
+        unbreakable: false
+      '16':
         slot: 17
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -117,70 +173,57 @@ scenes:
       # ==================================================
       # Row 3 (slots 18-26)
       # ==================================================
-      '13':
+      '17':
         slot: 18
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '14':
+      '18':
         slot: 20
-        item: COMPASS
+        item: ANVIL
         amount: 1
-        item-name: '&e&lGetting Started'
+        item-name: '&e&lSmithing'
         item-lore-data:
           '1':
             page: 1
             delay: 0
             lore:
             - ''
-            - '&7Pick a class with &e/class'
-            - '&7Check your profile with &e/p'
-            - '&7Upgrade skills with &e/upgrade'
-            - ''
-            - '&8Start your adventure today!'
+            - '&7Forge and upgrade'
+            - '&7weapons and armor.'
         item-flags: []
         unbreakable: false
-      '15':
+      '19':
+        slot: 21
+        item: ENCHANTED_BOOK
+        amount: 1
+        item-name: '&e&lEnchanting'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Enchant gear with powerful effects.'
+        item-flags: []
+        unbreakable: false
+      '20':
         slot: 22
-        item: BOOK
+        item: FURNACE
         amount: 1
-        item-name: '&a&lKey Features'
+        item-name: '&e&lSmelting'
         item-lore-data:
           '1':
             page: 1
             delay: 0
             lore:
             - ''
-            - '&7• &f9 Class System'
-            - '&7• &f40+ Quests'
-            - '&7• &fSkill Trees & Abilities'
-            - '&7• &fCustom MMOItems Gear'
-            - '&7• &fProfessions & Crafting'
-            - '&7• &fTowns & Nations'
-            - '&7• &fPvP Mode Toggle'
+            - '&7Refine ores into ingots faster.'
         item-flags: []
         unbreakable: false
-      '16':
-        slot: 24
-        item: OAK_SIGN
-        amount: 1
-        item-name: '&d&lNavigation'
-        item-lore-data:
-          '1':
-            page: 1
-            delay: 0
-            lore:
-            - ''
-            - '&7Use the &darrows &7at the bottom'
-            - '&7to browse pages.'
-            - ''
-            - '&7Each page covers a different'
-            - '&7game system.'
-        item-flags: []
-        unbreakable: false
-      '17':
+      '21':
         slot: 26
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -190,14 +233,30 @@ scenes:
       # ==================================================
       # Row 4 (slots 27-35)
       # ==================================================
-      '18':
+      '22':
         slot: 27
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '19':
+      '23':
+        slot: 31
+        item: GOLD_INGOT
+        amount: 1
+        item-name: '&6&lEconomy'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Earn gold coins from quests and mobs.'
+            - '&7Use &e/deposit &7and &e/withdraw'
+            - '&7to manage your balance.'
+        item-flags: []
+        unbreakable: false
+      '24':
         slot: 35
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -207,14 +266,14 @@ scenes:
       # ==================================================
       # Row 5 (slots 36-44)
       # ==================================================
-      '20':
+      '25':
         slot: 36
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '21':
+      '26':
         slot: 44
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -224,28 +283,41 @@ scenes:
       # ==================================================
       # Row 6: Bottom border + Navigation (slots 45-53)
       # ==================================================
-      '22':
+      # Navigation: Previous Page
+      '27':
         slot: 45
-        item: BLACK_STAINED_GLASS_PANE
+        item: ARROW
         amount: 1
-        item-name: ' '
+        click-events:
+          d0d0d0d2-0001-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          d0d0d0d2-0001-4000-8000-000000000002:
+            type: command
+            commands:
+            - gui open info-panel-p2 %player%
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&l← Previous Page'
         item-flags: []
         unbreakable: false
-      '23':
+      '28':
         slot: 46
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '24':
+      '29':
         slot: 47
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '25':
+      '30':
         slot: 48
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -253,33 +325,33 @@ scenes:
         item-flags: []
         unbreakable: false
       # Navigation: Close
-      '26':
+      '31':
         slot: 49
         item: BARRIER
         amount: 1
         click-events:
-          d0d0d0d0-0001-4000-8000-000000000001:
+          d0d0d0d2-0002-4000-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
         item-name: '&c&lClose'
         item-flags: []
         unbreakable: false
-      '27':
+      '32':
         slot: 50
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '28':
+      '33':
         slot: 51
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
         item-name: ' '
         item-flags: []
         unbreakable: false
-      '29':
+      '34':
         slot: 52
         item: BLACK_STAINED_GLASS_PANE
         amount: 1
@@ -287,19 +359,19 @@ scenes:
         item-flags: []
         unbreakable: false
       # Navigation: Next Page
-      '30':
+      '35':
         slot: 53
         item: ARROW
         amount: 1
         click-events:
-          d0d0d0d0-0002-4000-8000-000000000001:
+          d0d0d0d2-0003-4000-8000-000000000001:
             type: close-inventory
             clickType: NONE
             executionDelay: 0.0
-          d0d0d0d0-0002-4000-8000-000000000002:
+          d0d0d0d2-0003-4000-8000-000000000002:
             type: command
             commands:
-            - gui open info-panel-p2 %player%
+            - gui open info-panel-p4 %player%
             setOp: false
             clickType: NONE
             executionDelay: 0.0
