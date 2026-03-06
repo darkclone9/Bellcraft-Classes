@@ -112,3 +112,10 @@ on-mine:
             vanilla-drops: true
         triggers:
         - 'exp{profession=mining;amount=20}'
+
+skill-trees:
+  - 'profession-mining'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-mining"}'

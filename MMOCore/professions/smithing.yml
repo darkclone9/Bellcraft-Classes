@@ -43,3 +43,10 @@ repair-exp:
     WOODEN_PICKAXE: 13.56
     
     # Add as many as you want: bows, shields..
+
+skill-trees:
+  - 'profession-smithing'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-smithing"}'

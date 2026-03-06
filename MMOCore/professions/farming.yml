@@ -35,3 +35,10 @@ exp-sources:
   - 'mineblock{type=CHORUS_FLOWER;amount=1-3;silk-touch=false}'
   - 'mineblock{type=CRIMSON_FUNGUS;amount=1-3;silk-touch=false}'
   - 'mineblock{type=WARPED_FUNGUS;amount=1-3;silk-touch=false}'
+
+skill-trees:
+  - 'profession-farming'
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-farming"}'
