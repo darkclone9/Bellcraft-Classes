@@ -91,6 +91,14 @@ main-exp-sources:
 
 skill-trees:
   - 'paladin-guardian'
+  - 'profession-mining'
+  - 'profession-woodcutting'
+  - 'profession-farming'
+  - 'profession-fishing'
+  - 'profession-alchemy'
+  - 'profession-smithing'
+  - 'profession-enchanting'
+  - 'profession-smelting'
 
 skills:
   SMITE:

@@ -69,6 +69,16 @@ skills:
     max-level: 30
     unlocked-by-default: true
 
+skill-trees:
+  - 'profession-mining'
+  - 'profession-woodcutting'
+  - 'profession-farming'
+  - 'profession-fishing'
+  - 'profession-alchemy'
+  - 'profession-smithing'
+  - 'profession-enchanting'
+  - 'profession-smelting'
+
 triggers:
   level-up-multiple-4:
     - 'command{format="bellcraft-grant-ap %player_name%"}'

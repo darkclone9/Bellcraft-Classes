@@ -87,6 +87,14 @@ main-exp-sources:
 
 skill-trees:
   - 'cleric-divinity'
+  - 'profession-mining'
+  - 'profession-woodcutting'
+  - 'profession-farming'
+  - 'profession-fishing'
+  - 'profession-alchemy'
+  - 'profession-smithing'
+  - 'profession-enchanting'
+  - 'profession-smelting'
 
 # Use MythicLib builtin skills (known-good handlers)
 skills:

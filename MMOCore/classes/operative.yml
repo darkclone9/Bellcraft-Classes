@@ -120,6 +120,14 @@ skills:
 
 skill-trees:
   - 'operative'
+  - 'profession-mining'
+  - 'profession-woodcutting'
+  - 'profession-farming'
+  - 'profession-fishing'
+  - 'profession-alchemy'
+  - 'profession-smithing'
+  - 'profession-enchanting'
+  - 'profession-smelting'
 
 triggers:
   level-up-multiple-4:
