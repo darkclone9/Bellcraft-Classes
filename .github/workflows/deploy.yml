@@ -2,9 +2,10 @@ name: Deploy Configs to Bloom.host
 
 # This tells GitHub to run this script ONLY when a change is pushed to the 'main' branch.
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    types:
-      - closed # Triggers when the PR is closed (whether merged or not)
     branches:
       - main
 
