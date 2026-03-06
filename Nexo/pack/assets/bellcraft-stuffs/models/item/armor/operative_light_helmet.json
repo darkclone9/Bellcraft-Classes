@@ -1354,7 +1354,7 @@
           8
         ],
         "axis": "z",
-        "angle": -90,
+        "angle": -45,
         "rescale": false
       },
       "faces": {
@@ -1621,7 +1621,7 @@
           12.1
         ],
         "axis": "y",
-        "angle": 90,
+        "angle": 45,
         "rescale": false
       },
       "faces": {
