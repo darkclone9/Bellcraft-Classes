@@ -96,7 +96,7 @@ scenes:
             - skilltrees profession-mining
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aMining'
         item-lore-data:
           '1':
@@ -130,7 +130,7 @@ scenes:
             - skilltrees profession-woodcutting
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aWoodcutting'
         item-lore-data:
           '1':
@@ -164,7 +164,7 @@ scenes:
             - skilltrees profession-farming
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aFarming'
         item-lore-data:
           '1':
@@ -279,7 +279,7 @@ scenes:
             - skilltrees profession-fishing
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aFishing'
         item-lore-data:
           '1':
@@ -313,7 +313,7 @@ scenes:
             - skilltrees profession-alchemy
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aAlchemy'
         item-lore-data:
           '1':
@@ -346,7 +346,7 @@ scenes:
             - skilltrees profession-smithing
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aSmithing'
         item-lore-data:
           '1':
@@ -422,7 +422,7 @@ scenes:
             - skilltrees profession-enchanting
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aEnchanting'
         item-lore-data:
           '1':
@@ -455,7 +455,7 @@ scenes:
             - skilltrees profession-smelting
             setOp: false
             clickType: NONE
-            executionDelay: 0.0
+            executionDelay: 0.2
         item-name: '&aSmelting'
         item-lore-data:
           '1':
@@ -572,9 +572,32 @@ scenes:
         unbreakable: false
       '38':
         slot: 37
-        item: BLACK_STAINED_GLASS_PANE
+        item: MAP
         amount: 1
-        item-name: ' '
+        click-events:
+          a1b2c3d4-0009-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0009-4000-8000-000000000002:
+            type: command
+            commands:
+            - gui open info-panel %player%
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
+        item-name: '&e&lServer Guide'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7Open the server info panel to'
+            - '&7learn about classes, professions,'
+            - '&7skills, and game systems.'
+            - ''
+            - '&e► Click to open Server Guide.'
         item-flags: []
         unbreakable: false
       '39':

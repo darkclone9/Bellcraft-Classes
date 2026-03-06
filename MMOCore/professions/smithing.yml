@@ -49,4 +49,4 @@ skill-trees:
 
 triggers:
   level-up-multiple-4:
-    - 'command{format="mmocore admin skill-tree-points give %player% 1 profession-smithing"}'
+    - 'command{format="bellcraft-grant-stp %player% profession-smithing"}'
