@@ -141,7 +141,8 @@ command /home [<text>]:
             if size of {_homes::*} is 0:
                 send "{@prefix}&cYou have not set a home yet. Use &f/sethome&c to set one." to player
                 stop
-            send "{@prefix}&cHome &f%{_name}%&c does not exist. Your homes: &f%join {_homes::*} with "", ""%" to player
+            set {_list} to join {_homes::*} with ", "
+            send "{@prefix}&cHome &f%{_name}%&c does not exist. Your homes: &f%{_list}%" to player
             stop
         set {_dest} to {home::%{_uuid}%::%{_name}%}
         # Save current location now so the player can /back after arriving home
@@ -181,7 +182,8 @@ command /homes:
         if size of {_homes::*} is 0:
             send "{@prefix}&cYou have not set any homes. Use &f/sethome [name]&c to set one." to player
             stop
-        send "{@prefix}&eYour homes: &f%join {_homes::*} with "", ""%" to player
+        set {_list} to join {_homes::*} with ", "
+        send "{@prefix}&eYour homes: &f%{_list}%" to player
 
 # -------------------------------------------------------
 # /back – teleport to last death or prior location with a 3-second warmup
