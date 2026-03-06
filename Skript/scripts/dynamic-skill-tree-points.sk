@@ -1,0 +1,73 @@
+# ============================================================
+#  Dynamic Skill-Tree & Attribute Point Allocation  –  Bellcraft Classes
+#  Requires: Skript 2.7+, PlaceholderAPI with MMOCore expansion
+#            and skript-placeholders addon!
+#
+#  Functionality:
+#    Replaces the static "1 skill-tree-point / 1 attribute-point
+#    per 4 levels" system with a randomized grant that gives
+#    between 1 and 2 points each time, keeping progression fresh.
+#
+#  bellcraft-grant-stp <player> <treeId>
+#    Grants a random 1–2 skill-tree points for the given tree.
+#
+#  bellcraft-grant-ap <player>
+#    Grants a random 1–2 attribute points.
+#
+#  Called from class / profession level-up-multiple-4 triggers via:
+#    command{format="bellcraft-grant-stp %player% <treeId>"}
+#    command{format="bellcraft-grant-ap %player_name%"}
+# ============================================================
+
+options:
+    prefix: &8[&b&lBellcraft&8] &7
+    stp_min: 1
+    stp_max: 2
+    ap_min: 1
+    ap_max: 2
+
+# ── Skill-Tree Points ──────────────────────────────────────────
+command /bellcraft-grant-stp [<text>] [<text>]:
+    permission: bellcraft.admin.grantsp
+    executable by: console
+    trigger:
+        if arg-1 is not set:
+            stop
+        if arg-2 is not set:
+            stop
+
+        set {_player} to arg-1 parsed as offline player
+        if {_player} is not online:
+            stop
+
+        set {_treeId} to arg-2
+
+        # Roll random skill-tree points within the configured range
+        set {_points} to random integer between {@stp_min} and {@stp_max}
+
+        # Grant skill-tree points via MMOCore admin command
+        execute console command "mmocore admin skill-tree-points give %name of {_player}% %{_points}% %{_treeId}%"
+
+        # Notify the player
+        send "{@prefix}&a+%{_points}% Skill-Tree Points &7(&e%{_treeId}%&7)" to {_player}
+
+# ── Attribute Points ───────────────────────────────────────────
+command /bellcraft-grant-ap [<text>]:
+    permission: bellcraft.admin.grantsp
+    executable by: console
+    trigger:
+        if arg-1 is not set:
+            stop
+
+        set {_player} to arg-1 parsed as offline player
+        if {_player} is not online:
+            stop
+
+        # Roll random attribute points within the configured range
+        set {_points} to random integer between {@ap_min} and {@ap_max}
+
+        # Grant attribute points via MMOCore admin command
+        execute console command "mmocore admin attribute-points give %name of {_player}% %{_points}%"
+
+        # Notify the player
+        send "{@prefix}&a+%{_points}% Attribute Points" to {_player}

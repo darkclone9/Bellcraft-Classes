@@ -1,0 +1,30 @@
+# ============================================================
+#  New Player Spawn & Tutorial  -  Bellcraft Classes
+#  Requires: Skript 2.7+
+#
+#  Functionality:
+#    Detects a player's first ever join to the server.
+#    After a short delay (to allow the player to fully load),
+#    the Server Guide (info-panel) is automatically opened so
+#    new players can learn about classes, professions, and
+#    game systems immediately upon arrival.
+#
+#    The first-join flag is stored in a persistent variable so
+#    the GUI is only shown once per player account.
+# ============================================================
+
+options:
+    prefix: &8[&b&lBellcraft&8] &7
+    welcome_delay: 3
+
+on first join:
+    # Mark this player as having joined for the first time
+    set {first-join::%uuid of player%} to true
+
+    # Welcome message
+    wait {@welcome_delay} seconds
+    send "{@prefix}&eWelcome to &b&lBellcraft&e! Use &a/p &eto manage your character." to player
+    send "{@prefix}&7Opening the &eServer Guide&7 for you..." to player
+
+    # Open the server guide / info-panel
+    make player execute command "gui open info-panel"

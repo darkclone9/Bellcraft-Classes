@@ -134,6 +134,6 @@ skills:
 
 triggers:
   level-up-multiple-4:
-    - 'command{format="mmocore admin attribute-points give %player_name% 1"}'
+    - 'command{format="bellcraft-grant-ap %player_name%"}'
     - 'command{format="bellcraft-grant-sp %player_name%"}'
-    - 'command{format="mmocore admin skill-tree-points give %player% 1 cleric-divinity"}'
+    - 'command{format="bellcraft-grant-stp %player% cleric-divinity"}'
