@@ -26,6 +26,8 @@ operative_light_armor_leggings:
     equippable:
       slot: LEGS
       asset_id: bellcraft-stuffs:operative_light_armor
+  Pack:
+    generate_model: true
 operative_light_armor_boots:
   itemname: Operative Light Boots
   material: PAPER
@@ -33,3 +35,14 @@ operative_light_armor_boots:
     equippable:
       slot: FEET
       asset_id: bellcraft-stuffs:operative_light_armor
+  Pack:
+    generate_model: true
+heavy_hull_boots:
+  itemname: Heavy Hull Boots
+  material: PAPER
+  Components:
+    equippable:
+      slot: FEET
+  Pack:
+    texture: bellcraft-custom-stuff:item/armor/heavy_hull_boots
+    parent_model: bellcraft-custom-stuff:item/armor/heavy_hull_boots
