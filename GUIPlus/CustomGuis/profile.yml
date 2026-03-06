@@ -85,6 +85,18 @@ scenes:
         slot: 10
         item: IRON_PICKAXE
         amount: 1
+        click-events:
+          a1b2c3d4-0010-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0010-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-mining
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aMining'
         item-lore-data:
           '1':
@@ -93,10 +105,13 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_mining%'
+            - '&7Experience: &e%mmocore_profession_experience_mining% &7/ &e%mmocore_profession_next_level_mining%'
             - ''
             - '&7&oMining unlocks rare ores and raw materials.'
             - '&7&oThis is vital to your rise in power and strength,'
             - '&7&omine frequently for unique and rare drops.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags:
         - HIDE_ATTRIBUTES
         unbreakable: false
@@ -104,6 +119,18 @@ scenes:
         slot: 11
         item: IRON_AXE
         amount: 1
+        click-events:
+          a1b2c3d4-0011-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0011-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-woodcutting
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aWoodcutting'
         item-lore-data:
           '1':
@@ -112,10 +139,13 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_woodcutting%'
+            - '&7Experience: &e%mmocore_profession_experience_woodcutting% &7/ &e%mmocore_profession_next_level_woodcutting%'
             - ''
             - '&7&oThough it may seem like a boring task, woodcutting'
             - '&7&ois vital to obtaining materials used for crafting and trade,'
             - '&7&oand will help give you the upper hand in the arcane ways.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags:
         - HIDE_ATTRIBUTES
         unbreakable: false
@@ -123,6 +153,18 @@ scenes:
         slot: 12
         item: IRON_HOE
         amount: 1
+        click-events:
+          a1b2c3d4-0012-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0012-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-farming
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aFarming'
         item-lore-data:
           '1':
@@ -131,10 +173,13 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_farming%'
+            - '&7Experience: &e%mmocore_profession_experience_farming% &7/ &e%mmocore_profession_next_level_farming%'
             - ''
             - '&7&oWith tons of new food and consumable recipes,'
             - '&7&oyou will need to stay on top of the crops in order'
             - '&7&oto obtain the best food and drinks to keep yourself healthy.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags:
         - HIDE_ATTRIBUTES
         unbreakable: false
@@ -223,6 +268,18 @@ scenes:
         slot: 19
         item: FISHING_ROD
         amount: 1
+        click-events:
+          a1b2c3d4-0013-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0013-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-fishing
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aFishing'
         item-lore-data:
           '1':
@@ -231,10 +288,13 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_fishing%'
+            - '&7Experience: &e%mmocore_profession_experience_fishing% &7/ &e%mmocore_profession_next_level_fishing%'
             - ''
             - '&7&oFishing may give you unique drops you'
             - '&7&ocan''t find anywhere else. The more you'
             - '&7&ofish, the easier it becomes to find these.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags:
         - HIDE_ATTRIBUTES
         unbreakable: false
@@ -242,6 +302,18 @@ scenes:
         slot: 20
         item: BREWING_STAND
         amount: 1
+        click-events:
+          a1b2c3d4-0014-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0014-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-alchemy
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aAlchemy'
         item-lore-data:
           '1':
@@ -250,16 +322,31 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_alchemy%'
+            - '&7Experience: &e%mmocore_profession_experience_alchemy% &7/ &e%mmocore_profession_next_level_alchemy%'
             - ''
             - '&7&oIn a world where you are no longer limited to'
             - '&7&osimple potions, try learning tons of new brewing'
             - '&7&orecipes to give yourself the edge on the battlefield.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags: []
         unbreakable: false
       '22':
         slot: 21
         item: ANVIL
         amount: 1
+        click-events:
+          a1b2c3d4-0015-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0015-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-smithing
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aSmithing'
         item-lore-data:
           '1':
@@ -268,10 +355,13 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_smithing%'
+            - '&7Experience: &e%mmocore_profession_experience_smithing% &7/ &e%mmocore_profession_next_level_smithing%'
             - ''
             - '&7&oStabbing enemies and having them laugh is the worst,'
             - '&7&oPractice makes perfect when it comes to smithing.'
             - '&7&o&nWar is won by the man with the pointiest stick.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags: []
         unbreakable: false
       '23':
@@ -321,6 +411,18 @@ scenes:
         slot: 28
         item: ENCHANTED_BOOK
         amount: 1
+        click-events:
+          a1b2c3d4-0016-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0016-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-enchanting
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aEnchanting'
         item-lore-data:
           '1':
@@ -329,16 +431,31 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_enchanting%'
+            - '&7Experience: &e%mmocore_profession_experience_enchanting% &7/ &e%mmocore_profession_next_level_enchanting%'
             - ''
             - '&7&oLorem ipsum dolor sit amet, consectetur'
             - '&7&oadipiscing elit. Proin malesuada maximus massa,'
             - '&7&osodales imperdiet sapien fermentum at.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags: []
         unbreakable: false
       '30':
         slot: 29
         item: FURNACE
         amount: 1
+        click-events:
+          a1b2c3d4-0017-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          a1b2c3d4-0017-4000-8000-000000000002:
+            type: command
+            commands:
+            - skilltrees profession-smelting
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.0
         item-name: '&aSmelting'
         item-lore-data:
           '1':
@@ -347,10 +464,13 @@ scenes:
             lore:
             - ''
             - '&7Current Level: &e%mmocore_profession_level_smelting%'
+            - '&7Experience: &e%mmocore_profession_experience_smelting% &7/ &e%mmocore_profession_next_level_smelting%'
             - ''
             - '&7&oSinging your eyebrows will become standard.'
             - '&7&oYour long hours over the heat will make you'
             - '&7&ofaster and more efficient with your oven.'
+            - ''
+            - '&e► Click to view Skill Tree.'
         item-flags: []
         unbreakable: false
       '31':
