@@ -3,11 +3,16 @@
 #  Requires: Skript 2.7+
 #
 #  Commands:
-#   • /home       – Teleport to your set home after a 3-second warmup.
-#   • /sethome    – Set your home to your current location.
-#   • /back       – Teleport to your last death or prior location
-#                   after a 3-second warmup.
-#   • /return     – Alias for /back.
+#   • /home [name]    – Teleport to a named home (default "home")
+#                       with a 3-second warmup.  Tab-completes
+#                       with the player's saved home names.
+#   • /sethome [name] – Save current location as a named home
+#                       (default "home").
+#   • /delhome [name] – Delete a saved home (default "home").
+#   • /homes          – List all saved homes.
+#   • /back           – Teleport to your last death or prior location
+#                       after a 3-second warmup.
+#   • /return         – Alias for /back.
 #
 #  Warmup: If the player moves or takes damage during the 3-second
 #          countdown, the teleport is cancelled.
@@ -16,6 +21,29 @@
 options:
     prefix:  &8[&b&lBellcraft&8] &7
     warmup:  3
+
+# -------------------------------------------------------
+# Legacy migration: convert single home stored in the old
+# format {home::location::%uuid%} to the new per-name
+# format {home::%uuid%::home} on join.
+# -------------------------------------------------------
+on join:
+    set {_uuid} to player's uuid
+    if {home::location::%{_uuid}%} is set:
+        set {home::%{_uuid}%::home} to {home::location::%{_uuid}%}
+        delete {home::location::%{_uuid}%}
+
+# -------------------------------------------------------
+# Tab completion – /home auto-fills with the player's
+# saved home names.
+# -------------------------------------------------------
+on tab complete of "/home":
+    set {_uuid} to player's uuid
+    set tab completions for position 1 to indices of {home::%{_uuid}%::*}
+
+on tab complete of "/delhome":
+    set {_uuid} to player's uuid
+    set tab completions for position 1 to indices of {home::%{_uuid}%::*}
 
 # -------------------------------------------------------
 # Store the player's location at death so /back can return
@@ -73,35 +101,89 @@ function doWarmupTeleport(p: player, dest: location, label: text):
     play sound "entity.enderman.teleport" at {_p}
 
 # -------------------------------------------------------
-# /sethome – save the player's current location as home
+# /sethome [name] – save current location as a named home
 # -------------------------------------------------------
-command /sethome:
-    description: Set your home to your current location.
+command /sethome [<text>]:
+    description: Set a home at your current location.
+    usage: /sethome [name]
     permission: bellcraft.home
     permission message: {@prefix}&cYou don't have permission to use this command.
     trigger:
-        set {home::location::%player's uuid%} to player's location
-        send "{@prefix}&aHome set to your current location." to player
+        if arg 1 is set:
+            set {_name} to arg 1
+        else:
+            set {_name} to "home"
+        set {_uuid} to player's uuid
+        set {home::%{_uuid}%::%{_name}%} to player's location
+        send "{@prefix}&aHome &f%{_name}%&a set to your current location." to player
         play sound "block.amethyst_block.chime" at player
 
 # -------------------------------------------------------
-# /home – teleport to set home with a 3-second warmup
+# /home [name] – teleport to a named home with a
+# 3-second warmup.  Defaults to "home" when no name given.
 # -------------------------------------------------------
-command /home:
-    description: Teleport to your home after a 3-second warmup.
+command /home [<text>]:
+    description: Teleport to a home after a 3-second warmup.
+    usage: /home [name]
     permission: bellcraft.home
     permission message: {@prefix}&cYou don't have permission to use this command.
     trigger:
         if {teleport::pending::%player's uuid%} is true:
             send "{@prefix}&cYou already have a teleport pending!" to player
             stop
-        if {home::location::%player's uuid%} is not set:
-            send "{@prefix}&cYou have not set a home yet. Use &f/sethome&c to set one." to player
+        set {_uuid} to player's uuid
+        if arg 1 is set:
+            set {_name} to arg 1
+        else:
+            set {_name} to "home"
+        if {home::%{_uuid}%::%{_name}%} is not set:
+            set {_homes::*} to indices of {home::%{_uuid}%::*}
+            if size of {_homes::*} is 0:
+                send "{@prefix}&cYou have not set a home yet. Use &f/sethome&c to set one." to player
+                stop
+            set {_list} to join {_homes::*} with ", "
+            send "{@prefix}&cHome &f%{_name}%&c does not exist. Your homes: &f%{_list}%" to player
             stop
-        set {_dest} to {home::location::%player's uuid%}
+        set {_dest} to {home::%{_uuid}%::%{_name}%}
         # Save current location now so the player can /back after arriving home
-        set {back::location::%player's uuid%} to player's location
-        doWarmupTeleport(player, {_dest}, "home")
+        set {back::location::%{_uuid}%} to player's location
+        doWarmupTeleport(player, {_dest}, "home: %{_name}%")
+
+# -------------------------------------------------------
+# /delhome [name] – delete a saved home
+# -------------------------------------------------------
+command /delhome [<text>]:
+    description: Delete a saved home.
+    usage: /delhome [name]
+    permission: bellcraft.home
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    trigger:
+        if arg 1 is set:
+            set {_name} to arg 1
+        else:
+            set {_name} to "home"
+        set {_uuid} to player's uuid
+        if {home::%{_uuid}%::%{_name}%} is not set:
+            send "{@prefix}&cHome &f%{_name}%&c does not exist." to player
+            stop
+        delete {home::%{_uuid}%::%{_name}%}
+        send "{@prefix}&aHome &f%{_name}%&a deleted." to player
+
+# -------------------------------------------------------
+# /homes – list all saved homes
+# -------------------------------------------------------
+command /homes:
+    description: List all your saved homes.
+    permission: bellcraft.home
+    permission message: {@prefix}&cYou don't have permission to use this command.
+    trigger:
+        set {_uuid} to player's uuid
+        set {_homes::*} to indices of {home::%{_uuid}%::*}
+        if size of {_homes::*} is 0:
+            send "{@prefix}&cYou have not set any homes. Use &f/sethome [name]&c to set one." to player
+            stop
+        set {_list} to join {_homes::*} with ", "
+        send "{@prefix}&eYour homes: &f%{_list}%" to player
 
 # -------------------------------------------------------
 # /back – teleport to last death or prior location with a 3-second warmup
