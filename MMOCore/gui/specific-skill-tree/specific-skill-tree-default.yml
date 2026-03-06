@@ -64,6 +64,21 @@ items:
       - '&eCosts 1 skill tree reallocation point.'
       - '&e◆ Skill Tree Reallocation Points: &6{points}'
 
+  skill-tree-node:
+    function: 'skill-tree-node'
+    slots: [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44 ]
+    name: '&a{name}'
+    item-flags: [ 'HIDE_ATTRIBUTES' ]
+    lore:
+      - '&eLevel &6{current-level}&e/&6{max-level}'
+      - '&eCosts &6{point-consumed} &ept per upgrade'
+      - ''
+      - '&7{node-lore}'
+      - ''
+      - '&e◆ Points Spent:&6 {point-spent}&e/&6{max-point-spent}'
+      - '&e◆ Available: &6{skill-tree-points} &e+ &6{global-points} &eGlobal'
+    path-lore: [ ]
+
 display:
   paths:
     unlocked:
