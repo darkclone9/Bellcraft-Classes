@@ -168,7 +168,7 @@ VOID_STAFF:
     magic-damage: 40.0
     staff-spirit: VOID_SPIRIT
     required-class:
-      - Mage
+      - Sorcerer
     ability:
       ability1:
         type: CURSED_BEAM

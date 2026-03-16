@@ -98,7 +98,7 @@ HEAVY_HAMMER:
       max-spread: 0.2
     required-level: 10.0
     required-class:
-      - Warrior
+      - Barbarian
     stamina-cost: 4.0
     blunt-power: 5.0
     blunt-rating: 85.0

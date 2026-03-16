@@ -5,7 +5,7 @@ HARDENED_STEEL_CLAYMORE:
     required-level: 13.0
     tier: RARE
     required-class:
-      - Warrior
+      - Barbarian
       - Paladin
     attack-damage:
       base: 5.5
@@ -152,7 +152,7 @@ EARTHLY_GREATSWORD:
       scale: 0.1
       spread: 0.2
     required-class:
-      - Warrior
+      - Barbarian
     tier: EPIC
     name: §2Earthly Greatsword
     gem-sockets:

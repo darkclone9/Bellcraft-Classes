@@ -17,7 +17,7 @@ ScalingOrc_Spawner:
   Worlds: world
   Chance: 0.5
   Priority: 1
-  Action: ADD
+  Action: REPLACE
   Conditions:
     - outside true
   # This scales the mob to the average level of players within 30 blocks

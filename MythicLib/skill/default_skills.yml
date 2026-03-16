@@ -200,8 +200,8 @@ BACKSTAB:
       item: 0
     extra:
       player:
-        base: 50.0
-        per-level: 20.0
+        base: 30.0
+        per-level: 9.0
       name: Extra
       item: 0
 BLACK_HOLE:
@@ -1254,8 +1254,8 @@ DEEP_WOUND:
       item: 0
     extra:
       player:
-        base: 50.0
-        per-level: 20.0
+        base: 30.0
+        per-level: 5.0
       name: Extra
       item: 0
 EARTHQUAKE:
@@ -1505,7 +1505,7 @@ FIRE_BERSERKER:
     extra:
       player:
         base: 10.0
-        per-level: 5.0
+        per-level: 3.0
       name: Extra
       item: 0
     timer:
@@ -1619,7 +1619,7 @@ FIRE_RAGE:
     damage:
       player:
         base: 5.0
-        per-level: 3.0
+        per-level: 1.5
       name: Damage
       item: 0
     ignite:
@@ -1678,7 +1678,7 @@ FIRE_STORM:
     damage:
       player:
         base: 5.0
-        per-level: 3.0
+        per-level: 1.5
       format: 0.#
       name: Damage
       item: 0
@@ -1742,7 +1742,7 @@ FIREBALL:
     damage:
       player:
         base: 5.0
-        per-level: 3.0
+        per-level: 1.5
       format: 0.#
       name: Damage
       item: 0
@@ -4213,8 +4213,8 @@ SNEAKY_PICKY:
       item: 0
     extra:
       player:
-        base: 50.0
-        per-level: 20.0
+        base: 30.0
+        per-level: 9.0
       name: Extra
       item: 0
     cooldown:

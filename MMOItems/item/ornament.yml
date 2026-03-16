@@ -12,5 +12,5 @@ BOOK_OF_STRENGTH:
     weapon-damage: 10.0
     damage-reduction: 5.0
     required-class:
-      - Warrior
+      - Barbarian
     required-level: 15.0

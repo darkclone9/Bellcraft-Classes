@@ -40,7 +40,7 @@ QUICKCASTER_CATALYST:
     max-mana: 5.0
     mana-regeneration: 1.0
     required-class:
-      - Mage
+      - Sorcerer
     required-level: 5.0
     tier: RARE
 CHARM_OF_LEVITATION:

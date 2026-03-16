@@ -103,10 +103,10 @@ SOULSTEALER:
     name: '&cThe Soulstealer'
     attack-damage:
       base: 10.0
-      spread: 10.0
+      spread: 0.1
       max-spread: 0.03
-      scale: 10.0
-      maxSpread: 10.0
+      scale: 0.3
+      maxSpread: 0.1
     attack-speed:
       base: 1.65
       spread: 0.01
@@ -431,7 +431,7 @@ TOOLTIP_COPPER_SWORD:
       fire:
         damage: 3.0
     required-class:
-      - Warrior
+      - Soldier
 
 TOOLTIP_SILVER_SWORD:
   base:
@@ -444,7 +444,7 @@ TOOLTIP_SILVER_SWORD:
       fire:
         damage: 3.0
     required-class:
-      - Warrior
+      - Soldier
 
 TOOLTIP_GOLD_SWORD:
   base:
@@ -457,4 +457,4 @@ TOOLTIP_GOLD_SWORD:
       fire:
         damage: 3.0
     required-class:
-      - Warrior
+      - Soldier

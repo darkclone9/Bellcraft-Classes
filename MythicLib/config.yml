@@ -31,7 +31,7 @@ number-format:
 # natural   <-> non-elemental damage
 # elemental <-> fire/water/.. damage
 defense-application:
-  natural: '#damage# - #defense#'
+  natural: '#damage# * (#damage# / (#damage# + #defense#))'
   elemental: '#damage# * (1 - (#defense# / (5 * #damage# + #defense#)))'
 
 # By default, MythicLib calculates the player's elemental damage

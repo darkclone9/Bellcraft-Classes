@@ -11,7 +11,7 @@ NATURES_GIFT:
       max-spread: 0.25
     required-level: 4.0
     required-class:
-      - Wizard
+      - Sorcerer
       - Paladin
     hide-enchants: true
     enchants:
@@ -147,7 +147,7 @@ LUCK_CHARM:
     tier: MAGICAL
     required-level: 5.0
     required-class:
-      - Mage
+      - Sorcerer
     disable-crafting: true
     disable-smelting: true
     disable-interaction: true
@@ -167,7 +167,7 @@ THIN_TRANSPARENT_GLOVES:
     name: §7Thin Transparent Gloves
     set: PSYCHIC
     required-class:
-      - Mage
+      - Sorcerer
     attack-damage: 15.0
     magic-damage: 100.0
     tier: MAGICAL

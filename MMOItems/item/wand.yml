@@ -69,7 +69,6 @@ BLAZE_WAND:
             - v nether_star - 1.0..|v magma_cream - 1.0..|v nether_star - 1.0..
             - v AIR 0 1..|v blaze_rod - 1.0..|v AIR 0 1..
             - v AIR 0 1..|v blaze_rod - 1.0..|v AIR 0 1..
-    staff-spirit: NETHER_SPIRIT
     critical-strike-power:
       base: 12.1
       scale: 0.04
@@ -147,7 +146,7 @@ SPELLCASTER_WAND:
     name: §dSpellcaster Wand
     required-level: 1.0
     required-class:
-      - Mage
+      - Sorcerer
     range: 16.0
     attack-damage:
       base: 6.0

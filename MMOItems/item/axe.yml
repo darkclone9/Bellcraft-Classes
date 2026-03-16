@@ -32,7 +32,7 @@ EXECUTIONER_AXE:
             - v AIR 0 1..|v stick - 1.0..|v AIR 0 1..
     max-durability: 3150.0
     required-class:
-      - Warrior
+      - Barbarian
     ability:
       ability1:
         type: EARTHQUAKE
@@ -156,7 +156,7 @@ SKULL_BREAKER:
     required-level: 9.0
     required-class:
       - Brute
-      - Warrior
+      - Barbarian
 SILVER_AXE:
   base:
     material: IRON_AXE

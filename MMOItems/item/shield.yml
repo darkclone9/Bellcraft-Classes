@@ -142,7 +142,7 @@ SUPREME_SHIELD:
       spread: 0.1
       max-spread: 0.2
     required-class:
-      - Warrior
+      - Barbarian
     name: §9§l§oSupreme Shield
     lore:
       - §7The mightiest of all §eshields§7.

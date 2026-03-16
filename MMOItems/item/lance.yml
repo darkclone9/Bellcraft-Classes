@@ -14,11 +14,18 @@ FIRE_GREATLANCE:
         mode: ATTACK
         damage: 10.0
         cooldown: 30.0
+      right-click:
+        type: FIREBALL
+        mode: RIGHT_CLICK
+        damage: 8.0
+        ignite: 3.0
+        cooldown: 12.0
     lore:
     - '&7Every 40s in combat, casts'
     - '&7a devastating &6fire comet'
     - '&7that wipes out any life form'
     - '&7nearby whenever it lands.'
+    - '&7Right-click to launch a fireball.'
     item-particles:
       type: DOUBLE_RINGS
       particle: FLAME
