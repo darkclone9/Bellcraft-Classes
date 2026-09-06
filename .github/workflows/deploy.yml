@@ -32,7 +32,8 @@ jobs:
       - name: Preview changes (pull requests only)
         if: github.event_name == 'pull_request'
         run: |
-          rsync -azn --delete --itemize-changes \
+          rsync -rltzn --delete --itemize-changes \
+            --omit-dir-times --no-perms --no-owner --no-group \
             --exclude 'userdata/***' --exclude '*.bak' \
             -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
             MMOCore/ \
@@ -47,7 +48,8 @@ jobs:
       - name: Sync MMOCore to rpg
         if: github.event_name != 'pull_request'
         run: |
-          rsync -az --delete --itemize-changes \
+          rsync -rltz --delete --itemize-changes \
+            --omit-dir-times --no-perms --no-owner --no-group \
             --exclude 'userdata/***' --exclude '*.bak' \
             -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
             MMOCore/ \
