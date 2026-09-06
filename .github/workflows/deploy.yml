@@ -1,35 +1,73 @@
-name: Deploy Configs to Bloom.host
+name: Deploy configs to Bellcraft VPS
 
-# This tells GitHub to run this script ONLY when a change is pushed to the 'main' branch.
+# Replaces the old Bloom.host SFTP workflow, which was dead in two ways:
+#   1. It targeted Bloom.host, abandoned when the network moved to the Hostinger VPS.
+#   2. Its job guard was `github.event.pull_request.merged == true`, but the
+#      pull_request trigger only fires on opened/synchronize/reopened — `merged`
+#      is only ever true on a `closed` event, and on `push` the pull_request
+#      object is null. The condition could never be satisfied, so nothing ever
+#      deployed. That is how 66 quests sat undeployed for months.
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # This ensures the job ONLY runs if the PR was actually merged, not just closed without merging.
-    if: github.event.pull_request.merged == true 
     steps:
-      - run: echo "Deploying after merge!"
+      - uses: actions/checkout@v4
 
-      - name: Sync files via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASS }}
-          port: 2022
+      - name: Load deploy key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.BELLCRAFT_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.BELLCRAFT_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
 
-          # Upload only the checked-out plugin config folders to the server's /plugins folder.
-          local_path: './'
-          remote_path: 'plugins/'
-          sftp_only: true
-          # Pass a connect timeout so the job fails fast when the server is unreachable.
-          # Note: use 'sftpArgs' (not 'args') — that is the correct input name for this action.
-          # '--exclude' is an rsync/lftp flag and is not supported by sftp batch mode.
-          sftpArgs: '-o ConnectTimeout=15'
+      # On a pull request, show what WOULD change without touching the server.
+      - name: Preview changes (pull requests only)
+        if: github.event_name == 'pull_request'
+        run: |
+          rsync -azn --delete --itemize-changes \
+            --exclude 'userdata/***' --exclude '*.bak' \
+            -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
+            MMOCore/ \
+            "${{ secrets.BELLCRAFT_USER }}@${{ secrets.BELLCRAFT_HOST }}:/opt/bellcraft/rpg/plugins/MMOCore/"
+
+      # Only MMOCore is synced. Deliberately NOT synced:
+      #   Nexo/       — would clobber the generated resource pack and its
+      #                 external_packs (MythicArmors / HMCCosmetics integration).
+      #   LuckPerms/  — config.yml carries database credentials.
+      #   config/, *.png at repo root — stray files, not plugin config.
+      # Add a folder here only after confirming it has no server-side runtime state.
+      - name: Sync MMOCore to rpg
+        if: github.event_name != 'pull_request'
+        run: |
+          rsync -az --delete --itemize-changes \
+            --exclude 'userdata/***' --exclude '*.bak' \
+            -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
+            MMOCore/ \
+            "${{ secrets.BELLCRAFT_USER }}@${{ secrets.BELLCRAFT_HOST }}:/opt/bellcraft/rpg/plugins/MMOCore/"
+
+      # --delete plus a bad exclude would wipe player progression. Fail loudly.
+      - name: Verify player data survived
+        if: github.event_name != 'pull_request'
+        run: |
+          count=$(ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes \
+            "${{ secrets.BELLCRAFT_USER }}@${{ secrets.BELLCRAFT_HOST }}" \
+            'ls /opt/bellcraft/rpg/plugins/MMOCore/userdata 2>/dev/null | wc -l')
+          echo "userdata files on server: $count"
+          if [ "$count" -eq 0 ]; then
+            echo "::error::MMOCore/userdata is empty after deploy — player data may have been deleted."
+            exit 1
+          fi
+
+      - name: Done
+        if: github.event_name != 'pull_request'
+        run: |
+          echo "Config synced. MMOCore reads these at startup —"
+          echo "run '/mmocore reload' in game or restart rpg for changes to take effect."
