@@ -538,3 +538,62 @@ ravager-rampage → pillager-warlord
 1. Copy all new `.yml` files from `MMOCore/quests/` → `plugins/MMOCore/quests/`
 2. Run `/mmocore reload` to load the new quests.
 3. Players can access quests via `/quests` or the profile GUI.
+
+---
+
+## 9. In-Game Character Switch, Rename, and Icon
+
+### Problem
+
+Players previously had to quit the server and rejoin to reach MMOProfiles character selection. They also could not rename a character or change its selection icon after creation.
+
+### Why not a true hot-swap?
+
+MMOProfiles does not support swapping the loaded profile while a player keeps playing. Inventory, location, vanilla stats, and MMOCore progression are saved on profile unload. The plugin's supported path is `/mmoprofiles quit <player>`, which:
+
+1. Saves and unloads the current profile
+2. Teleports the player to `profile-selection-location`
+3. Reopens the **Choose Your Character** GUI (`quit_profile.open_gui: true`)
+
+`/mmoprofiles quit` requires `mmoprofiles.admin`, so players never run it directly. The character menu runs it from **console** after a confirmation click.
+
+MMOProfiles also has **no rename or per-profile icon API** (GitLab suggestion `phoenix-dvpmt/mmoprofiles#71`). Display names and icons are stored in Skript variables and overlaid onto the official selection GUI.
+
+### What players can do
+
+| Action | How |
+|--------|-----|
+| Open character manager | `/p` → **Characters** (ender chest, slot 47) or click your player head (slot 15). Command: `/characters` (aliases `/chars`, `/switchprofile`). Profile Terminal crying-obsidian menu also has a Characters button. |
+| Switch character | Characters menu → **Switch Character** → confirm. Saves the current character, then opens MMOProfiles selection. |
+| Rename | Characters menu → **Rename Character**, or `/renamecharacter`. Type the new name in chat (2–20 chars, same cap as MMOProfiles `profile_names.max_length`). |
+| Change icon | Characters menu → **Change Icon**, or `/changeicon`. Pick a head/item from the palette. |
+
+Rename validation: length 2–20, letters/numbers/spaces/`-`/`_`/`'`, duplicate-name check, and a blocked-word filter (MMOProfiles itself has no name filter).
+
+### Files
+
+| File | Change |
+|------|--------|
+| `Skript/scripts/character-manager.sk` | Menu, commands, overlay, validation |
+| `GUIPlus/CustomGuis/profile.yml` | Characters button + clickable player head |
+| `Skript/scripts/profile-terminal.sk` | Characters button on the crying-obsidian terminal |
+| `MMOProfiles/config.yml` | Clearer leave/login messages (MySQL settings untouched) |
+| `MMOProfiles/language/gui/profile-list.yml` | Lore hint for `/characters` |
+| `MMOProfiles/language/messages.yml` | Name prompt mentions `/characters` |
+| `GUIPlus/CustomGuis/info-panel.yml` / `info-panel-p5.yml` | Command listed in the server guide |
+
+### Deployment
+
+1. Copy `Skript/scripts/character-manager.sk` → `plugins/Skript/scripts/`
+2. Copy updated `GUIPlus/CustomGuis/profile.yml`, `info-panel.yml`, `info-panel-p5.yml`
+3. Copy updated `Skript/scripts/profile-terminal.sk`
+4. Copy updated `MMOProfiles/config.yml`, `language/messages.yml`, `language/gui/profile-list.yml`
+5. `/skript reload character-manager` and `/skript reload profile-terminal`
+6. `/gui reload` and `/mmoprofiles reload`
+
+### Limitations (tell players / staff)
+
+- Switching **does** teleport to the character-select area. That is required for a safe save/unload. It is still much faster than quitting the server.
+- The **display name** is what you see in selection and `/characters`. MMOProfiles still stores the original creation name internally (no plugin setter).
+- Icon overlay changes the item shown in **Choose Your Character**. Clicks stay slot-based (`function: profile`). If an MMOProfiles update stops honouring swapped items, names still overlay and `/characters` still works.
+- Creating a brand-new profile still uses the vanilla MMOProfiles chat prompt (unfiltered). Rename afterwards to apply the word filter.

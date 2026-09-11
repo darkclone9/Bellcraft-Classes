@@ -36,6 +36,9 @@ function openTerminal(p: player):
     # Slot 2 – Skill Tree
     set slot 2 of {_inv} to experience bottle named "&b&lSkill Tree" with lore "&7Opens your class skill tree."
 
+    # Slot 3 – Characters (switch / rename / icon)
+    set slot 3 of {_inv} to ender chest named "&d&lCharacters" with lore "&7Switch, rename, or change icon."
+
     # Slot 8 – Close / separator
     set slot 8 of {_inv} to gray stained glass pane named " "
 
@@ -88,6 +91,11 @@ on inventory click:
         else if {_slot} is 2:
             close player's inventory
             make player execute command "/skilltrees"
+
+        # ── Characters (slot 3) ──────────────────────────────
+        else if {_slot} is 3:
+            close player's inventory
+            make player execute command "/characters"
 
         # ── Add New Shortcut (slot 18) ────────────────────────
         else if {_slot} is 18:
