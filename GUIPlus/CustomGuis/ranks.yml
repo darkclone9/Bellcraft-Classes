@@ -148,9 +148,25 @@ scenes:
         unbreakable: false
       '13':
         slot: 14
-        item: GOLD_BLOCK
+        item: GOLD_INGOT
         amount: 1
-        item-name: ' '
+        item-name: '&e&lTown Banker'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7Elected per town. Manages the town'
+            - '&7bank, taxes, and funding projects.'
+            - ''
+            - '&7Prefix: &e[Banker]'
+            - '&7Group: &etown_banker'
+            - ''
+            - '&7Perks:'
+            - '&8• &eDeposit and withdraw from town bank'
+            - '&8• &eView bank history'
+            - '&8• &eCreate town funding projects'
         item-flags: []
         unbreakable: false
       '14':
@@ -162,10 +178,26 @@ scenes:
         unbreakable: false
       '15':
         slot: 16
-        item: GOLD_BLOCK
+        item: IRON_SWORD
         amount: 1
-        item-name: ' '
-        item-flags: []
+        item-name: '&c&lTown Sheriff'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7Elected per town. Enforces town'
+            - '&7rules and resident management.'
+            - ''
+            - '&7Prefix: &c[Sheriff]'
+            - '&7Group: &etown_sheriff'
+            - ''
+            - '&7Perks:'
+            - '&8• &eInvite and kick residents'
+            - '&8• &eJail / unjail'
+        item-flags:
+        - HIDE_ATTRIBUTES
         unbreakable: false
       '16':
         slot: 17

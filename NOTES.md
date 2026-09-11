@@ -597,3 +597,31 @@ Rename validation: length 2–20, letters/numbers/spaces/`-`/`_`/`'`, duplicate-
 - The **display name** is what you see in selection and `/characters`. MMOProfiles still stores the original creation name internally (no plugin setter).
 - Icon overlay changes the item shown in **Choose Your Character**. Clicks stay slot-based (`function: profile`). If an MMOProfiles update stops honouring swapped items, names still overlay and `/characters` still works.
 - Creating a brand-new profile still uses the vanilla MMOProfiles chat prompt (unfiltered). Rename afterwards to apply the word filter.
+## 9. Player `/menu`, Auction House, Bank, Town Economy
+
+Full deploy, permissions, and in-game test plan: **`CoreTools/README.md`**.
+
+### What changed
+
+| Area | Files |
+|------|--------|
+| `/menu` hub | `GUIPlus/CustomGuis/menu.yml`, `MenuCreator/menu.yml`, `Skript/scripts/server-menu.sk` |
+| AH permission | `CoreTools/configs/commands.yml` (merge into live file — do not replace) |
+| Bank + town projects | `GUIPlus/CustomGuis/bank.yml`, `Skript/scripts/town-economy.sk` |
+| Per-town elections | `Skript/scripts/town-election.sk` (`mayor-election.sk` is now a wrapper) |
+| Elected roles | `LuckPerms/groups/town_banker.yml`, `town_sheriff.yml`, `GUIPlus/CustomGuis/ranks.yml` |
+| Towny ranks snippet | `Towny/settings/townyperms-ranks.snippet.yml` |
+
+### Root cause (Auction House button)
+
+CoreTools 1.4.3 defaults `permission: 'OP'` on `menu-creator` and `auctionhouse`. Non-ops click the button, the command is denied, nothing opens. This repo also had no committed `/menu` YAML.
+
+Fix: GUIPlus `/menu` with the AH button running `core-auctionhouse vanilla_example %player%` as OP; Skript intercepts `/menu` so CoreTools cannot eat it; merge empty permissions into CoreTools `commands.yml`.
+
+### Town economy (short)
+
+- Taxes scale with claimed townblocks + resident count; collected from online residents into the Towny town bank (`/t deposit`).
+- Upkeep of the same shape is withdrawn from the town bank once per town per cycle.
+- Projects are named goals; deposits also use `/t deposit`.
+- Elections are **per town** for mayor, banker, and sheriff (not server-wide).
+

@@ -1,0 +1,28 @@
+# LuckPerms Group: town_banker
+# Elected town bankers. Copy to plugins/LuckPerms/groups/town_banker.yml
+# Assign: /lp user <player> parent add town_banker
+# Also add a Towny rank named `banker` (see Towny/settings/townyperms-ranks.snippet.yml).
+
+name: town_banker
+permissions:
+  - permission: towny.command.town.deposit
+    value: true
+    contexts: {}
+  - permission: towny.command.town.withdraw
+    value: true
+    contexts: {}
+  - permission: towny.command.town.bankhistory
+    value: true
+    contexts: {}
+  - permission: towny.command.town.set.taxes
+    value: true
+    contexts: {}
+  - permission: towny.command.town.set.plottax
+    value: true
+    contexts: {}
+  - permission: meta.prefix.80.&e[&lBanker&e]&r
+    value: true
+    contexts: {}
+  - permission: weight.80
+    value: true
+    contexts: {}

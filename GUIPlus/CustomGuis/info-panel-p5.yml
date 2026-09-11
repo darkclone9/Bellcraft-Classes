@@ -87,6 +87,20 @@ scenes:
         item-name: ' '
         item-flags: []
         unbreakable: false
+      '10b':
+        slot: 10
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/menu'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Open Auction House, Bank, and more.'
+        item-flags: []
+        unbreakable: false
       '11':
         slot: 10
         item: PAPER
