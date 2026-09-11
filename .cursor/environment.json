@@ -1,0 +1,11 @@
+{
+  "name": "Bellcraft-Classes",
+  "user": "ubuntu",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "paper-server",
+      "command": "bash .cursor/run-server.sh"
+    }
+  ]
+}
