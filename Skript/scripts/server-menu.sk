@@ -1,0 +1,23 @@
+# ============================================================
+#  /menu router  –  Bellcraft
+#  Requires: Skript 2.7+, GUIPlus
+#
+#  Players type /menu. CoreTools ships that alias with
+#  permission: 'OP', so non-ops get a silent no-op. This
+#  script cancels the vanilla/CoreTools command and opens
+#  the GUIPlus hub instead (Auction House + Bank buttons).
+# ============================================================
+
+options:
+    prefix: &8[&6&lMenu&8] &7
+
+on command "menu":
+    if player is set:
+        cancel event
+        make console execute command "gui open menu %player%"
+
+command /bcmenu:
+    description: Open the Bellcraft player menu
+    executable by: players
+    trigger:
+        make console execute command "gui open menu %player%"

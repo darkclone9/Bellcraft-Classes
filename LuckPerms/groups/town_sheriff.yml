@@ -1,0 +1,28 @@
+# LuckPerms Group: town_sheriff
+# Elected town sheriffs. Copy to plugins/LuckPerms/groups/town_sheriff.yml
+# Assign: /lp user <player> parent add town_sheriff
+# Also add a Towny rank named `sheriff` (see Towny/settings/townyperms-ranks.snippet.yml).
+
+name: town_sheriff
+permissions:
+  - permission: towny.command.town.kick
+    value: true
+    contexts: {}
+  - permission: towny.command.town.invite
+    value: true
+    contexts: {}
+  - permission: towny.command.town.jail
+    value: true
+    contexts: {}
+  - permission: towny.command.town.unjail
+    value: true
+    contexts: {}
+  - permission: towny.command.town.plot
+    value: true
+    contexts: {}
+  - permission: meta.prefix.70.&c[&lSheriff&c]&r
+    value: true
+    contexts: {}
+  - permission: weight.70
+    value: true
+    contexts: {}
