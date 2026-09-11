@@ -1,0 +1,45 @@
+# Bellcraft overrides for CoreTools command permissions.
+#
+# IMPORTANT: CoreTools ships a full commands.yml with every feature
+# (stations, vaults, shops, economy, ...). Do NOT replace a live
+# commands.yml with this file alone — you would drop those other
+# feature commands.
+#
+# Merge the three keys below into plugins/CoreTools/configs/commands.yml
+# (or copy this file only on a fresh CoreTools install, then paste
+# the remaining keys from the jar default).
+#
+# Root cause of "/menu Auction House does nothing":
+# the jar default sets permission: 'OP' on menu-creator AND
+# auctionhouse, so non-op players silently fail when the button
+# runs `ah` / `core-auctionhouse`. Empty permission = all players.
+
+menu-creator:
+  main: 'core-menu'
+  aliases:
+    - 'coremenu'
+    - 'menu'
+  permission: ''
+  description: 'Open a CoreTools custom menu'
+  enabled: true
+
+auctionhouse:
+  main: 'core-auctionhouse'
+  aliases:
+    - 'ah'
+  permission: ''
+  description: 'Open the Auction House'
+  enabled: true
+
+# User-facing balance command used by the bank GUI lore / /balance.
+# Confirm the key name against your jar default (it may be
+# `economy-balance` or similar) and keep aliases in sync.
+economy-balance:
+  main: 'core-economy-balance'
+  aliases:
+    - 'balance'
+    - 'bal'
+    - 'money'
+  permission: ''
+  description: 'View your economy balance'
+  enabled: true

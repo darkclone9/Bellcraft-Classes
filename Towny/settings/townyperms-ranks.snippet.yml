@@ -1,0 +1,24 @@
+# Snippet — merge these ranks into plugins/Towny/settings/townyperms.yml
+# under towns.ranks (do not replace the whole file).
+#
+# After editing: /ta reload
+# Elections grant ranks with: /ta rank add <player> banker|sheriff
+
+# towns:
+#   ranks:
+sheriff:
+  - towny.command.town.kick
+  - towny.command.town.invite
+  - towny.command.town.jail
+  - towny.command.town.unjail
+  - towny.command.town.plot
+banker:
+  - towny.command.town.deposit
+  - towny.command.town.withdraw
+  - towny.command.town.bankhistory
+  - towny.command.town.set.taxes
+  - towny.command.town.set.plottax
+assistant:
+  - towny.command.town.invite
+  - towny.command.town.kick
+  - towny.command.town.set.perm
