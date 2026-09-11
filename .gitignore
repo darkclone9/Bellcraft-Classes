@@ -1,3 +1,6 @@
 # Player data - never commit live player data to the repository.
 # This prevents the GitHub Actions deploy from overwriting player data on the server.
 userdata/
+
+# Local Paper test server created by .cursor/setup-server.sh (dev only).
+server/
