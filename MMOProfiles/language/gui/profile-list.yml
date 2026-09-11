@@ -83,6 +83,9 @@ items:
         - '&7Exp: &e{mmocore_exp}&7/&e{mmocore_exp_next_level}'
         - '&7World: &e{world}'
         - ''
+        - '&7While playing, use &e/p &7or &e/characters'
+        - '&7to switch, rename, or change icon.'
+        - ''
         - "&e↪ Right click to delete it."
 
     item: PLAYER_HEAD
@@ -93,6 +96,9 @@ items:
       - '&7Level: &e{mmocore_level}'
       - '&7Exp: &e{mmocore_exp}&7/&e{mmocore_exp_next_level}'
       - '&7World: &e{world}'
+      - ''
+      - '&7While playing, use &e/p &7or &e/characters'
+      - '&7to switch, rename, or change icon.'
       - ''
       - "&e↪ Left click to select this character."
       - "&e↪ Right click to delete it."

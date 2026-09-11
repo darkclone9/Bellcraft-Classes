@@ -102,6 +102,22 @@ scenes:
         item-flags: []
         unbreakable: false
       '11':
+        slot: 10
+        item: PAPER
+        amount: 1
+        item-name: '&f&l/characters'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 0
+            lore:
+            - ''
+            - '&7Switch characters, rename, or'
+            - '&7change your character icon.'
+            - '&7Also in &e/p &7(Characters button).'
+        item-flags: []
+        unbreakable: false
+      '38':
         slot: 11
         item: PAPER
         amount: 1
@@ -286,6 +302,8 @@ scenes:
             delay: 0
             lore:
             - ''
+            - '&7• Use &e/characters &7or &e/p'
+            - '&7  to switch or rename characters'
             - '&7• Join a party for &a+5% EXP'
             - '&7• Support classes get more'
             - '&7  skill points per level-up'
