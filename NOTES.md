@@ -64,14 +64,22 @@ The `skill_shop_button` used `[player] mmocore skilltree` (non-existent command)
 
 ### 4. Class Armor Restrictions
 
-New Skript file `Skript/scripts/class-armor-restrictions.sk` enforces armor tier limits
-per class whenever a player equips armor via inventory interaction.
+Skript file `Skript/scripts/class-armor-restrictions.sk` enforces armor tier limits
+per class whenever a player equips armor via inventory interaction, hotbar
+right-click, or (for the Obsidian set) a short worn-armor sweep.
 
 | Class group | Classes | Restriction |
 |-------------|---------|-------------|
 | Iron-limited | Cleric, Mystic, Sorcerer | Iron armor and below only (diamond & netherite blocked) |
 | One-netherite | Ranger, Envoy, Operative | At most 1 netherite piece total |
-| Unrestricted | Soldier, Paladin | Full netherite allowed |
+| Unrestricted / full-heavy | Soldier, Paladin | Full netherite allowed |
+| Obsidian heavy set | Soldier, Paladin only | Nexo `obsidian_helmet` / `obsidian_chestplate` / `obsidian_leggings` / `obsidian_boots` — denied for every other class, including one-netherite classes |
+
+Technomancer and Human are not in the full-heavy list (they are only unrestricted for *vanilla* netherite because they are absent from the deny groups). They cannot wear Obsidian.
+
+**Obsidian detection** does not require `skript-nexo` (that addon would fail the script at parse time if it were missing). The matcher prefers a live Nexo ID if it appears in the item's string form (PDC / NBT dumps, `item_model`, debug text: `obsidian_helmet`, etc.), then falls back to the uncolored display name (`Obsidian Helmet` → `obsidian_helmet`, and the same for chestplate / leggings / boots). Material is not used to identify the set — worn bodies currently use netherite layers, while custom 3D is inventory / GUI / held only. Vanilla netherite with a different name still uses the iron / netherite tier table above. Stats stay in Nexo; do not add MMOItems wrappers for this set.
+
+**Reload:** `/skript reload class-armor-restrictions`
 
 **Dependencies:** Skript 2.7+, PlaceholderAPI with MMOCore expansion, and a
 PlaceholderAPI-Skript bridge (e.g. `skript-placeholders`).
