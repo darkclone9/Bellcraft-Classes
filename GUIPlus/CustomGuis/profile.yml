@@ -201,6 +201,18 @@ scenes:
         slot: 15
         item: PLAYER_HEAD
         amount: 1
+        click-events:
+          c4a7ec70-0015-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          c4a7ec70-0015-4000-8000-000000000002:
+            type: command
+            commands:
+            - characters
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.2
         item-name: '&e%player%'
         item-lore-data:
           '1':
@@ -208,12 +220,15 @@ scenes:
             delay: 20
             lore:
             - ''
+            - '&7Character: &e%mmoprofiles_current_profile_name%'
             - '&7Current Level: &e%mmocore_level%'
             - '&7Experience: &e%mmocore_experience% &7/ &e%mmocore_next_level%'
             - '&7Skill Points: &6%mmocore_skill_points%'
             - ''
             - '&7Current Class: &c%mmocore_class%'
             - '&7Class Points: &c%mmocore_class_points%'
+            - ''
+            - '&e► Click to switch, rename, or change icon.'
         item-flags: []
         unbreakable: false
       '17':
@@ -806,9 +821,35 @@ scenes:
         unbreakable: false
       '48':
         slot: 47
-        item: BLACK_STAINED_GLASS_PANE
+        item: ENDER_CHEST
         amount: 1
-        item-name: ' '
+        click-events:
+          c4a7ec70-0047-4000-8000-000000000001:
+            type: close-inventory
+            clickType: NONE
+            executionDelay: 0.0
+          c4a7ec70-0047-4000-8000-000000000002:
+            type: command
+            commands:
+            - characters
+            setOp: false
+            clickType: NONE
+            executionDelay: 0.2
+        item-name: '&d&lCharacters'
+        item-lore-data:
+          '1':
+            page: 1
+            delay: 20
+            lore:
+            - ''
+            - '&7Switch to another character, rename'
+            - '&7this one, or change its icon.'
+            - ''
+            - '&7Your progress is saved before'
+            - '&7character selection opens.'
+            - ''
+            - '&e► Click to manage characters.'
+            - '&8Command: /characters'
         item-flags: []
         unbreakable: false
       '49':
