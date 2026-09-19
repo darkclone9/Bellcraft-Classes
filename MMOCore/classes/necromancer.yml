@@ -1,0 +1,154 @@
+display:
+  name: 'Necromancer'
+  lore:
+    - '&eClass Role: Caster DPS / Pet Commander'
+    - '&7Raise the dead from real corpses'
+    - '&7and drain the living. Choose a path:'
+    - '&8» &5Reaper &7— one elite undead + drains'
+    - '&8» &dLichlord &7— army of four + explosions'
+  item: WITHER_SKELETON_SKULL
+  slot: 24
+
+mana:
+  char: "☠"
+  icon: "&5☠"
+  name: 'Essence'
+  color:
+    full: DARK_PURPLE
+    half: LIGHT_PURPLE
+    empty: DARK_GRAY
+
+stats:
+  MAX_HEALTH:
+    base: 20.0
+    per-level: 2.2
+  MAX_MANA:
+    base: 48.0
+    per-level: 6.5
+  MAGIC_DAMAGE:
+    base: 5.0
+    per-level: 2.0
+  SKILL_DAMAGE:
+    base: 3.5
+    per-level: 1.3
+  MANA_REGENERATION:
+    base: 2.5
+    per-level: 0.8
+  MOVEMENT_SPEED:
+    base: 0.11
+    per-level: 0.0
+  COOLDOWN_REDUCTION:
+    base: 2.0
+    per-level: 0.4
+  ARMOR:
+    base: 2.0
+    per-level: 0.3
+
+attributes:
+  strength:
+    base: 3
+    per-level: 0.4
+  dexterity:
+    base: 5
+    per-level: 0.8
+  intelligence:
+    base: 13
+    per-level: 2.8
+  wisdom:
+    base: 6
+    per-level: 1.2
+
+options:
+  default: false
+  display: true
+  needs-permission: false
+  off-combat-health-regen: false
+  off-combat-mana-regen: true
+
+exp-curve: 'levels'
+exp-table: class_exp_table
+
+skill-slots:
+  1:
+    name: '&5Raise Dead'
+    unlocked-by-default: true
+    lore:
+      - '&7Raise a nearby corpse to fight'
+  2:
+    name: '&5Soul Drain'
+    unlocked-by-default: true
+    lore:
+      - '&7Siphon life from your target'
+
+main-exp-sources:
+  - 'killmob{type=ZOMBIE;amount=2-4}'
+  - 'killmob{type=SKELETON;amount=2-4}'
+  - 'killmob{type=PHANTOM;amount=3-5}'
+  - 'killmob{type=WITHER_SKELETON;amount=5-8}'
+  - 'killmob{type=WITCH;amount=3-5}'
+  - 'killmob{type=ZOMBIE_VILLAGER;amount=2-4}'
+
+skill-trees:
+  - 'necromancer-reaper'
+  - 'necromancer-lichlord'
+  - 'profession-mining'
+  - 'profession-woodcutting'
+  - 'profession-farming'
+  - 'profession-fishing'
+  - 'profession-alchemy'
+  - 'profession-smithing'
+  - 'profession-enchanting'
+  - 'profession-smelting'
+
+# Default casts use MythicLib builtin handlers (known-good).
+# Spec skills unlock from the Reaper / Lichlord 9-point trees.
+# Pet / corpse logic is stubbed — see MythicLib/skill/NECROMANCER_SKILLS.yml.
+skills:
+  NECROMANCER_RAISE_DEAD:
+    level: 1
+    max-level: 30
+    unlocked-by-default: true
+
+  NECROMANCER_SOUL_DRAIN:
+    level: 1
+    max-level: 30
+    unlocked-by-default: true
+
+  # Reaper capstones (necromancer-reaper tree)
+  NECROMANCER_RAISE_ELITE:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  NECROMANCER_LIFE_SIPHON:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  NECROMANCER_DEATH_GRASP:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  # Lichlord capstones (necromancer-lichlord tree)
+  NECROMANCER_RAISE_MINION:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  NECROMANCER_UNHOLY_COMMAND:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  NECROMANCER_CORPSE_EXPLOSION:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+triggers:
+  level-up-multiple-4:
+    - 'command{format="bellcraft-grant-ap %player_name%"}'
+    - 'command{format="bellcraft-grant-sp %player_name%"}'
+    - 'command{format="bellcraft-grant-stp %player% necromancer-reaper"}'
+    - 'command{format="bellcraft-grant-stp %player% necromancer-lichlord"}'

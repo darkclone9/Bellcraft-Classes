@@ -70,7 +70,7 @@ right-click, or (for the Obsidian set) a short worn-armor sweep.
 
 | Class group | Classes | Restriction |
 |-------------|---------|-------------|
-| Iron-limited | Cleric, Mystic, Sorcerer | Iron armor and below only (diamond & netherite blocked) |
+| Iron-limited | Cleric, Mystic, Sorcerer, Necromancer | Iron armor and below only (diamond & netherite blocked) |
 | One-netherite | Ranger, Envoy, Operative | At most 1 netherite piece total |
 | Unrestricted / full-heavy | Soldier, Paladin | Full netherite allowed |
 | Obsidian heavy set | Soldier, Paladin only | Nexo `obsidian_helmet` / `obsidian_chestplate` / `obsidian_leggings` / `obsidian_boots` — denied for every other class, including one-netherite classes |
@@ -187,7 +187,7 @@ After pulling these config changes from the repository, apply them to the live s
 11. As a Soldier: confirm you have skill-tree points and can see the Shield Bash / Warriors Leap / Battle Cry / Combat Stance / Suppressing Fire / Tactical Reload unlock nodes in your skill tree.
 12. Spend a skill-tree point on a skill node – confirm the skill is added to your profile and you can bind it to a skill slot.
 13. Bind the skill and use it – confirm cooldown and mana cost apply correctly.
-14. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
+14. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric, Necromancer.
 15. Confirm all previously existing skills still function normally.
 16. Check the console for any YAML load errors or skill registration warnings.
 

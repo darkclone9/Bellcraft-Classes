@@ -465,3 +465,95 @@ skills:
       node_id: skill_commanding_shout
       position: "x: 0, y: -4"
       prerequisite: none
+
+  # === NECROMANCER SKILLS ===
+  # Raises are corpse-sourced only. Pet AI / MythicMobs wiring is out of scope.
+  # Handoff IDs are listed in MythicLib/skill/NECROMANCER_SKILLS.yml.
+
+  NECROMANCER_RAISE_DEAD:
+    display_name: "Raise Dead"
+    icon: SKELETON_SKULL
+    description: "Raise a nearby corpse to fight. Corpse-sourced only — no free spawn."
+    classes: [Necromancer]
+    tree:
+      class: necromancer
+      node_id: default
+      position: "unlocked by default"
+      prerequisite: none
+
+  NECROMANCER_SOUL_DRAIN:
+    display_name: "Soul Drain"
+    icon: FERMENTED_SPIDER_EYE
+    description: "Siphon life from your target, healing yourself."
+    classes: [Necromancer]
+    tree:
+      class: necromancer
+      node_id: default
+      position: "unlocked by default"
+      prerequisite: none
+
+  NECROMANCER_LIFE_SIPHON:
+    display_name: "Life Siphon"
+    icon: GHAST_TEAR
+    description: "A heavy personal drain that steals a large amount of health."
+    classes: [Necromancer]
+    tree:
+      class: necromancer-reaper
+      node_id: a3
+      position: "x: -3, y: 0"
+      prerequisite: a2
+
+  NECROMANCER_RAISE_ELITE:
+    display_name: "Raise Elite"
+    icon: WITHER_SKELETON_SKULL
+    description: "Raise one strong elite undead (tank/assassin) from a corpse. Cap 1."
+    classes: [Necromancer]
+    tree:
+      class: necromancer-reaper
+      node_id: b3
+      position: "x: 1, y: -2"
+      prerequisite: b2
+
+  NECROMANCER_DEATH_GRASP:
+    display_name: "Death Grasp"
+    icon: COBWEB
+    description: "Slow and drain a foe while recovering essence."
+    classes: [Necromancer]
+    tree:
+      class: necromancer-reaper
+      node_id: c3
+      position: "x: 3, y: 0"
+      prerequisite: c2
+
+  NECROMANCER_RAISE_MINION:
+    display_name: "Raise Minion"
+    icon: BONE
+    description: "Raise a weaker undead from a nearby corpse. Lichlord army hard cap 4."
+    classes: [Necromancer]
+    tree:
+      class: necromancer-lichlord
+      node_id: a3
+      position: "x: -3, y: 0"
+      prerequisite: a2
+
+  NECROMANCER_UNHOLY_COMMAND:
+    display_name: "Unholy Command"
+    icon: BELL
+    description: "Buff your raised dead with speed and power."
+    classes: [Necromancer]
+    tree:
+      class: necromancer-lichlord
+      node_id: b3
+      position: "x: 1, y: -2"
+      prerequisite: b2
+
+  NECROMANCER_CORPSE_EXPLOSION:
+    display_name: "Corpse Explosion"
+    icon: TNT
+    description: "Detonate a nearby corpse or sacrifice a raised minion."
+    classes: [Necromancer]
+    tree:
+      class: necromancer-lichlord
+      node_id: c3
+      position: "x: 3, y: 0"
+      prerequisite: c2
