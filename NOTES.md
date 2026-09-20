@@ -152,7 +152,7 @@ Created a reference/documentation file mapping every custom skill to:
 | Skill menu GUI config | `MMOCore/gui/skill-list.yml` |
 | Skill tree GUI config | `MMOCore/gui/skill-tree.yml` |
 | Skill mapping reference | `config/skills/mapping.yml` |
-| Tracker structure-registry stub | `config/tracker/structure-registry.yml` |
+| Tracker structure-sense contract | `config/tracker/structure-registry.yml` |
 | Tracker skill bridge (Skript) | `Skript/scripts/ranger-tracker.sk` |
 | Info Panel GUI (GUIPlus) | `GUIPlus/CustomGuis/info-panel.yml` |
 | Quest configs (66 total) | `MMOCore/quests/*.yml` |
@@ -173,18 +173,17 @@ Each column is passives → capstone skill:
 
 MythicLib IDs: `RANGER_TRACK_PREY`, `RANGER_HUNT_MARK`, `RANGER_STRUCTURE_SENSE`, `RANGER_TRAILFINDER`. MythicMobs casts live in `MythicMobs/skills/RangerTracker.yml` and dispatch `/bellcraft-tracker ...` as console.
 
-### Structure-registry handoff
+### Structure Sense contract (`/bcstruct`)
 
-This repo does **not** implement creative-world structure authoring or survival spawning. Structure Sense only needs a location index.
+Tracker does **not** own a structure registry. Structure Sense and Trailfinder only read BUG BOt's hooks:
 
-**Current stub:** admins run `/bellcraft-structure add <id> [name]` (Skript variables). If the list is empty, the skill tells the caster the registry is unwired.
+| Hook | Value |
+|------|--------|
+| Registry keys | kebab-case structure IDs (`example_ruin` stub) with `trackable` + `tags` |
+| Commands | `/bcstruct save` `place` `list` `info` |
+| Placeholders | `%bellcraft_struct_nearest%` `%bellcraft_struct_nearest_dist%` `%bellcraft_struct_count%` |
 
-**What the registry PR should plug into** (try in this order; documented in `config/tracker/structure-registry.yml`):
-
-1. Populate `structures:` in that YAML and load it into `{bellcraft.structures.*}` (or replace the Skript lookup).
-2. PlaceholderAPI: `%bellcraft_structure_nearest%`, `%bellcraft_structure_nearest_name%`, `%bellcraft_structure_nearest_id%`, `%bellcraft_structure_nearest_distance%`.
-3. Mythic targeter/mechanic (e.g. `@BellcraftStructure{r=<range>}`) swapped into `RangerStructureSense_Cast` / `RangerTrailfinder_Cast`.
-4. In-world anchors tagged `bellcraft_structure` (scoreboard / entity tag). The Skript already has a TODO to scan those.
+Those placeholders are wired into Structure Sense / Trailfinder skill lore, MythicMobs cast messages, the skill-tree node lore, and `Skript/scripts/ranger-tracker.sk`. If PAPI is unloaded or count is 0, the skill reports the stub ID `example_ruin` and points at `/bcstruct` instead of inventing its own location list.
 
 Player tags other plugins can read: `bellcraft_tracking` (caster), `bellcraft_hunt_marked` (victim).
 
@@ -226,7 +225,7 @@ After pulling these config changes from the repository, apply them to the live s
 12. Spend a skill-tree point on a skill node – confirm the skill is added to your profile and you can bind it to a skill slot.
 13. Bind the skill and use it – confirm cooldown and mana cost apply correctly.
 14. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
-14b. As a Ranger: confirm both **Hunter's Path** and **Tracker's Path** appear in `/skilltrees`. Spend Tracker points down a column and confirm Track Prey / Hunt Mark / Structure Sense / Trailfinder unlock and can be bound. Structure Sense with an empty registry should print the stub/handoff message (not error). `/bellcraft-structure add test` then recast should compass-ping that location.
+14b. As a Ranger: confirm both **Hunter's Path** and **Tracker's Path** appear in `/skilltrees`. Spend Tracker points down a column and confirm Track Prey / Hunt Mark / Structure Sense / Trailfinder unlock and can be bound. Structure Sense should print `%bellcraft_struct_nearest%` / dist / count (or the stub `example_ruin` + `/bcstruct save|place|list|info` if those placeholders are unloaded). Do not expect `/bellcraft-structure` — that command is not part of this spec.
 15. Confirm all previously existing skills still function normally.
 16. Check the console for any YAML load errors or skill registration warnings.
 

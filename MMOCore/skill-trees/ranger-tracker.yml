@@ -149,11 +149,11 @@ nodes:
           - 'unlock_skill{skill=RANGER_STRUCTURE_SENSE}'
     lores:
       0:
-        - '&fPing the nearest registered custom'
-        - '&fstructure and point your compass.'
-        - ''
-        - '&8Registry stub — see'
-        - '&8config/tracker/structure-registry.yml'
+        - '&fPing the nearest trackable structure'
+        - '&f(%bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist%m).'
+        - '&7Tracked: %bellcraft_struct_count%'
+        - '&8Stub ID: example_ruin'
+        - '&8/bcstruct save|place|list|info'
         - ''
         - '&7Spend 1 Point to unlock'
         - '&7the &eStructure Sense&7 ability!'
@@ -172,8 +172,11 @@ nodes:
           - 'unlock_skill{skill=RANGER_TRAILFINDER}'
     lores:
       0:
-        - '&fCapstone: long-range structure or NPC'
-        - '&fping. Nearby allies share the trail.'
+        - '&fCapstone: long-range structure ping'
+        - '&f(%bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist%m)'
+        - '&for NPC ping. Nearby allies share it.'
+        - '&7Tracked: %bellcraft_struct_count%'
+        - '&8Stub ID: example_ruin  /bcstruct'
         - ''
         - '&7Spend 1 Point to unlock'
         - '&7the &6Trailfinder&7 ability!'

@@ -181,8 +181,10 @@ skills:
 
   # === RANGER TRACKER DUAL-SPEC ===
   # 9-point tree `ranger-tracker`. Passives (Keen Senses / Soft Foot /
-  # Bloodhound) unlock each skill as a capstone. Structure Sense talks to
-  # the stub registry in config/tracker/structure-registry.yml.
+  # Bloodhound) unlock each skill as a capstone.
+  # Structure Sense / Trailfinder consume /bcstruct (not a Tracker-owned
+  # registry) via %bellcraft_struct_nearest%, %bellcraft_struct_nearest_dist%,
+  # %bellcraft_struct_count%. Stub ID: example_ruin.
 
   RANGER_TRACK_PREY:
     display_name: "Track Prey"
@@ -209,7 +211,7 @@ skills:
   RANGER_STRUCTURE_SENSE:
     display_name: "Structure Sense"
     icon: RECOVERY_COMPASS
-    description: "Ping the nearest registered custom structure and point the compass. Registry stub — see config/tracker/structure-registry.yml."
+    description: "Ping the nearest trackable structure via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%. Registry: /bcstruct save|place|list|info. Stub ID: example_ruin."
     classes: [Ranger]
     tree:
       class: ranger-tracker
@@ -220,7 +222,7 @@ skills:
   RANGER_TRAILFINDER:
     display_name: "Trailfinder"
     icon: SPYGLASS
-    description: "Capstone: longer-range structure or NPC ping. Nearby allies optionally share the compass trail."
+    description: "Capstone: longer-range structure ping via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%, or NPC ping. Nearby allies share the trail. Stub ID: example_ruin."
     classes: [Ranger]
     tree:
       class: ranger-tracker

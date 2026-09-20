@@ -216,12 +216,12 @@ RANGER_BINDING_SHOT:
       - 'sound{s=ENTITY_ARROW_HIT;v=1.2;p=0.8}'
 
 # --- Tracker dual-spec (ranger-tracker tree) ---
-# Skill IDs are stubs the structure-registry agent can hook:
 #   RANGER_TRACK_PREY, RANGER_HUNT_MARK, RANGER_STRUCTURE_SENSE, RANGER_TRAILFINDER
-# Runtime targeting (nearest player/NPC, compass, registry ping) is dispatched
-# to console command /bellcraft-tracker via MythicMobs. See:
-#   config/tracker/structure-registry.yml
-#   Skript/scripts/ranger-tracker.sk
+# Structure Sense / Trailfinder consume /bcstruct + PAPI (do not add a
+# parallel registry):
+#   %bellcraft_struct_nearest%  %bellcraft_struct_nearest_dist%  %bellcraft_struct_count%
+# Stub ID: example_ruin  Commands: /bcstruct save|place|list|info
+# Casts: MythicMobs/skills/RangerTracker.yml → /bellcraft-tracker
 
 RANGER_TRACK_PREY:
   name: "&6Track Prey"
@@ -282,6 +282,12 @@ RANGER_HUNT_MARK:
 RANGER_STRUCTURE_SENSE:
   name: "&eStructure Sense"
   icon: RECOVERY_COMPASS
+  lore:
+    - "&7Ping the nearest trackable structure."
+    - "&7Nearest: &e%bellcraft_struct_nearest%"
+    - "&7Distance: &e%bellcraft_struct_nearest_dist%m"
+    - "&7Tracked: &e%bellcraft_struct_count%"
+    - "&8ID stub: example_ruin  /bcstruct save|place|list|info"
   source: mythicmobs:RangerStructureSense_Cast
   parameters:
     cooldown:
@@ -310,6 +316,13 @@ RANGER_STRUCTURE_SENSE:
 RANGER_TRAILFINDER:
   name: "&6&lTrailfinder"
   icon: SPYGLASS
+  lore:
+    - "&7Long-range structure or NPC ping."
+    - "&7Nearest: &e%bellcraft_struct_nearest%"
+    - "&7Distance: &e%bellcraft_struct_nearest_dist%m"
+    - "&7Tracked: &e%bellcraft_struct_count%"
+    - "&8Shares the ping with nearby allies."
+    - "&8ID stub: example_ruin  /bcstruct save|place|list|info"
   source: mythicmobs:RangerTrailfinder_Cast
   parameters:
     cooldown:

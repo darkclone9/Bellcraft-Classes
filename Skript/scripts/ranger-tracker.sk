@@ -1,6 +1,6 @@
 # ============================================================
 #  Ranger Tracker Spec  –  Bellcraft Classes
-#  Requires: Skript 2.7+
+#  Requires: Skript 2.7+, PlaceholderAPI, skript-placeholders
 #
 #  Console hooks (MythicMobs/skills/RangerTracker.yml):
 #    bellcraft-tracker track-prey <player>
@@ -8,14 +8,13 @@
 #    bellcraft-tracker structure-sense <player>
 #    bellcraft-tracker trailfinder <player>
 #
-#  Admin stub until the creative→survival structure registry ships:
-#    /bellcraft-structure add <id> [name]
-#    /bellcraft-structure list
-#    /bellcraft-structure remove <id>
-#
-#  Contract: config/tracker/structure-registry.yml
-#  TODO(structure-registry): replace {bellcraft.structures.*} with the
-#  authored index (PAPI / Mythic targeter / config loader).
+#  Structure Sense / Trailfinder consume /bcstruct via PAPI only.
+#  Do not add a parallel location store here.
+#    %bellcraft_struct_nearest%
+#    %bellcraft_struct_nearest_dist%
+#    %bellcraft_struct_count%
+#  Stub ID: example_ruin
+#  Authoring: /bcstruct save|place|list|info
 # ============================================================
 
 options:
@@ -53,7 +52,7 @@ command /bellcraft-tracker [<text>] [<text>]:
             trackerHuntMark({_player}, {@mark_duration})
             stop
         if arg-1 is "structure-sense":
-            trackerStructurePing({_player}, {@structure_range}, {@track_duration}, false)
+            trackerStructurePing({_player}, false)
             stop
         if arg-1 is "trailfinder":
             trackerTrailfinder({_player})
@@ -170,114 +169,48 @@ every 10 ticks:
                 play smoke at {_marked}
                 play crit at {_marked}
 
-# ── Structure Sense / Trailfinder ─────────────────────────────
+# ── Structure Sense / Trailfinder (PAPI → /bcstruct) ─────────
+
+function trackerPapi(p: player, id: text) :: text:
+    set {_v} to placeholder {_id} from {_p}
+    if {_v} is not set:
+        return ""
+    if {_v} is "":
+        return ""
+    if {_v} contains "%":
+        return ""
+    return {_v}
 
 function trackerTrailfinder(p: player):
     add "bellcraft_tracking" to scoreboard tags of {_p}
     apply potion of speed of tier 1 to {_p} for {@trailfinder_duration} seconds
-    set {_hit} to trackerStructurePing({_p}, {@trailfinder_range}, {@trailfinder_duration}, true)
+    set {_hit} to trackerStructurePing({_p}, true)
     if {_hit} is false:
-        # Fall back to a long-range NPC / player ping if no structure is indexed.
         trackerTrackPrey({_p}, {@trailfinder_range}, {@trailfinder_duration})
         stop
     wait {@trailfinder_duration} seconds
     if {_p} is online:
         remove "bellcraft_tracking" from scoreboard tags of {_p}
 
-function trackerStructurePing(p: player, range: number, duration: number, share: boolean) :: boolean:
-    # TODO(structure-registry): scan marker entities tagged bellcraft_structure
-    # once the spawn pipeline places them in survival worlds.
-    set {_best} to 99999
-    loop {bellcraft.structures.ids::*}:
-        set {_sid} to loop-value
-        set {_world} to {bellcraft.structures.world::%{_sid}%}
-        if {_world} is world of {_p}:
-            set {_loc} to location({bellcraft.structures.x::%{_sid}%}, {bellcraft.structures.y::%{_sid}%}, {bellcraft.structures.z::%{_sid}%}, {_world})
-            if {_loc} is set:
-                set {_d} to distance between {_p} and {_loc}
-                if {_d} <= {_range}:
-                    if {_d} < {_best}:
-                        set {_best} to {_d}
-                        set {_id} to {_sid}
-                        set {_found} to {_loc}
+function trackerStructurePing(p: player, share: boolean) :: boolean:
+    set {_nearest} to trackerPapi({_p}, "bellcraft_struct_nearest")
+    set {_dist} to trackerPapi({_p}, "bellcraft_struct_nearest_dist")
+    set {_count} to trackerPapi({_p}, "bellcraft_struct_count")
 
-    if {_found} is not set:
-        send "{@prefix}&eStructure Sense &7found no registered structures in range." to {_p}
-        send "{@prefix}&8Registry stub empty. Admins: /bellcraft-structure add <id>" to {_p}
-        send "{@prefix}&8Handoff: config/tracker/structure-registry.yml" to {_p}
+    if {_nearest} is "":
+        if {_count} is "0":
+            send "{@prefix}&eStructure Sense &7found no trackable structures." to {_p}
+            send "{@prefix}&8%%bellcraft_struct_count%% = 0. Stub ID: &eexample_ruin" to {_p}
+            send "{@prefix}&8Authoring: /bcstruct save|place|list|info" to {_p}
+            return false
+        send "{@prefix}&eStructure Sense &7waiting on &f%%bellcraft_struct_nearest%%&7." to {_p}
+        send "{@prefix}&8Stub ID: &eexample_ruin &8— /bcstruct save|place|list|info" to {_p}
         return false
 
-    set {_name} to {bellcraft.structures.name::%{_id}%}
-    if {_name} is not set:
-        set {_name} to {_id}
-    set compass target of {_p} to {_found}
-    send "{@prefix}&eStructure Sense &7locked onto &6%{_name}% &8(&e%{_best}%m&8)." to {_p}
-    play end rod at {_found}
+    send "{@prefix}&eStructure Sense &7locked onto &6%{_nearest}% &8(&e%{_dist}%m&8) &7[&e%{_count}%&7]." to {_p}
 
     if {_share} is true:
-        # Nearby-ally share until an MMOCore party iterator is wired.
-        # TODO(structure-registry): share with party members instead of radius.
         loop all players in radius {@party_share_radius} around {_p}:
             if loop-player is not {_p}:
-                set compass target of loop-player to {_found}
-                send "{@prefix}&6Trailfinder &7shared &6%{_name}% &7(&e%{_best}%m&7) from &e%{_p}%&7." to loop-player
+                send "{@prefix}&6Trailfinder &7shared &6%{_nearest}% &7(&e%{_dist}%m&7) from &e%{_p}%&7." to loop-player
     return true
-
-# ── Admin structure index (runtime stub) ──────────────────────
-
-command /bellcraft-structure [<text>] [<text>] [<text>]:
-    permission: op
-    trigger:
-        if arg-1 is not set:
-            send "{@prefix}&7Usage: /bellcraft-structure add <id> [name] | list | remove <id>" to player
-            stop
-
-        if arg-1 is "list":
-            if {bellcraft.structures.ids::*} is not set:
-                send "{@prefix}&7No stub structures registered." to player
-                stop
-            send "{@prefix}&6Registered structures:" to player
-            loop {bellcraft.structures.ids::*}:
-                set {_sid} to loop-value
-                set {_n} to {bellcraft.structures.name::%{_sid}%}
-                set {_w} to {bellcraft.structures.world::%{_sid}%}
-                set {_x} to {bellcraft.structures.x::%{_sid}%}
-                set {_y} to {bellcraft.structures.y::%{_sid}%}
-                set {_z} to {bellcraft.structures.z::%{_sid}%}
-                send "&8- &e%{_sid}% &7%{_n}% &8(%{_w}% %{_x}%, %{_y}%, %{_z}%)" to player
-            stop
-
-        if arg-1 is "remove":
-            if arg-2 is not set:
-                send "{@prefix}&cSpecify an id to remove." to player
-                stop
-            remove arg-2 from {bellcraft.structures.ids::*}
-            delete {bellcraft.structures.world::%arg-2%}
-            delete {bellcraft.structures.x::%arg-2%}
-            delete {bellcraft.structures.y::%arg-2%}
-            delete {bellcraft.structures.z::%arg-2%}
-            delete {bellcraft.structures.name::%arg-2%}
-            send "{@prefix}&7Removed structure &e%arg-2%&7." to player
-            stop
-
-        if arg-1 is "add":
-            if arg-2 is not set:
-                send "{@prefix}&cUsage: /bellcraft-structure add <id> [display name]" to player
-                stop
-            set {_id} to arg-2
-            if arg-3 is set:
-                set {_name} to arg-3
-            else:
-                set {_name} to {_id}
-            if {bellcraft.structures.ids::*} does not contain {_id}:
-                add {_id} to {bellcraft.structures.ids::*}
-            set {bellcraft.structures.world::%{_id}%} to world of player
-            set {bellcraft.structures.x::%{_id}%} to x-coordinate of player
-            set {bellcraft.structures.y::%{_id}%} to y-coordinate of player
-            set {bellcraft.structures.z::%{_id}%} to z-coordinate of player
-            set {bellcraft.structures.name::%{_id}%} to {_name}
-            send "{@prefix}&aRegistered &e%{_id}% &7(&6%{_name}%&7) at your location." to player
-            send "{@prefix}&8Stub only — replace with config/tracker/structure-registry.yml loader." to player
-            stop
-
-        send "{@prefix}&7Usage: /bellcraft-structure add <id> [name] | list | remove <id>" to player
