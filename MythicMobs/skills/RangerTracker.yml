@@ -1,0 +1,48 @@
+# Ranger Tracker dual-spec casts (Forge-01)
+# MythicLib IDs: RANGER_TRACK_PREY / RANGER_HUNT_MARK /
+#                RANGER_STRUCTURE_SENSE / RANGER_TRAILFINDER
+#
+# Targeting, compass pings, Hunt Mark trails, and the structure-registry
+# lookup live in Skript/scripts/ranger-tracker.sk (console command
+# /bellcraft-tracker). Visuals and the speed-while-tracking buff stay here.
+#
+# TODO(structure-registry): RangerStructureSense_Cast / RangerTrailfinder_Cast
+# may later call a Mythic mechanic or PlaceholderAPI bridge instead of
+# (or in addition to) the Skript command. Contract is documented in
+# config/tracker/structure-registry.yml.
+
+RangerTrackPrey_Cast:
+  Skills:
+  - sound{s=entity.fox.sniff;v=1.2;p=1.4} @self
+  - potion{type=SPEED;duration=160;level=0} @self
+  - effect:particles{p=happy_villager;amount=30;hS=1;vS=1;speed=0.2} @self
+  - message{m="&6Track Prey &7— hunting for prey..."} @self
+  - command{c="bellcraft-tracker track-prey <caster.name>";asConsole=true} @self
+
+RangerHuntMark_Cast:
+  Skills:
+  - sound{s=entity.arrow.hit_player;v=1.1;p=1.35} @self
+  - potion{type=GLOWING;duration=160;level=0} @target
+  - effect:particles{p=crit;amount=35;hS=0.6;vS=0.6;speed=0.3} @target
+  - effect:particles{p=smoke;amount=12;hS=0.3;vS=0.4;speed=0.05} @target
+  - command{c="bellcraft-tracker hunt-mark <caster.name>";asConsole=true} @self
+
+RangerStructureSense_Cast:
+  Skills:
+  - sound{s=item.spyglass.stop_using;v=1;p=0.8} @self
+  - effect:particles{p=end_rod;amount=40;hS=1.2;vS=1.2;speed=0.15} @self
+  - message{m="&eStructure Sense &7— reaching for the registry..."} @self
+  # TODO(structure-registry): replace this command with a mechanic that
+  # reads the live authored-structure index (PAPI / MM targeter / Skript).
+  - command{c="bellcraft-tracker structure-sense <caster.name>";asConsole=true} @self
+
+RangerTrailfinder_Cast:
+  Skills:
+  - sound{s=item.spyglass.use;v=1.2;p=1.1} @self
+  - potion{type=SPEED;duration=320;level=0} @self
+  - effect:particles{p=end_rod;amount=60;hS=2;vS=1.5;speed=0.2} @self
+  - effect:particles{p=happy_villager;amount=25;hS=1.5;vS=1;speed=0.15} @self
+  - message{m="&6Trailfinder &7— widening the hunt..."} @self
+  # party=true asks the Skript stub to share the ping with nearby allies.
+  # TODO(structure-registry): optional MMOCore party iterator instead of radius.
+  - command{c="bellcraft-tracker trailfinder <caster.name>";asConsole=true} @self

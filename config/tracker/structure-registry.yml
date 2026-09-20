@@ -1,0 +1,101 @@
+# Bellcraft Tracker – Custom Structure Registry (STUB)
+#
+# HANDOFF for the creative-world authoring → survival spawn pipeline.
+# This PR does NOT implement that pipeline. Tracker skills only expose
+# stable IDs and a lookup hook so the registry agent can plug in later.
+#
+# ---------------------------------------------------------------------------
+# Runtime contract
+# ---------------------------------------------------------------------------
+# MythicLib skill IDs (unlock from MMOCore tree `ranger-tracker`):
+#   RANGER_TRACK_PREY        nearest hostile player or named NPC + compass
+#   RANGER_HUNT_MARK         mark target; glow through walls + trail
+#   RANGER_STRUCTURE_SENSE   ping nearest registered custom structure
+#   RANGER_TRAILFINDER       longer-range structure/NPC ping, party-share
+#
+# Console command (fired by MythicMobs casts in
+# MythicMobs/skills/RangerTracker.yml):
+#   bellcraft-tracker track-prey <player>
+#   bellcraft-tracker hunt-mark <player>
+#   bellcraft-tracker structure-sense <player>
+#   bellcraft-tracker trailfinder <player>
+#
+# Current stub implementation: Skript/scripts/ranger-tracker.sk
+#   - Track Prey / Hunt Mark: live (glow, compass, mark damage)
+#   - Structure Sense / Trailfinder: read the in-memory location list
+#     populated by /bellcraft-structure (admin). If that list is empty,
+#     the skill reports that the registry is not wired yet.
+#
+# ---------------------------------------------------------------------------
+# How the future registry should talk to Structure Sense
+# ---------------------------------------------------------------------------
+# Pick ONE of these (or implement several; the skill should try in order):
+#
+# 1) Config list (this file)
+#    Populate `structures:` below. A later loader (Skript yaml addon,
+#    small plugin, or the spawn pipeline itself) should copy these coords
+#    into the runtime index the command already queries.
+#
+# 2) PlaceholderAPI
+#    Expected placeholders (not registered yet):
+#      %bellcraft_structure_nearest%            world,x,y,z or empty
+#      %bellcraft_structure_nearest_name%       display name
+#      %bellcraft_structure_nearest_id%         registry id
+#      %bellcraft_structure_nearest_distance%   blocks (integer)
+#    Structure Sense can then: set compass to that location + action bar.
+#
+# 3) Mythic skill mechanic / targeter
+#    A custom targeter such as @BellcraftStructure{r=<range>} that
+#    resolves the nearest live spawn. Swap the command line in
+#    RangerStructureSense_Cast / RangerTrailfinder_Cast for that mechanic.
+#
+# 4) Scoreboard / tags
+#    Armor stands (or marker entities) tagged `bellcraft_structure` with
+#    scoreboard `bellcraft_structure_id`. Structure Sense already has a
+#    TODO in the Skript to scan those entities if present.
+#
+# 5) Skript bridge
+#    Keep /bellcraft-tracker structure-sense and have the registry plugin
+#    write {bellcraft.structures.*} variables, OR replace the command body.
+#
+# Do not build creative-plot schematic capture, survival random-spawn,
+# loot tables, or worldgen in this file — those belong to the registry PR.
+#
+# ---------------------------------------------------------------------------
+
+enabled: true
+
+# Fallback ranges used by the Skript stub when MythicLib parameters
+# are not forwarded. Keep in sync with MythicLib/skill/RANGER_SKILLS.yml.
+default-range: 96
+trailfinder-range: 160
+track-prey-range: 48
+
+# Scoreboard / entity tag the future spawn pipeline should apply to
+# in-world structure anchors (marker / armor stand / interaction).
+structure-entity-tag: bellcraft_structure
+
+# Player tags applied by Tracker skills (for other plugins to read):
+#   bellcraft_tracking     caster is in a Track Prey / Trailfinder window
+#   bellcraft_hunt_marked  victim currently marked by Hunt Mark
+
+# TODO(structure-registry): fill from the creative→survival authoring tool.
+# Each entry: id, display-name, world, x, y, z, optional tags.
+structures: []
+
+# Example (leave commented until the registry is live):
+# structures:
+#   - id: ruined_watchtower_01
+#     display-name: "Ruined Watchtower"
+#     world: world
+#     x: 128.5
+#     y: 72.0
+#     z: -256.5
+#     tags: [ruin, tracker]
+#   - id: hidden_cache_01
+#     display-name: "Hidden Cache"
+#     world: world
+#     x: -40.0
+#     y: 64.0
+#     z: 512.0
+#     tags: [cache, tracker]
