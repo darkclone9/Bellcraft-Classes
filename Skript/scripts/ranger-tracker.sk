@@ -11,10 +11,11 @@
 #  Structure Sense / Trailfinder consume /bcstruct via PAPI only.
 #  Do not add a parallel location store here.
 #    %bellcraft_struct_nearest%
+#    %bellcraft_struct_nearest_id%
 #    %bellcraft_struct_nearest_dist%
 #    %bellcraft_struct_count%
-#  Stub ID: example_ruin
-#  Authoring: /bcstruct save|place|list|info
+#  Seeded IDs: stub_ruin, stub_watchtower
+#  Authoring: /bcstruct list|info|save|place|register
 # ============================================================
 
 options:
@@ -61,21 +62,22 @@ command /bellcraft-tracker [<text>] [<text>]:
 # ── Track Prey: nearest other player or named living entity ──
 
 function trackerTrackPrey(p: player, range: number, duration: number):
+    set {_span} to {_duration} * 1 second
     set {_target} to trackerFindPrey({_p}, {_range})
     if {_target} is not set:
         send "{@prefix}&7No hostile players or named NPCs within &e%{_range}% &7blocks." to {_p}
         stop
 
     add "bellcraft_tracking" to scoreboard tags of {_p}
-    apply potion of speed of tier 1 to {_p} for {_duration} seconds
-    apply potion of glowing of tier 1 to {_target} for {_duration} seconds
+    apply speed 1 to {_p} for {_span}
+    apply glowing 1 to {_target} for {_span}
     set compass target of {_p} to location of {_target}
 
     set {_name} to trackerEntityName({_target})
     set {_dist} to distance between {_p} and {_target}
     send "{@prefix}&6Track Prey &7locked onto &e%{_name}% &8(&e%{_dist}%m&8)." to {_p}
 
-    wait {_duration} seconds
+    wait {_span}
     if {_p} is online:
         remove "bellcraft_tracking" from scoreboard tags of {_p}
 
@@ -110,6 +112,7 @@ function trackerEntityName(e: entity) :: text:
 # ── Hunt Mark: glow through walls, trail, bonus damage ───────
 
 function trackerHuntMark(p: player, duration: number):
+    set {_span} to {_duration} * 1 second
     set {_target} to targeted entity of {_p}
     if {_target} is not set:
         set {_target} to trackerFindPrey({_p}, {@track_range})
@@ -122,14 +125,16 @@ function trackerHuntMark(p: player, duration: number):
         send "{@prefix}&7Hunt Mark cannot lock that target." to {_p}
         stop
 
-    set {bellcraft.huntmark.expire::%{_id}%} to now + {_duration} seconds
+    set {_expire} to now
+    add {_span} to {_expire}
+    set {bellcraft.huntmark.expire::%{_id}%} to {_expire}
     set {bellcraft.huntmark.caster::%{_id}%} to "%uuid of {_p}%"
     set {bellcraft.huntmark.entity::%{_id}%} to {_target}
     if {bellcraft.huntmark.ids::*} does not contain {_id}:
         add {_id} to {bellcraft.huntmark.ids::*}
     add "bellcraft_hunt_marked" to scoreboard tags of {_target}
 
-    apply potion of glowing of tier 1 to {_target} for {_duration} seconds
+    apply glowing 1 to {_target} for {_span}
     set compass target of {_p} to location of {_target}
 
     set {_name} to trackerEntityName({_target})
@@ -166,8 +171,8 @@ every 10 ticks:
         else:
             set {_marked} to {bellcraft.huntmark.entity::%{_id}%}
             if {_marked} is set:
-                play smoke at {_marked}
-                play crit at {_marked}
+                play sound "block.note_block.chime" with volume 0.6 and pitch 1.4 at {_marked}
+                play sound "entity.arrow.hit_player" with volume 0.5 and pitch 1.2 at {_marked}
 
 # ── Structure Sense / Trailfinder (PAPI → /bcstruct) ─────────
 
@@ -177,40 +182,52 @@ function trackerPapi(p: player, id: text) :: text:
         return ""
     if {_v} is "":
         return ""
-    if {_v} contains "%":
+    # Unreplaced PAPI echoes the identifier (do not put a percent sign in this check).
+    if {_v} contains {_id}:
         return ""
     return {_v}
 
 function trackerTrailfinder(p: player):
+    set {_span} to {@trailfinder_duration} * 1 second
     add "bellcraft_tracking" to scoreboard tags of {_p}
-    apply potion of speed of tier 1 to {_p} for {@trailfinder_duration} seconds
+    apply speed 1 to {_p} for {_span}
     set {_hit} to trackerStructurePing({_p}, true)
     if {_hit} is false:
         trackerTrackPrey({_p}, {@trailfinder_range}, {@trailfinder_duration})
         stop
-    wait {@trailfinder_duration} seconds
+    wait {_span}
     if {_p} is online:
         remove "bellcraft_tracking" from scoreboard tags of {_p}
 
 function trackerStructurePing(p: player, share: boolean) :: boolean:
     set {_nearest} to trackerPapi({_p}, "bellcraft_struct_nearest")
+    set {_id} to trackerPapi({_p}, "bellcraft_struct_nearest_id")
     set {_dist} to trackerPapi({_p}, "bellcraft_struct_nearest_dist")
     set {_count} to trackerPapi({_p}, "bellcraft_struct_count")
 
-    if {_nearest} is "":
+    set {_label} to {_id}
+    if {_label} is "":
+        set {_label} to {_nearest}
+
+    if {_label} is "":
         if {_count} is "0":
             send "{@prefix}&eStructure Sense &7found no trackable structures." to {_p}
-            send "{@prefix}&8%%bellcraft_struct_count%% = 0. Stub ID: &eexample_ruin" to {_p}
-            send "{@prefix}&8Authoring: /bcstruct save|place|list|info" to {_p}
+            send "{@prefix}&8Count is 0. Seeded: &estub_ruin&8, &estub_watchtower" to {_p}
+            send "{@prefix}&8Authoring: /bcstruct list|info|save|place|register" to {_p}
             return false
-        send "{@prefix}&eStructure Sense &7waiting on &f%%bellcraft_struct_nearest%%&7." to {_p}
-        send "{@prefix}&8Stub ID: &eexample_ruin &8— /bcstruct save|place|list|info" to {_p}
+        send "{@prefix}&eStructure Sense &7waiting on nearest-id / nearest placeholders." to {_p}
+        send "{@prefix}&8Seeded: &estub_ruin&8, &estub_watchtower &8- /bcstruct list|info|save|place|register" to {_p}
         return false
 
-    send "{@prefix}&eStructure Sense &7locked onto &6%{_nearest}% &8(&e%{_dist}%m&8) &7[&e%{_count}%&7]." to {_p}
+    set {_shown} to {_label}
+    if {_id} is not "":
+        if {_nearest} is not "":
+            if {_id} is not {_nearest}:
+                set {_shown} to "%{_id}% &8(&7%{_nearest}%&8)"
+    send "{@prefix}&eStructure Sense &7locked onto &6%{_shown}% &8(&e%{_dist}%m&8) &7[&e%{_count}%&7]." to {_p}
 
     if {_share} is true:
         loop all players in radius {@party_share_radius} around {_p}:
             if loop-player is not {_p}:
-                send "{@prefix}&6Trailfinder &7shared &6%{_nearest}% &7(&e%{_dist}%m&7) from &e%{_p}%&7." to loop-player
+                send "{@prefix}&6Trailfinder &7shared &6%{_label}% &7(&e%{_dist}%m&7) from &e%{_p}%&7." to loop-player
     return true

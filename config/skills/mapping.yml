@@ -183,8 +183,9 @@ skills:
   # 9-point tree `ranger-tracker`. Passives (Keen Senses / Soft Foot /
   # Bloodhound) unlock each skill as a capstone.
   # Structure Sense / Trailfinder consume /bcstruct (not a Tracker-owned
-  # registry) via %bellcraft_struct_nearest%, %bellcraft_struct_nearest_dist%,
-  # %bellcraft_struct_count%. Stub ID: example_ruin.
+  # registry) via %bellcraft_struct_nearest%, %bellcraft_struct_nearest_id%,
+  # %bellcraft_struct_nearest_dist%, %bellcraft_struct_count%.
+  # Seeded IDs: stub_ruin, stub_watchtower.
 
   RANGER_TRACK_PREY:
     display_name: "Track Prey"
@@ -211,7 +212,7 @@ skills:
   RANGER_STRUCTURE_SENSE:
     display_name: "Structure Sense"
     icon: RECOVERY_COMPASS
-    description: "Ping the nearest trackable structure via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%. Registry: /bcstruct save|place|list|info. Stub ID: example_ruin."
+    description: "Ping the nearest trackable structure via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_id% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%. Registry: /bcstruct list|info|save|place|register. Seeded IDs: stub_ruin, stub_watchtower."
     classes: [Ranger]
     tree:
       class: ranger-tracker
@@ -222,7 +223,7 @@ skills:
   RANGER_TRAILFINDER:
     display_name: "Trailfinder"
     icon: SPYGLASS
-    description: "Capstone: longer-range structure ping via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%, or NPC ping. Nearby allies share the trail. Stub ID: example_ruin."
+    description: "Capstone: longer-range structure ping via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_id% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%, or NPC ping. Nearby allies share the trail. Seeded IDs: stub_ruin, stub_watchtower."
     classes: [Ranger]
     tree:
       class: ranger-tracker
