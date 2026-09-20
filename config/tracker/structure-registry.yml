@@ -1,30 +1,36 @@
 # Bellcraft Tracker – Structure Sense consumer contract
 #
 # This file is NOT a structure registry. Do not add a parallel location
-# list here. The registry is owned by /bcstruct (BUG BOt). Tracker only
-# reads its keys, commands, and PlaceholderAPI hooks.
+# list here. The registry is owned by /bcstruct (BUG BOt, live on OVH).
+# Tracker only reads its keys, commands, and PlaceholderAPI hooks.
 #
 # ---------------------------------------------------------------------------
 # Registry (owned by /bcstruct)
 # ---------------------------------------------------------------------------
-# Keys = structure IDs, kebab-case.
-# Stub ID until real seeds land: example_ruin
+# Keys = structure IDs, kebab-case. Seeded IDs on OVH:
+#   stub_ruin
+#   stub_watchtower
 #
 # Each record:
-#   example_ruin:
+#   stub_ruin:
 #     trackable: true
 #     tags: [ruin, tracker]
+#   stub_watchtower:
+#     trackable: true
+#     tags: [watchtower, tracker]
 #
 # Commands (their system — Tracker does not implement these):
-#   /bcstruct save
-#   /bcstruct place
 #   /bcstruct list
 #   /bcstruct info
+#   /bcstruct save
+#   /bcstruct place
+#   /bcstruct register
 #
 # ---------------------------------------------------------------------------
 # Placeholders Structure Sense / Trailfinder / UI MUST use
 # ---------------------------------------------------------------------------
-#   %bellcraft_struct_nearest%       nearest trackable structure ID
+#   %bellcraft_struct_nearest%       nearest trackable structure (label)
+#   %bellcraft_struct_nearest_id%    nearest trackable structure ID
 #   %bellcraft_struct_nearest_dist%  distance in blocks
 #   %bellcraft_struct_count%         trackable structures in range / index
 #
@@ -33,26 +39,32 @@
 # ---------------------------------------------------------------------------
 #   RANGER_TRACK_PREY
 #   RANGER_HUNT_MARK
-#   RANGER_STRUCTURE_SENSE     reads the three placeholders above
+#   RANGER_STRUCTURE_SENSE     reads the four placeholders above
 #   RANGER_TRAILFINDER         same placeholders, longer range / ally share
 #
 # Casts: MythicMobs/skills/RangerTracker.yml → /bellcraft-tracker ...
 # Lookup: Skript/scripts/ranger-tracker.sk (PlaceholderAPI via skript-placeholders)
 #
 
-stub_id: example_ruin
+seeded_ids:
+  - stub_ruin
+  - stub_watchtower
+
 trackable: true
 tags:
   - ruin
+  - watchtower
   - tracker
 
 placeholders:
   nearest: '%bellcraft_struct_nearest%'
+  nearest_id: '%bellcraft_struct_nearest_id%'
   nearest_dist: '%bellcraft_struct_nearest_dist%'
   count: '%bellcraft_struct_count%'
 
 bcstruct_commands:
-  - save
-  - place
   - list
   - info
+  - save
+  - place
+  - register
