@@ -171,8 +171,8 @@ every 10 ticks:
         else:
             set {_marked} to {bellcraft.huntmark.entity::%{_id}%}
             if {_marked} is set:
-                play smoke at location of {_marked}
-                play crit at location of {_marked}
+                play sound "block.note_block.chime" with volume 0.6 and pitch 1.4 at {_marked}
+                play sound "entity.arrow.hit_player" with volume 0.5 and pitch 1.2 at {_marked}
 
 # ── Structure Sense / Trailfinder (PAPI → /bcstruct) ─────────
 
