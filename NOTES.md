@@ -179,11 +179,11 @@ Tracker does **not** own a structure registry. Structure Sense and Trailfinder o
 
 | Hook | Value |
 |------|--------|
-| Registry keys | kebab-case structure IDs (`example_ruin` stub) with `trackable` + `tags` |
-| Commands | `/bcstruct save` `place` `list` `info` |
-| Placeholders | `%bellcraft_struct_nearest%` `%bellcraft_struct_nearest_dist%` `%bellcraft_struct_count%` |
+| Registry keys | kebab-case structure IDs (`stub_ruin`, `stub_watchtower`) with `trackable` + `tags` |
+| Commands | `/bcstruct list` `info` `save` `place` `register` |
+| Placeholders | `%bellcraft_struct_nearest%` `%bellcraft_struct_nearest_id%` `%bellcraft_struct_nearest_dist%` `%bellcraft_struct_count%` |
 
-Those placeholders are wired into Structure Sense / Trailfinder skill lore, MythicMobs cast messages, the skill-tree node lore, and `Skript/scripts/ranger-tracker.sk`. If PAPI is unloaded or count is 0, the skill reports the stub ID `example_ruin` and points at `/bcstruct` instead of inventing its own location list.
+Those placeholders are wired into Structure Sense / Trailfinder skill lore, MythicMobs cast messages, the skill-tree node lore, and `Skript/scripts/ranger-tracker.sk`. If PAPI is unloaded or count is 0, the skill reports the seeded IDs `stub_ruin` / `stub_watchtower` and points at `/bcstruct` instead of inventing its own location list.
 
 Player tags other plugins can read: `bellcraft_tracking` (caster), `bellcraft_hunt_marked` (victim).
 
@@ -225,7 +225,7 @@ After pulling these config changes from the repository, apply them to the live s
 12. Spend a skill-tree point on a skill node – confirm the skill is added to your profile and you can bind it to a skill slot.
 13. Bind the skill and use it – confirm cooldown and mana cost apply correctly.
 14. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
-14b. As a Ranger: confirm both **Hunter's Path** and **Tracker's Path** appear in `/skilltrees`. Spend Tracker points down a column and confirm Track Prey / Hunt Mark / Structure Sense / Trailfinder unlock and can be bound. Structure Sense should print `%bellcraft_struct_nearest%` / dist / count (or the stub `example_ruin` + `/bcstruct save|place|list|info` if those placeholders are unloaded). Do not expect `/bellcraft-structure` — that command is not part of this spec.
+14b. As a Ranger: confirm both **Hunter's Path** and **Tracker's Path** appear in `/skilltrees`. Spend Tracker points down a column and confirm Track Prey / Hunt Mark / Structure Sense / Trailfinder unlock and can be bound. Structure Sense should print `%bellcraft_struct_nearest%` / `%bellcraft_struct_nearest_id%` / dist / count (or seeded `stub_ruin` / `stub_watchtower` + `/bcstruct list|info|save|place|register` if those placeholders are unloaded). Do not expect `/bellcraft-structure` — that command is not part of this spec.
 15. Confirm all previously existing skills still function normally.
 16. Check the console for any YAML load errors or skill registration warnings.
 

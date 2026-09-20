@@ -219,8 +219,10 @@ RANGER_BINDING_SHOT:
 #   RANGER_TRACK_PREY, RANGER_HUNT_MARK, RANGER_STRUCTURE_SENSE, RANGER_TRAILFINDER
 # Structure Sense / Trailfinder consume /bcstruct + PAPI (do not add a
 # parallel registry):
-#   %bellcraft_struct_nearest%  %bellcraft_struct_nearest_dist%  %bellcraft_struct_count%
-# Stub ID: example_ruin  Commands: /bcstruct save|place|list|info
+#   %bellcraft_struct_nearest%  %bellcraft_struct_nearest_id%
+#   %bellcraft_struct_nearest_dist%  %bellcraft_struct_count%
+# Seeded IDs: stub_ruin, stub_watchtower
+# Commands: /bcstruct list|info|save|place|register
 # Casts: MythicMobs/skills/RangerTracker.yml → /bellcraft-tracker
 
 RANGER_TRACK_PREY:
@@ -285,9 +287,11 @@ RANGER_STRUCTURE_SENSE:
   lore:
     - "&7Ping the nearest trackable structure."
     - "&7Nearest: &e%bellcraft_struct_nearest%"
+    - "&7ID: &e%bellcraft_struct_nearest_id%"
     - "&7Distance: &e%bellcraft_struct_nearest_dist%m"
     - "&7Tracked: &e%bellcraft_struct_count%"
-    - "&8ID stub: example_ruin  /bcstruct save|place|list|info"
+    - "&8Seeded: stub_ruin, stub_watchtower"
+    - "&8/bcstruct list|info|save|place|register"
   source: mythicmobs:RangerStructureSense_Cast
   parameters:
     cooldown:
@@ -319,10 +323,12 @@ RANGER_TRAILFINDER:
   lore:
     - "&7Long-range structure or NPC ping."
     - "&7Nearest: &e%bellcraft_struct_nearest%"
+    - "&7ID: &e%bellcraft_struct_nearest_id%"
     - "&7Distance: &e%bellcraft_struct_nearest_dist%m"
     - "&7Tracked: &e%bellcraft_struct_count%"
     - "&8Shares the ping with nearby allies."
-    - "&8ID stub: example_ruin  /bcstruct save|place|list|info"
+    - "&8Seeded: stub_ruin, stub_watchtower"
+    - "&8/bcstruct list|info|save|place|register"
   source: mythicmobs:RangerTrailfinder_Cast
   parameters:
     cooldown:

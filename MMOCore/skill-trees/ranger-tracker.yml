@@ -150,10 +150,11 @@ nodes:
     lores:
       0:
         - '&fPing the nearest trackable structure'
-        - '&f(%bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist%m).'
+        - '&f(%bellcraft_struct_nearest% / %bellcraft_struct_nearest_id%'
+        - '&f/ %bellcraft_struct_nearest_dist%m).'
         - '&7Tracked: %bellcraft_struct_count%'
-        - '&8Stub ID: example_ruin'
-        - '&8/bcstruct save|place|list|info'
+        - '&8Seeded: stub_ruin, stub_watchtower'
+        - '&8/bcstruct list|info|save|place|register'
         - ''
         - '&7Spend 1 Point to unlock'
         - '&7the &eStructure Sense&7 ability!'
@@ -173,10 +174,12 @@ nodes:
     lores:
       0:
         - '&fCapstone: long-range structure ping'
-        - '&f(%bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist%m)'
+        - '&f(%bellcraft_struct_nearest% / %bellcraft_struct_nearest_id%'
+        - '&f/ %bellcraft_struct_nearest_dist%m)'
         - '&for NPC ping. Nearby allies share it.'
         - '&7Tracked: %bellcraft_struct_count%'
-        - '&8Stub ID: example_ruin  /bcstruct'
+        - '&8Seeded: stub_ruin, stub_watchtower'
+        - '&8/bcstruct list|info|save|place|register'
         - ''
         - '&7Spend 1 Point to unlock'
         - '&7the &6Trailfinder&7 ability!'

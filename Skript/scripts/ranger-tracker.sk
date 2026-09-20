@@ -11,10 +11,11 @@
 #  Structure Sense / Trailfinder consume /bcstruct via PAPI only.
 #  Do not add a parallel location store here.
 #    %bellcraft_struct_nearest%
+#    %bellcraft_struct_nearest_id%
 #    %bellcraft_struct_nearest_dist%
 #    %bellcraft_struct_count%
-#  Stub ID: example_ruin
-#  Authoring: /bcstruct save|place|list|info
+#  Seeded IDs: stub_ruin, stub_watchtower
+#  Authoring: /bcstruct list|info|save|place|register
 # ============================================================
 
 options:
@@ -194,23 +195,33 @@ function trackerTrailfinder(p: player):
 
 function trackerStructurePing(p: player, share: boolean) :: boolean:
     set {_nearest} to trackerPapi({_p}, "bellcraft_struct_nearest")
+    set {_id} to trackerPapi({_p}, "bellcraft_struct_nearest_id")
     set {_dist} to trackerPapi({_p}, "bellcraft_struct_nearest_dist")
     set {_count} to trackerPapi({_p}, "bellcraft_struct_count")
 
-    if {_nearest} is "":
+    set {_label} to {_id}
+    if {_label} is "":
+        set {_label} to {_nearest}
+
+    if {_label} is "":
         if {_count} is "0":
             send "{@prefix}&eStructure Sense &7found no trackable structures." to {_p}
-            send "{@prefix}&8%%bellcraft_struct_count%% = 0. Stub ID: &eexample_ruin" to {_p}
-            send "{@prefix}&8Authoring: /bcstruct save|place|list|info" to {_p}
+            send "{@prefix}&8%%bellcraft_struct_count%% = 0. Seeded: &estub_ruin&8, &estub_watchtower" to {_p}
+            send "{@prefix}&8Authoring: /bcstruct list|info|save|place|register" to {_p}
             return false
-        send "{@prefix}&eStructure Sense &7waiting on &f%%bellcraft_struct_nearest%%&7." to {_p}
-        send "{@prefix}&8Stub ID: &eexample_ruin &8— /bcstruct save|place|list|info" to {_p}
+        send "{@prefix}&eStructure Sense &7waiting on &f%%bellcraft_struct_nearest_id%%&7 / &f%%bellcraft_struct_nearest%%&7." to {_p}
+        send "{@prefix}&8Seeded: &estub_ruin&8, &estub_watchtower &8— /bcstruct list|info|save|place|register" to {_p}
         return false
 
-    send "{@prefix}&eStructure Sense &7locked onto &6%{_nearest}% &8(&e%{_dist}%m&8) &7[&e%{_count}%&7]." to {_p}
+    set {_shown} to {_label}
+    if {_id} is not "":
+        if {_nearest} is not "":
+            if {_id} is not {_nearest}:
+                set {_shown} to "%{_id}% &8(&7%{_nearest}%&8)"
+    send "{@prefix}&eStructure Sense &7locked onto &6%{_shown}% &8(&e%{_dist}%m&8) &7[&e%{_count}%&7]." to {_p}
 
     if {_share} is true:
         loop all players in radius {@party_share_radius} around {_p}:
             if loop-player is not {_p}:
-                send "{@prefix}&6Trailfinder &7shared &6%{_nearest}% &7(&e%{_dist}%m&7) from &e%{_p}%&7." to loop-player
+                send "{@prefix}&6Trailfinder &7shared &6%{_label}% &7(&e%{_dist}%m&7) from &e%{_p}%&7." to loop-player
     return true
