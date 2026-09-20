@@ -20,6 +20,7 @@ Each tree now has `root: true` skill unlock nodes (no prerequisites) at the edge
 | `soldier` | SOLDIER_SHIELD_BASH, SOLDIER_WARRIORS_LEAP, SOLDIER_BATTLE_CRY, COMBAT_STANCE, SUPPRESSING_FIRE, TACTICAL_RELOAD |
 | `operative` | OPERATIVE_SHADOW_STRIKE, OPERATIVE_POISON_BLADE, OPERATIVE_VANISH, TRICK_ATTACK, EVASION_PROTOCOL |
 | `ranger-hunter` | RANGER_EXPLOSIVE_ARROW, RANGER_CAMOUFLAGE, RANGER_BINDING_SHOT |
+| `ranger-tracker` | RANGER_TRACK_PREY, RANGER_HUNT_MARK, RANGER_STRUCTURE_SENSE, RANGER_TRAILFINDER (9-point dual spec; passives unlock each skill) |
 | `mystic` | MYSTIC_VOID_STEP, MYSTIC_STARFALL, MYSTIC_CELESTIAL_BOND, COSMIC_RIFT, GRAVITON_FIELD |
 | `paladin-guardian` | PALADIN_AVENGING_WRATH, PALADIN_HOLY_GROUND, PALADIN_SACRIFICIAL_SHIELD |
 | `sorcerer-elementalist` | SORCERER_ARCANE_MISSILES, SORCERER_ELEMENTAL_SHIELD, SORCERER_TIME_WARP |
@@ -39,6 +40,8 @@ Standalone MythicLib skills added to class `skills:` sections (with `unlocked-by
 | Technomancer (`technomancer.yml`) | OVERCHARGE, NANITE_SWARM |
 
 > Classes that already had their custom skills registered (Cleric, Ranger, Paladin, Sorcerer, Envoy) were not changed.
+
+Ranger later gained a **Tracker** dual spec (see below) without removing Hunter skills.
 
 ### 3. GUI Fixes
 
@@ -149,8 +152,40 @@ Created a reference/documentation file mapping every custom skill to:
 | Skill menu GUI config | `MMOCore/gui/skill-list.yml` |
 | Skill tree GUI config | `MMOCore/gui/skill-tree.yml` |
 | Skill mapping reference | `config/skills/mapping.yml` |
+| Tracker structure-sense contract | `config/tracker/structure-registry.yml` |
+| Tracker skill bridge (Skript) | `Skript/scripts/ranger-tracker.sk` |
 | Info Panel GUI (GUIPlus) | `GUIPlus/CustomGuis/info-panel.yml` |
 | Quest configs (66 total) | `MMOCore/quests/*.yml` |
+
+---
+
+## Ranger Tracker Dual Spec
+
+Ranger keeps **Hunter's Path** (`ranger-hunter`, unchanged) and gains a second class tree, **Tracker's Path** (`ranger-tracker`, `max-point-spent: 9`).
+
+Each column is passives → capstone skill:
+
+| Path | Passives | Capstone skill |
+|------|----------|----------------|
+| Prey | Keen Senses I–II (move speed while tracking) | **Track Prey** — glow + compass-ping nearest other player or named NPC |
+| Mark | Soft Foot I–II (dodge / reduced detection) | **Hunt Mark** — wall-visible glow, smoke/crit trail, bonus damage vs marked |
+| Worldsense | Bloodhound (projectile damage; Hunt Mark applies the marked-target bonus) | **Structure Sense** then **Trailfinder** (longer range, nearby-ally share) |
+
+MythicLib IDs: `RANGER_TRACK_PREY`, `RANGER_HUNT_MARK`, `RANGER_STRUCTURE_SENSE`, `RANGER_TRAILFINDER`. MythicMobs casts live in `MythicMobs/skills/RangerTracker.yml` and dispatch `/bellcraft-tracker ...` as console.
+
+### Structure Sense contract (`/bcstruct`)
+
+Tracker does **not** own a structure registry. Structure Sense and Trailfinder only read BUG BOt's hooks:
+
+| Hook | Value |
+|------|--------|
+| Registry keys | kebab-case structure IDs (`example_ruin` stub) with `trackable` + `tags` |
+| Commands | `/bcstruct save` `place` `list` `info` |
+| Placeholders | `%bellcraft_struct_nearest%` `%bellcraft_struct_nearest_dist%` `%bellcraft_struct_count%` |
+
+Those placeholders are wired into Structure Sense / Trailfinder skill lore, MythicMobs cast messages, the skill-tree node lore, and `Skript/scripts/ranger-tracker.sk`. If PAPI is unloaded or count is 0, the skill reports the stub ID `example_ruin` and points at `/bcstruct` instead of inventing its own location list.
+
+Player tags other plugins can read: `bellcraft_tracking` (caster), `bellcraft_hunt_marked` (victim).
 
 ---
 
@@ -165,6 +200,8 @@ After pulling these config changes from the repository, apply them to the live s
    - Any new class files in `MMOCore/classes/` → `plugins/MMOCore/classes/`
    - Any new skill tree files in `MMOCore/skill-trees/` → `plugins/MMOCore/skill-trees/`
    - Any new MythicLib skill files in `MythicLib/skill/` → `plugins/MythicLib/skill/`
+   - `MythicMobs/skills/RangerTracker.yml` → `plugins/MythicMobs/skills/RangerTracker.yml`
+   - `Skript/scripts/ranger-tracker.sk` → `plugins/Skript/scripts/ranger-tracker.sk`
 
 2. **Restart the server** (or run `/gui reload` for GUIPlus and `/mmocore reload` for MMOCore).
 
@@ -188,6 +225,7 @@ After pulling these config changes from the repository, apply them to the live s
 12. Spend a skill-tree point on a skill node – confirm the skill is added to your profile and you can bind it to a skill slot.
 13. Bind the skill and use it – confirm cooldown and mana cost apply correctly.
 14. Repeat for Operative, Ranger, Mystic, Paladin, Sorcerer, Technomancer, Cleric.
+14b. As a Ranger: confirm both **Hunter's Path** and **Tracker's Path** appear in `/skilltrees`. Spend Tracker points down a column and confirm Track Prey / Hunt Mark / Structure Sense / Trailfinder unlock and can be bound. Structure Sense should print `%bellcraft_struct_nearest%` / dist / count (or the stub `example_ruin` + `/bcstruct save|place|list|info` if those placeholders are unloaded). Do not expect `/bellcraft-structure` — that command is not part of this spec.
 15. Confirm all previously existing skills still function normally.
 16. Check the console for any YAML load errors or skill registration warnings.
 

@@ -204,8 +204,9 @@ scenes:
             lore:
             - ''
             - '&7Role: &fDPS Ranged / Hunter'
-            - '&7Projectile damage, traps,'
-            - '&7and nature abilities.'
+            - '&7Specs: &aHunter &7/ &6Tracker'
+            - '&7Projectile damage, traps, prey'
+            - '&7tracking, and structure sense.'
             - '&7Resource: &aFocus'
         item-flags:
         - HIDE_ATTRIBUTES

@@ -214,3 +214,136 @@ RANGER_BINDING_SHOT:
       - 'potion{type=SLOWNESS;duration={duration};amplifier=3}'
       - 'particle{p=SPELL_WITCH;amount=50;speed=0.4;hS=1;vS=1.5}'
       - 'sound{s=ENTITY_ARROW_HIT;v=1.2;p=0.8}'
+
+# --- Tracker dual-spec (ranger-tracker tree) ---
+#   RANGER_TRACK_PREY, RANGER_HUNT_MARK, RANGER_STRUCTURE_SENSE, RANGER_TRAILFINDER
+# Structure Sense / Trailfinder consume /bcstruct + PAPI (do not add a
+# parallel registry):
+#   %bellcraft_struct_nearest%  %bellcraft_struct_nearest_dist%  %bellcraft_struct_count%
+# Stub ID: example_ruin  Commands: /bcstruct save|place|list|info
+# Casts: MythicMobs/skills/RangerTracker.yml → /bellcraft-tracker
+
+RANGER_TRACK_PREY:
+  name: "&6Track Prey"
+  icon: COMPASS
+  source: mythicmobs:RangerTrackPrey_Cast
+  parameters:
+    cooldown:
+      player:
+        base: 12
+        per-level: -0.08
+        min: 6
+        max: 12
+      name: Cooldown
+    mana:
+      player:
+        base: 8
+        per-level: 0.12
+      name: Mana
+    duration:
+      player:
+        base: 8
+        per-level: 0.1
+      name: Duration
+    range:
+      player:
+        base: 48
+        per-level: 1.0
+      name: Range
+
+RANGER_HUNT_MARK:
+  name: "&cHunt Mark"
+  icon: SPECTRAL_ARROW
+  source: mythicmobs:RangerHuntMark_Cast
+  parameters:
+    cooldown:
+      player:
+        base: 14
+        per-level: -0.1
+        min: 7
+        max: 14
+      name: Cooldown
+    mana:
+      player:
+        base: 7
+        per-level: 0.12
+      name: Mana
+    damage:
+      player:
+        base: 4.0
+        per-level: 0.25
+      name: Damage
+    duration:
+      player:
+        base: 8
+        per-level: 0.1
+      name: Duration
+
+RANGER_STRUCTURE_SENSE:
+  name: "&eStructure Sense"
+  icon: RECOVERY_COMPASS
+  lore:
+    - "&7Ping the nearest trackable structure."
+    - "&7Nearest: &e%bellcraft_struct_nearest%"
+    - "&7Distance: &e%bellcraft_struct_nearest_dist%m"
+    - "&7Tracked: &e%bellcraft_struct_count%"
+    - "&8ID stub: example_ruin  /bcstruct save|place|list|info"
+  source: mythicmobs:RangerStructureSense_Cast
+  parameters:
+    cooldown:
+      player:
+        base: 20
+        per-level: -0.12
+        min: 10
+        max: 20
+      name: Cooldown
+    mana:
+      player:
+        base: 10
+        per-level: 0.15
+      name: Mana
+    duration:
+      player:
+        base: 12
+        per-level: 0.1
+      name: Duration
+    range:
+      player:
+        base: 96
+        per-level: 2.0
+      name: Range
+
+RANGER_TRAILFINDER:
+  name: "&6&lTrailfinder"
+  icon: SPYGLASS
+  lore:
+    - "&7Long-range structure or NPC ping."
+    - "&7Nearest: &e%bellcraft_struct_nearest%"
+    - "&7Distance: &e%bellcraft_struct_nearest_dist%m"
+    - "&7Tracked: &e%bellcraft_struct_count%"
+    - "&8Shares the ping with nearby allies."
+    - "&8ID stub: example_ruin  /bcstruct save|place|list|info"
+  source: mythicmobs:RangerTrailfinder_Cast
+  parameters:
+    cooldown:
+      player:
+        base: 40
+        per-level: -0.2
+        min: 24
+        max: 40
+      name: Cooldown
+    mana:
+      player:
+        base: 16
+        per-level: 0.2
+      name: Mana
+    duration:
+      player:
+        base: 16
+        per-level: 0.12
+      name: Duration
+    range:
+      player:
+        base: 160
+        per-level: 2.0
+      name: Range

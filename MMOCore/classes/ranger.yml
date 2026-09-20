@@ -2,9 +2,11 @@ display:
   name: 'Ranger'
   lore:
     - '&eClass Role: DPS Ranged / Hunter'
+    - '&7Dual spec: &aHunter &7/ &6Tracker'
     - '&7A master of the wilds who strikes'
     - '&7from the shadows with deadly'
-    - '&7precision and nature''s fury.'
+    - '&7precision, or tracks prey, marks'
+    - '&7targets, and senses hidden structures.'
   item: BOW
   slot: 21
 
@@ -89,6 +91,7 @@ main-exp-sources:
 
 skill-trees:
   - 'ranger-hunter'
+  - 'ranger-tracker'
   - 'profession-mining'
   - 'profession-woodcutting'
   - 'profession-farming'
@@ -126,8 +129,30 @@ skills:
     max-level: 30
     unlocked-by-default: false
 
+  # Tracker dual-spec (unlocked from ranger-tracker tree)
+  RANGER_TRACK_PREY:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  RANGER_HUNT_MARK:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  RANGER_STRUCTURE_SENSE:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
+  RANGER_TRAILFINDER:
+    level: 1
+    max-level: 30
+    unlocked-by-default: false
+
 triggers:
   level-up-multiple-4:
     - 'command{format="bellcraft-grant-ap %player_name%"}'
     - 'command{format="bellcraft-grant-sp %player_name%"}'
     - 'command{format="bellcraft-grant-stp %player% ranger-hunter"}'
+    - 'command{format="bellcraft-grant-stp %player% ranger-tracker"}'

@@ -179,6 +179,57 @@ skills:
       position: "x: 4, y: 4"
       prerequisite: none
 
+  # === RANGER TRACKER DUAL-SPEC ===
+  # 9-point tree `ranger-tracker`. Passives (Keen Senses / Soft Foot /
+  # Bloodhound) unlock each skill as a capstone.
+  # Structure Sense / Trailfinder consume /bcstruct (not a Tracker-owned
+  # registry) via %bellcraft_struct_nearest%, %bellcraft_struct_nearest_dist%,
+  # %bellcraft_struct_count%. Stub ID: example_ruin.
+
+  RANGER_TRACK_PREY:
+    display_name: "Track Prey"
+    icon: COMPASS
+    description: "Highlight and compass-ping the nearest hostile player or named NPC within range. Grants move speed while tracking."
+    classes: [Ranger]
+    tree:
+      class: ranger-tracker
+      node_id: skill_track_prey
+      position: "x: -2, y: -1"
+      prerequisite: t2
+
+  RANGER_HUNT_MARK:
+    display_name: "Hunt Mark"
+    icon: SPECTRAL_ARROW
+    description: "Mark a target; briefly reveal them through walls with glow and a smoke/crit trail. Bonus damage vs marked targets."
+    classes: [Ranger]
+    tree:
+      class: ranger-tracker
+      node_id: skill_hunt_mark
+      position: "x: 0, y: -1"
+      prerequisite: m2
+
+  RANGER_STRUCTURE_SENSE:
+    display_name: "Structure Sense"
+    icon: RECOVERY_COMPASS
+    description: "Ping the nearest trackable structure via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%. Registry: /bcstruct save|place|list|info. Stub ID: example_ruin."
+    classes: [Ranger]
+    tree:
+      class: ranger-tracker
+      node_id: skill_structure_sense
+      position: "x: 2, y: 0"
+      prerequisite: w1
+
+  RANGER_TRAILFINDER:
+    display_name: "Trailfinder"
+    icon: SPYGLASS
+    description: "Capstone: longer-range structure ping via %bellcraft_struct_nearest% / %bellcraft_struct_nearest_dist% / %bellcraft_struct_count%, or NPC ping. Nearby allies share the trail. Stub ID: example_ruin."
+    classes: [Ranger]
+    tree:
+      class: ranger-tracker
+      node_id: skill_trailfinder
+      position: "x: 2, y: -1"
+      prerequisite: skill_structure_sense
+
   # === MYSTIC SKILLS ===
 
   MYSTIC_VOID_STEP:
