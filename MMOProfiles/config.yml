@@ -276,6 +276,9 @@ select_last_profile_on_login: false
 #
 # /mmoprofiles quit (player)
 #
+# Players should not run this themselves (requires mmoprofiles.admin).
+# The /characters menu runs it from console after a confirmation click.
+#
 # !!!! This command does NOT support proxy-based profiles yet  !!!!!
 quit_profile:
 
@@ -322,7 +325,7 @@ script:
   # or just after a player leaves their current profile
   login:
     mechanics:
-      - 'tell{format="&eWelcome! Please choose the profile you''d like to play on."}'
+      - 'tell{format="&eChoose a character to play. In-game, open &b/p &eor &b/characters &eto switch, rename, or change icon."}'
 
   # MythicLib script ran when a player chooses a profile (after login).
   profile-select:
@@ -332,10 +335,11 @@ script:
 
   # MythicLib script ran when leaving current profile (/mmoprofiles quit <player>)
   # or when switching to another profile through /mmoprofiles open <player>
+  # In-game players reach this via /p → Characters → Switch Character.
   profile-leave:
     mechanics:
       - 'sound{sound=ENTITY_VILLAGER_NO}'
-      - 'tell{format="&eYou successfully left your profile"}'
+      - 'tell{format="&eCharacter saved. Pick who you want to play next."}'
 
   # MythicLib script ran when a player deletes one of their profiles.
   profile-delete:

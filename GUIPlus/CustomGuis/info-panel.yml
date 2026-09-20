@@ -137,6 +137,7 @@ scenes:
             - ''
             - '&7Pick a class with &e/class'
             - '&7Check your profile with &e/p'
+            - '&7Switch characters with &e/characters'
             - '&7Upgrade skills with &e/upgrade'
             - ''
             - '&8Start your adventure today!'
